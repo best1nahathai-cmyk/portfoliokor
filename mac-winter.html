@@ -1,0 +1,774 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MAC It MAC — Winter Collection · Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+  /* ====== Case-study white theme ====== */
+  .cs-hero{
+    padding: clamp(28px, 4vw, 56px) var(--pad-x) clamp(40px, 5vw, 64px);
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+  .cs-hero .meta{
+    display: flex; gap: 8px; flex-wrap: wrap;
+    margin-bottom: 22px;
+  }
+  .cs-hero h1{
+    font-family: var(--f-display);
+    font-weight: 800;
+    font-size: clamp(54px, 8.5vw, 132px);
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+    margin: 0;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .cs-hero h1 .accent{ color: var(--accent); }
+  .cs-hero .deck{
+    margin-top: 24px;
+    font-family: var(--f-body);
+    font-size: clamp(15px, 1.4vw, 18px);
+    line-height: 1.6;
+    color: var(--ink-2);
+    max-width: 60ch;
+  }
+  .cs-hero .row{
+    margin-top: 26px;
+    display: flex; gap: 10px; flex-wrap: wrap;
+    align-items: center;
+  }
+
+  /* HERO BENTO — key image + 3-portrait strip */
+  .hero-bento{
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    gap: var(--gap);
+  }
+  @media (max-width: 880px){
+    .hero-bento{ grid-template-columns: 1fr 1fr; }
+    .hero-bento .key{ grid-column: 1 / -1; }
+  }
+  .hero-bento .key{
+    grid-column: 1 / 2; grid-row: 1 / 2;
+    aspect-ratio: auto;
+    height: 100%;
+    min-height: 360px;
+  }
+  .hero-bento .pf{ aspect-ratio: 3/4; min-height: 360px; }
+
+  /* Reusable section header card */
+  .sec-head{
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 18px;
+    align-items: center;
+    padding: 18px 24px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    box-shadow: var(--shadow-1);
+  }
+  .sec-head .nu{
+    font-family: var(--f-mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    padding: 6px 12px;
+    background: var(--dark);
+    color: #fff;
+    border-radius: 999px;
+  }
+  .sec-head .h{
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: clamp(22px, 2.2vw, 30px);
+    letter-spacing: -0.018em;
+    margin: 0;
+    color: var(--ink);
+  }
+  .sec-head .kick{
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .sec-block{ margin-top: clamp(36px, 5vw, 56px); }
+
+  .text-card{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: clamp(22px, 3vw, 36px);
+    box-shadow: var(--shadow-1);
+    margin-top: var(--gap);
+  }
+  .text-card p{
+    margin: 0;
+    font-family: var(--f-body);
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--ink-2);
+    max-width: 64ch;
+  }
+  .text-card p + p{ margin-top: 1em; }
+  .text-card strong{ color: var(--ink); font-weight: 600; }
+
+  /* Product 5-up bento */
+  .pact-grid{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--gap);
+    margin-top: var(--gap);
+  }
+  @media (max-width: 880px){ .pact-grid{ grid-template-columns: repeat(2, 1fr); } }
+  .pact{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    box-shadow: var(--shadow-1);
+    overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .pact .img{
+    aspect-ratio: 4/5;
+    margin: 12px 12px 0;
+    border-radius: var(--r-sm);
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(60% 60% at 50% 30%, rgba(200,220,235,0.30), transparent 65%),
+      linear-gradient(160deg, #e8eef4 0%, #b8c4d2 100%);
+  }
+  .pact .img .obj{
+    position: absolute; left: 30%; right: 30%; top: 18%; bottom: 18%;
+    background: radial-gradient(circle at 35% 30%, #ffffff, #b5b8bd 45%, #2a2c30 100%);
+    border-radius: 50%;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.30);
+  }
+  .pact[data-shape="lip"] .img{ background: linear-gradient(160deg, #ebd8ce, #c4a092 100%); }
+  .pact[data-shape="lip"] .img .obj{
+    left: 42%; right: 42%; top: 14%; bottom: 14%;
+    border-radius: 4px;
+    background: linear-gradient(180deg, #cfd3d8 0%, #6a6c70 28%, #161718 29%, #2a2c2e 100%);
+  }
+  .pact[data-shape="tube"] .img{ background: linear-gradient(160deg, #dfe8f0, #a4b4c4 100%); }
+  .pact[data-shape="tube"] .img .obj{
+    left: 40%; right: 40%; top: 14%; bottom: 14%;
+    background: linear-gradient(180deg, #d8dadf 0%, #888a90 30%, #1a1c20 31%, #2c2e32 100%);
+    border-radius: 4px;
+  }
+  .pact[data-shape="pen"] .img{ background: linear-gradient(160deg, #cad8e4, #8aa4bc 100%); }
+  .pact[data-shape="pen"] .img .obj{
+    left: 46%; right: 46%; top: 10%; bottom: 14%;
+    background: linear-gradient(180deg, #cfd3d8, #4a4c50 50%, #161718);
+    border-radius: 2px;
+  }
+  .pact .img .num{
+    position: absolute; top: 10px; left: 10px;
+    font-family: var(--f-mono); font-size: 9px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink);
+    padding: 4px 8px;
+    background: rgba(255,255,255,0.9);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 999px;
+  }
+  .pact .info{
+    padding: 14px 16px 18px;
+  }
+  .pact .info .name{
+    font-family: var(--f-display); font-weight: 700;
+    font-size: 14px; color: var(--ink);
+    letter-spacing: -0.005em;
+    margin-bottom: 4px;
+  }
+  .pact .info .sub{
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* Quote cards 2-up */
+  .qcards{
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: var(--gap);
+    margin-top: var(--gap);
+  }
+  @media (max-width: 760px){ .qcards{ grid-template-columns: 1fr; } }
+  .qcard{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    box-shadow: var(--shadow-1);
+    padding: 28px;
+  }
+  .qcard .l{
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 14px;
+  }
+  .qcard .q{
+    font-family: var(--f-edit);
+    font-style: italic;
+    font-size: clamp(20px, 1.8vw, 26px);
+    line-height: 1.35;
+    color: var(--ink);
+    margin: 0 0 16px;
+  }
+  .qcard .a{
+    font-family: var(--f-body); font-size: 13px;
+    line-height: 1.55; color: var(--muted);
+  }
+
+  /* Palette 4-up */
+  .palette{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--gap);
+    margin-top: var(--gap);
+  }
+  @media (max-width: 760px){ .palette{ grid-template-columns: repeat(2, 1fr); } }
+  .sw{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    overflow: hidden;
+    box-shadow: var(--shadow-1);
+  }
+  .sw .clr{
+    aspect-ratio: 4/3;
+    margin: 12px 12px 0;
+    border-radius: var(--r-sm);
+  }
+  .sw .info{ padding: 14px 16px 18px; }
+  .sw .info .nm{
+    font-family: var(--f-display); font-weight: 700;
+    font-size: 14px; color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .sw .info .hex{
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 8px;
+  }
+  .sw .info .use{
+    font-family: var(--f-body); font-size: 12.5px;
+    line-height: 1.5; color: var(--muted);
+  }
+
+  /* Winter checklist  -- 5 feature boxes */
+  .wcl{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--gap);
+    margin-top: var(--gap);
+  }
+  @media (max-width: 1100px){ .wcl{ grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 720px){ .wcl{ grid-template-columns: 1fr 1fr; } }
+  .wc{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: 22px;
+    box-shadow: var(--shadow-1);
+    display: flex; flex-direction: column; gap: 12px;
+    min-height: 220px;
+  }
+  .wc .ico{
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: var(--canvas);
+    border: 1px solid var(--line);
+    display: grid; place-items: center;
+    color: var(--ink);
+  }
+  .wc .ico svg{ width: 16px; height: 16px; }
+  .wc .h{
+    font-family: var(--f-display);
+    font-weight: 700; font-size: 15px;
+    letter-spacing: -0.005em; line-height: 1.2;
+    color: var(--ink); margin: 6px 0 2px;
+  }
+  .wc .p{
+    font-family: var(--f-body); font-size: 12.5px;
+    line-height: 1.55; color: var(--muted); margin: 0;
+  }
+  .wc .num{
+    margin-top: auto;
+    font-family: var(--f-mono); font-size: 9px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--muted-2);
+  }
+
+  /* Shot list  -- 2x2 grid */
+  .shotlist{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap);
+    margin-top: var(--gap);
+  }
+  @media (max-width: 760px){ .shotlist{ grid-template-columns: 1fr; } }
+  .shot{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: 26px 28px;
+    box-shadow: var(--shadow-1);
+  }
+  .shot .l{
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 8px;
+  }
+  .shot .name{
+    font-family: var(--f-display); font-weight: 700;
+    font-size: 18px; letter-spacing: -0.012em;
+    color: var(--ink); margin: 0 0 8px;
+  }
+  .shot .p{
+    font-family: var(--f-body); font-size: 13px;
+    line-height: 1.55; color: var(--muted); margin: 0;
+  }
+
+  /* Hero key image  */
+  .key-img{
+    position: relative;
+    border-radius: var(--r);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-1);
+    background:
+      radial-gradient(60% 70% at 38% 50%, rgba(180,210,235,0.40), transparent 65%),
+      radial-gradient(50% 60% at 80% 60%, rgba(220,230,240,0.30), transparent 65%),
+      linear-gradient(135deg, #cbd6e3 0%, #8ea4be 60%, #4a5d72 100%);
+    color: #fff;
+  }
+  .key-img .reindeer{
+    position: absolute; left: 18%; top: 22%; width: 14%; aspect-ratio: 3/4;
+    background: radial-gradient(60% 80% at 50% 30%, rgba(255,255,255,0.85), rgba(180,200,220,0.6) 70%, transparent);
+    clip-path: polygon(40% 0, 60% 0, 75% 12%, 78% 30%, 92% 42%, 80% 50%, 70% 55%, 70% 100%, 58% 100%, 55% 70%, 45% 70%, 42% 100%, 30% 100%, 30% 55%, 18% 50%, 22% 38%, 28% 32%, 30% 14%);
+  }
+  .key-img .compact{
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: 26%; aspect-ratio: 1/1;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 28%, #ffffff 0%, #cfd3d8 28%, #5a5d63 60%, #1a1c20 95%);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.4), inset 0 0 0 2px rgba(255,255,255,0.06);
+  }
+  .key-img .lipstick{
+    position: absolute; right: 22%; top: 38%; width: 4%; height: 36%;
+    background: linear-gradient(180deg, #cfd3d8 0%, #6a6c70 25%, #161718 26%, #2a2c2e 100%);
+    border-radius: 4px;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.4);
+  }
+  .key-img .orn{
+    position: absolute; width: 8%; aspect-ratio: 1/1; border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #ffffff 0%, #b5b8bd 35%, #4a4d52 90%);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.4);
+  }
+  .key-img .orn.a{ right: 8%; top: 62%; }
+  .key-img .orn.b{ left: 6%; bottom: 12%; width: 6%; }
+  .key-img .label{
+    position: absolute; left: 12px; bottom: 12px;
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink);
+    padding: 5px 10px;
+    background: rgba(255,255,255,0.9);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 999px;
+  }
+  .key-img .timecode{
+    position: absolute; top: 12px; right: 12px;
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: #fff;
+    padding: 5px 10px;
+    background: rgba(0,0,0,0.65);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 999px;
+  }
+
+  /* Portraits */
+  .portrait{
+    border-radius: var(--r);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-1);
+    position: relative;
+    background:
+      radial-gradient(60% 60% at 50% 35%, rgba(230,230,240,0.55), transparent 65%),
+      linear-gradient(160deg, #e0e6ed 0%, #aebac8 100%);
+  }
+  .portrait .face{
+    position: absolute; left: 18%; right: 18%; top: 22%; bottom: 28%;
+    background: radial-gradient(50% 80% at 50% 30%, rgba(245,235,225,0.85), transparent 70%);
+  }
+  .portrait .hat{
+    position: absolute; left: 14%; right: 14%; top: 6%; height: 26%;
+    background: radial-gradient(60% 80% at 50% 70%, rgba(255,255,255,0.85), transparent 70%);
+    filter: blur(2px);
+  }
+  .portrait .tag{
+    position: absolute; left: 12px; top: 12px;
+    font-family: var(--f-mono); font-size: 9px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink);
+    padding: 4px 8px;
+    background: rgba(255,255,255,0.92);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 999px;
+  }
+  .portrait .cap{
+    position: absolute; left: 12px; bottom: 12px;
+    font-family: var(--f-mono); font-size: 9px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink);
+    padding: 4px 8px;
+    background: rgba(255,255,255,0.85);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 999px;
+  }
+
+  /* TOC fixed left  */
+  .cs-toc{
+    position: fixed; left: 14px; top: 50%;
+    transform: translateY(-50%); z-index: 50;
+    display: flex; flex-direction: column; gap: 2px;
+    font-family: var(--f-mono); font-size: 9px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted);
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: 14px 12px;
+  }
+  .cs-toc a{
+    display:flex; align-items: center; gap: 8px; padding: 4px 4px; color: var(--muted);
+  }
+  .cs-toc a:hover{ color: var(--ink); }
+  .cs-toc .dash{ width: 14px; height: 1px; background: currentColor; opacity: .6; }
+  @media (max-width: 1320px){ .cs-toc{ display: none; } }
+
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-brand">PORTFOLIOKOR<sup>©</sup></div>
+  <nav class="topbar-nav">
+    <a href="index.html" class="is-current">← Back to homepage</a>
+  </nav>
+  <div class="topbar-meta">
+    <span class="dot" aria-hidden="true"></span>
+    <span>CDMX</span>
+    <span class="clock" data-cdmx-clock>00:00:00 AM</span>
+  </div>
+</header>
+
+<aside class="cs-toc">
+  <a href="#sec-04"><span class="dash"></span> 04 · Pactshots</a>
+  <a href="#sec-05"><span class="dash"></span> 05 · Built before</a>
+  <a href="#sec-01"><span class="dash"></span> 01 · Narrative</a>
+  <a href="#sec-02"><span class="dash"></span> 02 · Study look</a>
+  <a href="#sec-03"><span class="dash"></span> 03 · Feel like winter</a>
+  <a href="#sec-06"><span class="dash"></span> 06 · Frames</a>
+  <a href="#sec-07"><span class="dash"></span> 07 · Delivered</a>
+</aside>
+
+<!-- HERO -->
+<section class="cs-hero">
+  <div class="meta">
+    <span class="tag-slash solid">Case study · MAC × Winter</span>
+    <span class="tag-slash">UGC · 02 of 04</span>
+  </div>
+  <h1>MAC It Mac<br>— Winter <span class="accent">Collection</span></h1>
+  <p class="deck">A tutorial-style brand collaboration built around one sentence — "I only wear MAC" — and one world. Five products, one icy editorial palette, one full winter scene staged before a single frame was shot.</p>
+
+  <!-- HERO BENTO -->
+  <div class="hero-bento">
+    <div class="key key-img">
+      <span class="timecode">Scene 01 · TC 00:00:12:14</span>
+      <span class="label">Hero still · Compact + ornament + lipstick</span>
+      <div class="reindeer"></div>
+      <div class="compact"></div>
+      <div class="lipstick"></div>
+      <div class="orn a"></div>
+      <div class="orn b"></div>
+    </div>
+    <div class="pf portrait">
+      <span class="tag">Talent · 01</span>
+      <div class="hat"></div><div class="face"></div>
+      <span class="cap">Cool key · pearl</span>
+    </div>
+    <div class="pf portrait">
+      <span class="tag">Talent · 02</span>
+      <div class="hat" style="left:18%;right:18%"></div><div class="face"></div>
+      <span class="cap">Lip · sugar crystal</span>
+    </div>
+    <div class="pf portrait">
+      <span class="tag">Talent · 03</span>
+      <div class="hat" style="left:10%;right:10%;top:4%"></div><div class="face"></div>
+      <span class="cap">Skin · matte satin</span>
+    </div>
+  </div>
+
+  <div class="text-card" style="margin-top: var(--gap);">
+    <p>The winter setting was established before the tutorial began — each product introduced through its own styled scene instead of a simple hold-to-camera shot. Each product carried part of that world forward: the <strong>Dazzleshadow Liquid</strong> against blue-grey, the <strong>Sleek Satin lipstick</strong> on icy linen, the <strong>Sugar Crystal Lip Oil Stick</strong> mirroring the compact. Studio Fix held centre, and the MAC logo never strayed within the same winter palette.</p>
+  </div>
+</section>
+
+<!-- SECTION 04 -->
+<section class="container sec-block" id="sec-04" data-reveal>
+  <div class="sec-head">
+    <span class="nu">04</span>
+    <h2 class="h">Five products as editorial pactshots</h2>
+    <span class="kick">The Briefs</span>
+  </div>
+  <div class="text-card">
+    <p>Each product on the shoot got its own still — composed, lit and styled as if it were the only one in the campaign. Pactshots had to read as MAC and read as winter, without leaning on text.</p>
+  </div>
+  <div class="pact-grid">
+    <div class="pact" data-shape="square">
+      <div class="img"><span class="num">01</span><div class="obj"></div></div>
+      <div class="info"><div class="name">Studio Fix</div><div class="sub">Compact / Hero</div></div>
+    </div>
+    <div class="pact" data-shape="tube">
+      <div class="img"><span class="num">02</span><div class="obj"></div></div>
+      <div class="info"><div class="name">Dazzleshadow</div><div class="sub">Liquid · Icy</div></div>
+    </div>
+    <div class="pact" data-shape="lip">
+      <div class="img"><span class="num">03</span><div class="obj"></div></div>
+      <div class="info"><div class="name">Sleek Satin</div><div class="sub">Lipstick · Linen</div></div>
+    </div>
+    <div class="pact" data-shape="pen">
+      <div class="img"><span class="num">04</span><div class="obj"></div></div>
+      <div class="info"><div class="name">Lip Oil Stick</div><div class="sub">Sugar Crystal</div></div>
+    </div>
+    <div class="pact" data-shape="tube">
+      <div class="img"><span class="num">05</span><div class="obj"></div></div>
+      <div class="info"><div class="name">Powder Kiss</div><div class="sub">Edge accent</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 05 -->
+<section class="container sec-block" id="sec-05" data-reveal>
+  <div class="sec-head">
+    <span class="nu">05</span>
+    <h2 class="h">Everything built before shoot day</h2>
+    <span class="kick">Pre-production</span>
+  </div>
+  <div class="text-card">
+    <p>The set was sourced and dressed before camera rolled. Snow textures, ornaments, reindeer figurines, ice linen, sheer pearl-trim gloves — every element had a place inside a single overarching mood. By the time talent arrived, the world they were stepping into already existed.</p>
+  </div>
+</section>
+
+<!-- SECTION 01 -->
+<section class="container sec-block" id="sec-01" data-reveal>
+  <div class="sec-head">
+    <span class="nu">01</span>
+    <h2 class="h">One sentence forms the narrative</h2>
+    <span class="kick">The Brief</span>
+  </div>
+  <div class="text-card">
+    <p>The MACster competition brief came with just one requirement: create content featuring the phrase <strong>"I only wear MAC."</strong> There was no theme, aesthetic direction, or campaign concept attached.</p>
+    <p>The easiest approach would have been filming a makeup tutorial, saying the line once, and posting. Instead, I approached it like a campaign question — if MAC were releasing a winter collection, what kind of world would surround it? That became the creative direction I built for the project myself.</p>
+  </div>
+  <div class="qcards">
+    <div class="qcard">
+      <div class="l">Voice over · open</div>
+      <p class="q">"This isn't a tutorial. This is a winter I only wear MAC."</p>
+      <div class="a">Establishing line, voiced low-key against the cold-blue overhead. Read once at 00:00:04, never repeated.</div>
+    </div>
+    <div class="qcard">
+      <div class="l">Treatment beat</div>
+      <p class="q">"A full winter — props, talent, ornaments, lighting — all in the same icy palette. The phrase carries the line. The look carries the story."</p>
+      <div class="a">From the treatment doc: each product becomes the centre of its own moment, never the subject of a tip or trick.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 02 -->
+<section class="container sec-block" id="sec-02" data-reveal>
+  <div class="sec-head">
+    <span class="nu">02</span>
+    <h2 class="h">Study the look before building it</h2>
+    <span class="kick">Reference boards</span>
+  </div>
+  <div class="text-card">
+    <p>The starting point came from the MAC Winter collection packaging itself: icy blue-grey tones, black MAC compacts, gold ornament details, and the icicle-blue shade of the Sugar Crystal Lip Oil Stick. From there, I built a colour palette that guided every decision throughout the shoot — props, fabrics, styling, and set design.</p>
+  </div>
+  <div class="palette">
+    <div class="sw">
+      <div class="clr" style="background: linear-gradient(160deg,#15171b,#0b0d11);"></div>
+      <div class="info"><div class="nm">Near-Black</div><div class="hex">#0F1115 · Hero</div><div class="use">MAC compact, primary, branding.</div></div>
+    </div>
+    <div class="sw">
+      <div class="clr" style="background: linear-gradient(160deg,#c5cdda,#8a99ac);"></div>
+      <div class="info"><div class="nm">Icy Blue-Grey</div><div class="hex">#9CA7B6 · Lead</div><div class="use">Sugar Crystal base.</div></div>
+    </div>
+    <div class="sw">
+      <div class="clr" style="background: linear-gradient(160deg,#f5efe6,#dcd4c4);"></div>
+      <div class="info"><div class="nm">Cream-White</div><div class="hex">#EFE7D6 · Field</div><div class="use">Linen, snow, pearl trims.</div></div>
+    </div>
+    <div class="sw">
+      <div class="clr" style="background: linear-gradient(160deg,#e2b76b,#a37e3a);"></div>
+      <div class="info"><div class="nm">Gold Accent</div><div class="hex">#C99744 · Sparse</div><div class="use">Ornament, packaging trim.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 03 -->
+<section class="container sec-block" id="sec-03" data-reveal>
+  <div class="sec-head">
+    <span class="nu">03</span>
+    <h2 class="h">The look had to feel like winter</h2>
+    <span class="kick">Direction</span>
+  </div>
+  <div class="text-card">
+    <p>The makeup direction was designed to feel seasonal and editorial rather than like a typical GRWM video. That is the main reason why I picked blue makeup. I used icy tones on the eyes to reflect the <strong>Sugar Crystal</strong> packaging, while the <strong>Studio Fix powder</strong> created a soft matte base that pre-empted catching the light naturally, and the <strong>Matte Satin lipstick</strong> in a cool nude shade kept the overall look balanced without overpowering the set design.</p>
+    <p>The winter set didn't exist before this project. Every detail had to be sourced, prepared, and arranged from scratch before filming began. From the ornaments and ambient props to the reindeer Christmas linens, snow textures, fabrics, and lighting setup — each element was chosen to stay within the icy-blue, grey, white, black, and gold colour palette inspired by the collection packaging, so the entire set would feel visually cohesive on camera.</p>
+  </div>
+  <div class="wcl">
+    <div class="wc">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12l4 4 12-12"/></svg></div>
+      <div class="h">Source all props</div>
+      <p class="p">White reindeer figurines · Christmas ornaments (gold, silver) · Snowflake decorations · Sheer pearl gloves.</p>
+      <span class="num">01 / 05</span>
+    </div>
+    <div class="wc">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12l4 4 12-12"/></svg></div>
+      <div class="h">Prepare flat lay surface</div>
+      <p class="p">White fabric as snow base. Products and props arranged to match Pinterest reference composition before any filming.</p>
+      <span class="num">02 / 05</span>
+    </div>
+    <div class="wc">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12l4 4 12-12"/></svg></div>
+      <div class="h">Style the talent look</div>
+      <p class="p">White fluffy hat, sheer pearl-studded gloves, bare shoulder. Calm-weather styling that reads winter without being heavy.</p>
+      <span class="num">03 / 05</span>
+    </div>
+    <div class="wc">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12l4 4 12-12"/></svg></div>
+      <div class="h">Test lighting</div>
+      <p class="p">Soft, cool-overhead key to reinforce the winter palette. Avoid warm tones that would break the icy feel.</p>
+      <span class="num">04 / 05</span>
+    </div>
+    <div class="wc">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12l4 4 12-12"/></svg></div>
+      <div class="h">Prepare product name cards</div>
+      <p class="p">Each product introduced with its own elegant typography overlay during editing — Matte Satin, Sugar Crystal Lip Oil, Studio Fix, Dazzleshadow Liquid.</p>
+      <span class="num">05 / 05</span>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 06 -->
+<section class="container sec-block" id="sec-06" data-reveal>
+  <div class="sec-head">
+    <span class="nu">06</span>
+    <h2 class="h">Every frame planned before filming</h2>
+    <span class="kick">Shot list</span>
+  </div>
+  <div class="shotlist">
+    <div class="shot">
+      <div class="l">Scene 01</div>
+      <div class="name">Winter world reveal</div>
+      <p class="p">Products in snow flat-lay, reindeer figurines, sparkle title card. No face yet. Tone: the world is alive.</p>
+    </div>
+    <div class="shot">
+      <div class="l">Scene 02</div>
+      <div class="name">Product sequence</div>
+      <p class="p">Each product captured in sequence with name card. Sugar Crystal Lip → Dazzleshadow → Matte Satin → Studio Fix. Product becomes the focus, not the face.</p>
+    </div>
+    <div class="shot">
+      <div class="l">Scene 03</div>
+      <div class="name">First contact</div>
+      <p class="p">Cut-back — eyes closed, then eyes open turned to face. Glowing skin. Complete an editorial look with all MAC products featured.</p>
+    </div>
+    <div class="shot">
+      <div class="l">Scene 04</div>
+      <div class="name">The sentence</div>
+      <p class="p">"I only wear MAC." Read once, late, on the lip. End on the compact slipping into a bag and the screen blacking out.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 07 -->
+<section class="container sec-block" id="sec-07" data-reveal>
+  <div class="sec-head">
+    <span class="nu">07</span>
+    <h2 class="h">One full world delivered</h2>
+    <span class="kick">Outcome</span>
+  </div>
+  <div class="stats" style="margin-top: var(--gap);">
+    <div class="stat"><div class="stat-n">30+</div><div class="stat-lbl">Awards</div></div>
+    <div class="stat"><div class="stat-n">32+</div><div class="stat-lbl">Impressions K</div></div>
+    <div class="stat"><div class="stat-n">10K</div><div class="stat-lbl">Users reached</div></div>
+  </div>
+  <div class="text-card">
+    <p>The post received 32 likes and 10 comments on a competition entry, but the numbers mattered less than what the project demonstrated. Starting from a single sentence brief, I turned the idea into a fully art-directed editorial. That instinct to push a concept further, and ask what it could become, is something I bring into every project I create.</p>
+  </div>
+</section>
+
+<!-- ARCHIVES -->
+<section class="container gutter" id="archives" data-reveal>
+  <div class="ugc-head" style="display:grid; grid-template-columns: 1fr auto; align-items: end; gap: 24px; margin-bottom: 22px;">
+    <div>
+      <span class="tag-slash">Archives</span>
+      <h2 class="h-section" style="margin-top:14px">The Archives<br>— Click to see other contents</h2>
+    </div>
+    <a class="btn btn-ghost" href="index.html#works">All works <span class="arr">→</span></a>
+  </div>
+  <div class="arch-grid">
+    <a class="arch-card" href="bad-bitch-club.html">
+      <div class="arch-img"><div class="ph dark"><span class="label-corner">01 · BBC</span><span class="label">Bad Bitch Club</span></div></div>
+      <div class="arch-foot"><span class="arch-title">Bad Bitch Club Perfume</span><span class="arch-view">View →</span></div>
+    </a>
+    <a class="arch-card" href="javin-jisoo.html">
+      <div class="arch-img"><div class="ph red-deep"><span class="label-corner">02 · JVDS</span><span class="label">Eyes Closed</span></div></div>
+      <div class="arch-foot"><span class="arch-title">Javin De Seoul × Jisoo</span><span class="arch-view">View →</span></div>
+    </a>
+    <a class="arch-card" href="two-part-strategy.html">
+      <div class="arch-img"><div class="ph warm"><span class="label-corner">03 · 2-PART</span><span class="label">Two Part Strategy</span></div></div>
+      <div class="arch-foot"><span class="arch-title">Glitzlens & JVDS</span><span class="arch-view">View →</span></div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-foot" id="contact">
+  <div class="container">
+    <div class="foot-card">
+      <div>
+        <span class="tag-slash solid" style="margin-bottom: 18px;">Contact</span>
+        <h2 class="get-in-touch">Get In Touch.</h2>
+      </div>
+
+    </div>
+    <div class="foot-row">
+      <div class="foot-links">
+        <a href="mailto:best1nahathai@gmail.com">Email</a>
+        <a href="https://www.instagram.com/bbestnkk1/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.tiktok.com/@bbestnkk" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://www.behance.net/nk43" target="_blank" rel="noopener">Behance</a>
+        <a href="https://www.linkedin.com/in/nahathai-k/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>

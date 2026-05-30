@@ -1,0 +1,2617 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PORTFOLIOKOR · Marketing Communications</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <rect width="200" height="200" fill="#ffffff"/>
+    <rect x="60" y="60" width="80" height="80" rx="12" fill="#0a0a0c"/>
+    <text x="100" y="118" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-weight="900" font-size="38" fill="#ffffff" letter-spacing="-2">PK</text>
+    <circle cx="148" cy="68" r="6" fill="#ff5a3c"/>
+  </svg>
+</template>
+<style>
+  /* ===== HOME — page local ===== */
+
+  /* Hero ============================================================== */
+  .hero{
+    padding: clamp(28px, 4vw, 56px) var(--pad-x) clamp(48px, 6vw, 80px);
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+  .hero-grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(24px, 3vw, 40px);
+    align-items: stretch;
+  }
+
+  .hero-left{
+    display: flex; flex-direction: column;
+    gap: clamp(20px, 2.2vw, 32px);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: clamp(24px, 3vw, 40px);
+    box-shadow: var(--shadow-1);
+  }
+  .hero-tags{ display: flex; flex-wrap: wrap; gap: 8px; }
+  .hero-tags .tag-slash{ font-size: 10px; }
+
+  .hero-name{
+    font-family: var(--f-display);
+    font-weight: 800;
+    font-size: clamp(44px, 6.2vw, 88px);
+    letter-spacing: -0.04em;
+    line-height: 0.94;
+    margin: 0;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .hero-name .accent{ color: var(--accent); }
+  .hero-role{
+    margin-top: 14px;
+    font-family: var(--f-display);
+    font-weight: 600;
+    font-size: clamp(18px, 1.6vw, 22px);
+    letter-spacing: -0.005em;
+    color: var(--ink-2);
+  }
+
+  .hero-meta{
+    margin-top: 24px;
+    display: flex; flex-wrap: wrap; gap: 18px;
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .hero-meta span b{ color: var(--ink); font-weight: 500; }
+
+  .hero-cta-row{
+    margin-top: 28px;
+    display: flex; gap: 10px; flex-wrap: wrap;
+    align-items: center;
+  }
+
+  /* Hero jump-links to work sections */
+  .hero-jump{
+    margin-top: 28px;
+    display: flex; flex-direction: column;
+    border-top: 1px solid var(--line);
+  }
+  .hero-jump a{
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 4px;
+    border-bottom: 1px solid var(--line);
+    font-family: var(--f-display);
+    font-weight: 600;
+    font-size: clamp(16px, 1.5vw, 20px);
+    letter-spacing: -0.012em;
+    color: var(--ink);
+    transition: padding-left .25s ease, color .2s ease;
+  }
+  .hero-jump a:hover{ padding-left: 14px; color: var(--accent); }
+  .hero-jump a .hj-n{
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    transition: color .2s ease;
+  }
+  .hero-jump a:hover .hj-n{ color: var(--accent); }
+  .hero-jump a .arr{
+    margin-left: auto;
+    transition: transform .25s ease;
+  }
+  .hero-jump a:hover .arr{ transform: translateX(4px); }
+
+  .trusted{
+    margin-top: 4px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    display: flex; align-items: center; gap: 16px;
+  }
+  .trust-avatars{ display: flex; }
+  .trust-avatars i{
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--card);
+    margin-left: -8px;
+    background: var(--canvas);
+    display: block;
+  }
+  .trust-avatars i:nth-child(1){ background: linear-gradient(135deg, #e8a978, #b06030); margin-left: 0; }
+  .trust-avatars i:nth-child(2){ background: linear-gradient(135deg, #c8c4b8, #6a6660); }
+  .trust-avatars i:nth-child(3){ background: linear-gradient(135deg, #303034, #0a0a0c); }
+  .trust-avatars i:nth-child(4){ background: linear-gradient(135deg, #b8c8d4, #5878a0); }
+
+  .trust-meta{
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    line-height: 1.45;
+  }
+  .trust-meta b{ color: var(--ink); display: block; font-weight: 500; font-size: 12px; letter-spacing: 0; }
+  .trust-meta .stars{ color: #f0a020; letter-spacing: 1px; font-size: 10px; }
+
+  /* Right bento --- 6 cells */
+  .hero-right{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1.3fr 1fr 1fr;
+    gap: 14px;
+    min-height: 540px;
+  }
+  @media (max-width: 980px){
+    .hero-right{
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 220px 220px 220px;
+    }
+  }
+  .hero-right .cell{
+    border-radius: var(--r);
+    overflow: hidden;
+    position: relative;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-1);
+  }
+  .hero-right .cell-1{ grid-column: 1 / 3; }
+  /* the rest fill the 2x2 grid below */
+
+  /* CTA "+" round button */
+  .cta-plus{
+    display: inline-flex; align-items: center; gap: 0;
+    background: var(--dark);
+    color: #fff;
+    padding: 4px 4px 4px 18px;
+    border-radius: 999px;
+    font-family: var(--f-body); font-weight: 500; font-size: 13px;
+  }
+  .cta-plus .plus{
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    display: grid; place-items: center;
+    margin-left: 14px;
+    font-size: 16px; line-height: 1;
+  }
+
+  /* ============================================================
+     MARKETING CASE STUDY ("Porcelain Noir") — asymmetric
+     ============================================================ */
+  .pn-grid{
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: clamp(24px, 4vw, 60px);
+    align-items: start;
+  }
+  @media (max-width: 880px){ .pn-grid{ grid-template-columns: 1fr; } }
+  .pn-left{ display: flex; flex-direction: column; gap: 18px; padding-top: 8px; }
+  .pn-card{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: 22px;
+    box-shadow: var(--shadow-1);
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 26px;
+    align-items: stretch;
+  }
+  @media (max-width: 720px){ .pn-card{ grid-template-columns: 1fr; } }
+  .pn-img{
+    aspect-ratio: 1/1;
+    border-radius: var(--r-sm);
+    overflow: hidden;
+    position: relative;
+    background:
+      radial-gradient(80% 60% at 30% 25%, rgba(232,170,120,0.25), transparent 60%),
+      radial-gradient(80% 60% at 80% 80%, rgba(190,130,70,0.18), transparent 60%),
+      linear-gradient(135deg, #c9a572 0%, #8f6b3f 60%, #5e4222 100%);
+  }
+  .pn-img::before{
+    content:"";
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(90deg, rgba(255,200,120,0.10) 0 2px, transparent 2px 9px);
+    mix-blend-mode: screen; opacity: .8;
+  }
+  .pn-img .marker{
+    position: absolute; top: 14px; left: 14px;
+    padding: 5px 10px;
+    background: rgba(255,255,255,0.92);
+    border-radius: 999px;
+    border: 1px solid rgba(0,0,0,0.06);
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .pn-img .marker .plus{
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    display: grid; place-items: center;
+    font-size: 10px; line-height: 1;
+  }
+  .pn-img .abc{
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%) rotate(-6deg);
+    background: #faf7f1;
+    color: #111;
+    width: 60%; aspect-ratio: 1/1;
+    display: grid; place-items: center;
+    font-family: var(--f-display);
+    font-weight: 900;
+    font-size: clamp(40px, 5vw, 72px);
+    letter-spacing: -0.04em;
+    box-shadow: 0 24px 50px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.04);
+    border-radius: 6px;
+  }
+  .pn-copy{ display: flex; flex-direction: column; gap: 14px; padding: 6px 4px; }
+  .pn-copy p{
+    font-family: var(--f-body);
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--ink-2);
+    margin: 0;
+    max-width: 52ch;
+  }
+  .pn-copy strong{ color: var(--ink); font-weight: 600; }
+  .pn-meta-row{
+    display: grid; grid-template-columns: repeat(3, 1fr) auto;
+    gap: 18px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    margin-top: 6px;
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .pn-meta-row b{ color: var(--ink); font-weight: 500; display: block; margin-top: 4px; }
+  .pn-meta-row .read-link{
+    align-self: end;
+    font-family: var(--f-body); font-size: 13px; letter-spacing: 0;
+    text-transform: none; color: var(--ink);
+    text-decoration: none;
+    padding-bottom: 2px;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  /* ============================================================
+     UGC SECTION — bento (feature + 3 cards)
+     ============================================================ */
+  .ugc-head{
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 24px;
+    margin-bottom: 22px;
+  }
+  .ugc-feat{
+    position: relative;
+    height: clamp(360px, 46vw, 560px);
+    border-radius: var(--r);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-1);
+    background:
+      radial-gradient(70% 100% at 30% 50%, rgba(220,30,30,0.45), transparent 60%),
+      linear-gradient(135deg, #2a0c0c 0%, #420e0e 35%, #150505 100%);
+    color: #fff;
+  }
+  .ugc-feat .feat-stage{
+    position: absolute; left: 0; right: 0; bottom: 0; height: 38%;
+    background: linear-gradient(180deg, rgba(180,0,0,0) 0%, rgba(220,30,30,0.65) 100%);
+  }
+  .ugc-feat .feat-figure{
+    position: absolute; right: 6%; bottom: 0; width: 36%; height: 92%;
+    background:
+      radial-gradient(60% 90% at 50% 30%, rgba(245,230,220,0.45), transparent 70%),
+      radial-gradient(50% 70% at 50% 70%, rgba(20,15,15,0.55), transparent 70%);
+  }
+  .ugc-feat .feat-mini{
+    position: absolute; bottom: 8%; left: 8%; width: 38%; height: 18%;
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px;
+  }
+  .ugc-feat .feat-mini > i{
+    background: linear-gradient(180deg, #d8d3cc 0%, #6a625a 100%);
+    border: 1px solid rgba(0,0,0,0.4);
+    border-radius: 4px;
+    display: block;
+  }
+  .ugc-feat .feat-mini > i:nth-child(2){ background: linear-gradient(180deg, #211814, #0a0605); }
+  .ugc-feat .feat-mini > i:nth-child(3){ background: linear-gradient(180deg, #efeae3, #7c7269); }
+  .ugc-feat .feat-title{
+    position: absolute; left: 6%; top: 18%;
+    font-family: var(--f-display);
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    font-size: clamp(40px, 6.6vw, 104px);
+    margin: 0;
+    color: #fff;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.5);
+  }
+  .ugc-feat .feat-sub{
+    position: absolute; left: 6%; top: calc(18% + 4.5em);
+    font-family: var(--f-edit);
+    font-style: italic;
+    font-size: clamp(18px, 1.6vw, 28px);
+    color: rgba(255,255,255,0.92);
+  }
+  .ugc-feat .feat-corner{
+    position: absolute; top: 16px; right: 16px;
+    display: flex; gap: 8px;
+  }
+  .ugc-feat .feat-corner span{
+    padding: 5px 10px;
+    background: rgba(255,255,255,0.16);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 999px;
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #fff;
+  }
+  .ugc-feat .feat-bottom-meta{
+    position: absolute; left: 18px; bottom: 18px;
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    padding: 5px 10px;
+    background: rgba(255,255,255,0.16);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 999px;
+  }
+
+  .ugc-feat-foot{
+    margin-top: 22px;
+    display: grid;
+    grid-template-columns: 1.4fr auto auto;
+    gap: 24px;
+    align-items: center;
+  }
+  @media (max-width: 760px){ .ugc-feat-foot{ grid-template-columns: 1fr; } }
+  .ugc-feat-foot .h{
+    font-family: var(--f-display); font-weight: 700;
+    font-size: clamp(22px, 2.4vw, 30px); letter-spacing: -0.018em;
+    line-height: 1.1; margin: 0; color: var(--ink);
+  }
+  .ugc-feat-foot .p{
+    margin: 8px 0 0;
+    font-family: var(--f-body);
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--muted);
+    max-width: 60ch;
+  }
+
+  /* 3 case study cards row */
+  .ugc-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--gap);
+    margin-top: var(--gap);
+  }
+  .ugc-grid.four{
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @media (max-width: 1100px){
+    .ugc-grid.four{ grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 880px){ .ugc-grid{ grid-template-columns: 1fr; } }
+
+  /* Featured wide card on top */
+  .ugc-card-wide{
+    display: grid;
+    grid-template-columns: 0.72fr 1fr;
+    gap: 0;
+    margin-top: clamp(24px, 3vw, 40px);
+    overflow: hidden;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    box-shadow: var(--shadow-1);
+    transition: transform 160ms ease, box-shadow 160ms ease;
+  }
+  .ugc-card-wide:hover{ transform: translateY(-2px); box-shadow: var(--shadow-2); }
+  .ugc-card-wide .ugc-cover{
+    position: relative;
+    aspect-ratio: auto;
+    min-height: 240px;
+    margin: 14px 0 14px 14px;
+    border-radius: var(--r-sm);
+    overflow: hidden;
+  }
+  .ugc-card-wide .ugc-body{
+    padding: clamp(24px, 3vw, 40px) clamp(24px, 3vw, 40px) clamp(20px, 2.4vw, 32px);
+    display: flex; flex-direction: column; gap: 12px;
+    justify-content: center;
+  }
+  .ugc-card-wide .ugc-body .title{
+    font-size: clamp(22px, 2.4vw, 32px);
+    line-height: 1.1;
+  }
+  .ugc-card-wide .ugc-body .desc{
+    font-size: 14px;
+    max-width: 56ch;
+  }
+  @media (max-width: 880px){
+    .ugc-card-wide{ grid-template-columns: 1fr; }
+    .ugc-card-wide .ugc-cover{
+      margin: 14px 14px 0;
+      aspect-ratio: 5/4; min-height: 0;
+    }
+  }
+  .ugc-card{
+    display: flex; flex-direction: column;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    box-shadow: var(--shadow-1);
+    overflow: hidden;
+    transition: transform 160ms ease, box-shadow 160ms ease;
+  }
+  .ugc-card:hover{ transform: translateY(-2px); box-shadow: var(--shadow-2); }
+  .ugc-card .ugc-cover{
+    position: relative;
+    aspect-ratio: 5/4;
+    overflow: hidden;
+    margin: 14px 14px 0;
+    border-radius: var(--r-sm);
+  }
+  .ugc-cover .cv-meta{
+    position: absolute; top: 12px; right: 12px;
+    display: flex; flex-direction: column; gap: 6px; align-items: flex-end;
+    z-index: 2;
+  }
+  .ugc-cover .cv-meta span{
+    font-family: var(--f-mono); font-size: 9px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    padding: 4px 8px;
+    background: rgba(255,255,255,0.92);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 999px;
+    color: var(--ink);
+  }
+  .ugc-cover.dark .cv-meta span{
+    background: rgba(0,0,0,0.55);
+    color: #fff;
+    border-color: rgba(255,255,255,0.18);
+  }
+  .ugc-card .ugc-body{
+    padding: 18px 20px 22px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .ugc-card .ugc-body .tag{
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .ugc-card .ugc-body .title{
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.012em;
+    color: var(--ink);
+    margin: 2px 0 4px;
+    line-height: 1.15;
+  }
+  .ugc-card .ugc-body .desc{
+    font-family: var(--f-body);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--muted);
+    margin: 0;
+  }
+  .ugc-card .ugc-body .row{
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 8px;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .ugc-card .ugc-body .row .read{
+    color: var(--ink);
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ugc-card .ugc-body .row .read .dot-r{
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+  }
+
+  /* Cover styles */
+  .cover-bbc{
+    background:
+      radial-gradient(60% 70% at 50% 40%, rgba(150,170,200,0.10), transparent 70%),
+      linear-gradient(135deg, #1a1a20 0%, #08080c 100%);
+  }
+  .cover-bbc::after{
+    content:"I'm";
+    position: absolute; top: 12%; left: 12%;
+    font-family: var(--f-edit); font-style: italic;
+    font-size: clamp(36px, 4vw, 56px);
+    color: oklch(0.68 0.22 22);
+    z-index: 1;
+    line-height: 1;
+  }
+  .cover-bbc .smudge2{
+    position: absolute; bottom: 18%; left: 14%;
+    font-family: var(--f-edit); font-style: italic;
+    font-size: 26px;
+    color: oklch(0.68 0.22 22);
+    z-index: 1;
+  }
+  .cover-bbc .bottle{
+    position: absolute; right: 22%; top: 24%; bottom: 22%;
+    width: 28%;
+    background: linear-gradient(180deg, #d5d7dc 0%, #6c6e74 50%, #1a1c20 56%, #2a2c30 100%);
+    border-radius: 6px;
+    box-shadow: 0 18px 36px rgba(0,0,0,0.5);
+  }
+
+  .cover-mac{
+    background:
+      radial-gradient(70% 80% at 50% 30%, rgba(240,150,170,0.30), transparent 65%),
+      linear-gradient(135deg, #c43340, #6e0e16);
+  }
+  .cover-mac::after{
+    content:"MAC";
+    position: absolute; top: 14%; right: 10%;
+    font-family: var(--f-display); font-weight: 900;
+    font-size: clamp(28px, 3.4vw, 42px);
+    color: #fff;
+    letter-spacing: -0.02em;
+    z-index: 1;
+  }
+  .cover-mac .smudge{
+    position: absolute; bottom: 14%; left: 12%;
+    font-family: var(--f-edit); font-style: italic;
+    font-size: 22px;
+    color: #fff;
+    transform: rotate(-6deg);
+    z-index: 1;
+  }
+  .cover-mac .face{
+    position: absolute; left: 25%; right: 25%; top: 30%; bottom: 8%;
+    background: radial-gradient(50% 80% at 50% 30%, rgba(245,225,210,0.5), transparent 70%);
+  }
+
+  .cover-jvds{
+    background:
+      radial-gradient(70% 70% at 55% 38%, rgba(200,40,40,0.25), transparent 60%),
+      linear-gradient(135deg, #1a0808, #0a0405);
+  }
+  .cover-jvds::after{
+    content:"JVDS";
+    position: absolute; bottom: 14%; left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--f-display); font-weight: 700;
+    font-size: clamp(24px, 2.8vw, 36px);
+    color: rgba(255,255,255,0.85);
+    letter-spacing: -0.01em;
+    z-index: 1;
+  }
+  .cover-jvds .glyph{
+    position: absolute; left: 18%; right: 18%; top: 26%; bottom: 28%;
+    background: radial-gradient(50% 80% at 50% 30%, rgba(245,225,210,0.30), transparent 70%);
+  }
+
+  /* ============================================================
+     UX RESEARCH section
+     ============================================================ */
+  .ux-card{
+    margin-top: 18px;
+    border-radius: var(--r);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-1);
+    aspect-ratio: 16/6;
+    position: relative;
+    background:
+      radial-gradient(70% 70% at 30% 25%, rgba(232,180,140,0.22), transparent 60%),
+      radial-gradient(60% 60% at 80% 80%, rgba(160,150,130,0.15), transparent 60%),
+      linear-gradient(160deg, #f1ece1 0%, #d8d0bf 100%);
+  }
+  .ux-card .ux-circle{
+    position: absolute; left: 50%; top: 48%;
+    transform: translate(-50%, -50%);
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 35% 30%, #ffffff 0%, #c0c0c5 50%, #6d6f74 100%);
+    box-shadow:
+      inset 0 2px 4px rgba(255,255,255,0.7),
+      0 8px 28px rgba(0,0,0,0.22);
+  }
+  .ux-card .ux-bottom{
+    position: absolute; bottom: 16px; left: 0; right: 0;
+    text-align: center;
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .ux-card .ux-bottom .lum{ font-size: 10px; color: rgba(0,0,0,0.5); }
+  .ux-card .ux-bottom .title{
+    margin-top: 4px;
+    font-family: var(--f-display);
+    font-size: 22px; font-weight: 600;
+    color: rgba(0,0,0,0.85);
+    letter-spacing: -0.01em;
+    text-transform: none;
+  }
+  .ux-card .ux-corner{
+    position: absolute; top: 14px; left: 14px;
+    padding: 5px 10px;
+    background: rgba(255,255,255,0.85);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 999px;
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink);
+  }
+  .ux-card .ux-corner-r{
+    position: absolute; top: 14px; right: 14px;
+    padding: 5px 10px;
+    background: rgba(0,0,0,0.85);
+    color: #fff;
+    border-radius: 999px;
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+  }
+
+  /* checklist as bento grid */
+  .ux-grid{
+    margin-top: 14px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--gap);
+  }
+  @media (max-width: 1100px){ .ux-grid{ grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 720px){ .ux-grid{ grid-template-columns: 1fr 1fr; } }
+
+  .ux-box{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: 22px 20px 22px;
+    box-shadow: var(--shadow-1);
+    display: flex; flex-direction: column; gap: 12px;
+    min-height: 220px;
+  }
+  .ux-box .ico{
+    width: 32px; height: 32px;
+    display: grid; place-items: center;
+    border-radius: 8px;
+    background: var(--canvas);
+    border: 1px solid var(--line);
+    color: var(--ink);
+  }
+  .ux-box .ico svg{ width: 16px; height: 16px; }
+  .ux-box .h{
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+    margin: 6px 0 2px;
+    line-height: 1.2;
+  }
+  .ux-box .p{
+    font-family: var(--f-body);
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--muted);
+    margin: 0;
+  }
+  .ux-box .num{
+    margin-top: auto;
+    font-family: var(--f-mono);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted-2);
+  }
+
+  /* Section header with asym layout */
+  .sec-asym{
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: clamp(28px, 5vw, 80px);
+    align-items: start;
+  }
+  @media (max-width: 880px){ .sec-asym{ grid-template-columns: 1fr; } }
+  .sec-asym .left{ display: flex; flex-direction: column; gap: 16px; padding-top: 8px; }
+  .sec-asym .left .sub{ color: var(--muted); font-size: 14.5px; line-height: 1.55; max-width: 36ch; }
+  .sec-asym .left .more{
+    margin-top: 8px;
+    display: inline-flex; gap: 8px; align-items: center;
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .sec-asym .left .more::after{
+    content: "→";
+  }
+
+  /* ============================================================
+     UX RESEARCH — Editorial accordion case study
+     ============================================================ */
+  .ux-section{
+    padding-top: clamp(40px, 6vw, 96px);
+  }
+
+  /* Header — centered editorial intro */
+  .ux-header{
+    max-width: 920px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    align-items: center;
+  }
+  .ux-header .tag-slash{ align-self: center; }
+  .ux-title{
+    font-family: var(--f-display);
+    font-weight: 800;
+    font-size: clamp(56px, 9.4vw, 156px);
+    letter-spacing: -0.045em;
+    line-height: 0.88;
+    margin: 6px 0 0;
+    color: var(--ink);
+    text-transform: uppercase;
+  }
+  .ux-deck{
+    font-family: var(--f-body);
+    font-size: clamp(15px, 1.3vw, 18px);
+    line-height: 1.55;
+    color: var(--muted);
+    max-width: 64ch;
+    margin: 4px auto 0;
+    text-wrap: balance;
+  }
+  .ux-meta-row{
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 36px; row-gap: 12px;
+    padding: 18px 24px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    width: 100%;
+    max-width: 760px;
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .ux-meta-row b{
+    color: var(--ink);
+    font-weight: 600;
+    margin-left: 8px;
+  }
+
+  /* Hero visual — directly below title */
+  .ux-hero-visual{
+    margin: clamp(32px, 4vw, 52px) auto 0;
+    width: 100%;
+    position: relative;
+    border-radius: var(--r);
+    overflow: hidden;
+    background: var(--dark);
+    color: #fff;
+    box-shadow: var(--shadow-2);
+    border: 1px solid var(--dark);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0;
+    align-items: stretch;
+  }
+  @media (max-width: 760px){ .ux-hero-visual{ grid-template-columns: 1fr; } }
+  .ux-hero-visual .hv-body{
+    padding: clamp(28px, 3.6vw, 52px);
+    display: flex; flex-direction: column;
+    justify-content: space-between;
+    gap: 28px;
+    min-height: 260px;
+  }
+  .ux-hero-visual .hv-tag{
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    padding: 6px 12px;
+    border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 999px;
+    width: max-content;
+  }
+  .ux-hero-visual .hv-tag .dot{
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+  }
+  .ux-hero-visual .hv-title{
+    font-family: var(--f-display); font-weight: 800;
+    font-size: clamp(28px, 4vw, 56px);
+    letter-spacing: -0.03em; line-height: 0.96;
+    color: #fff; margin: 0;
+    text-wrap: balance;
+  }
+  .ux-hero-visual .hv-desc{
+    font-family: var(--f-body); font-size: clamp(13px, 1vw, 15px);
+    line-height: 1.6; color: rgba(255,255,255,0.6);
+    margin: 0; max-width: 52ch;
+  }
+  .ux-hero-visual .hv-meta{
+    display: flex; flex-wrap: wrap; gap: 18px;
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+  }
+  .ux-hero-visual .hv-meta b{ color: rgba(255,255,255,0.85); font-weight: 500; }
+  .ux-hero-visual .hv-side{
+    width: clamp(200px, 26vw, 340px);
+    background:
+      repeating-linear-gradient(135deg,
+        rgba(255,255,255,0.025) 0 2px,
+        rgba(255,255,255,0) 2px 12px
+      ),
+      linear-gradient(160deg, #1e1e28 0%, #0e0e14 100%);
+    border-left: 1px solid rgba(255,255,255,0.07);
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    gap: 12px;
+    padding: 28px;
+  }
+  @media (max-width: 760px){ .ux-hero-visual .hv-side{ display: none; } }
+  .ux-hero-visual .hv-side .sc{
+    width: 72px; aspect-ratio: 9/16;
+    border-radius: 10px;
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.08);
+    position: relative; overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  }
+  .ux-hero-visual .hv-side .sc .row{
+    position: absolute; left: 10%; right: 10%;
+    height: 4px; border-radius: 2px;
+    background: linear-gradient(90deg, #eae2d4, #c8baa2);
+  }
+  .ux-hero-visual .hv-side .sc .row.t{ top: 16%; width: 55%; background: #1a1a20; }
+  .ux-hero-visual .hv-side .sc .row.h{ height: 10px; background: linear-gradient(90deg, #e8dfd0, #d0c4aa); }
+  .ux-hero-visual .hv-side .sc-label{
+    font-family: var(--f-mono); font-size: 9px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4); text-align: center;
+  }
+
+  /* Accordion */
+  .ux-accordion{
+    margin-top: clamp(40px, 5vw, 72px);
+    width: 100%;
+  }
+  .ux-step{
+    border-top: 1px solid var(--line);
+  }
+  .ux-step:last-of-type{ border-bottom: 1px solid var(--line); }
+
+  .ux-step-head{
+    all: unset; box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    align-items: center;
+    gap: clamp(20px, 3vw, 40px);
+    width: 100%;
+    padding: clamp(24px, 2.8vw, 38px) 8px;
+    cursor: pointer;
+    transition: padding-left .35s ease;
+  }
+  .ux-step-head:focus-visible{ outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 6px; }
+  .ux-step.is-open .ux-step-head{ padding-left: 28px; }
+  .ux-step-head:hover .ux-step-title{ color: var(--accent); }
+  .ux-step-num{
+    font-family: var(--f-mono);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    transition: color .25s ease;
+  }
+  .ux-step.is-open .ux-step-num{ color: var(--accent); }
+  .ux-step-text{
+    display: flex; flex-direction: column; gap: 8px;
+    min-width: 0;
+  }
+  .ux-step-title{
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: clamp(22px, 2.6vw, 38px);
+    letter-spacing: -0.022em;
+    line-height: 1.05;
+    color: var(--ink);
+    text-wrap: balance;
+    transition: color .2s ease;
+  }
+  .ux-step-meta{
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .ux-step-chev{
+    position: relative;
+    width: 44px; height: 44px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: var(--card);
+    transition: background .25s ease, border-color .25s ease;
+    flex-shrink: 0;
+  }
+  .ux-step-chev::before,
+  .ux-step-chev::after{
+    content:""; position: absolute;
+    background: var(--ink);
+    border-radius: 1px;
+    transition: background .25s ease, transform .35s cubic-bezier(.2,.7,.2,1);
+  }
+  .ux-step-chev::before{ width: 14px; height: 1.5px; left: 50%; top: 50%; transform: translate(-50%,-50%); }
+  .ux-step-chev::after{ width: 1.5px; height: 14px; left: 50%; top: 50%; transform: translate(-50%,-50%); }
+  .ux-step.is-open .ux-step-chev{ background: var(--ink); border-color: var(--ink); }
+  .ux-step.is-open .ux-step-chev::before{ background: #fff; }
+  .ux-step.is-open .ux-step-chev::after{ background: #fff; transform: translate(-50%,-50%) scaleY(0); }
+
+  .ux-step-pane{
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows .55s cubic-bezier(.2,.7,.2,1);
+  }
+  .ux-step.is-open .ux-step-pane{ grid-template-rows: 1fr; }
+  .ux-step-pane > .inner{
+    overflow: hidden;
+    min-height: 0;
+  }
+  .ux-step-pane-content{
+    padding: clamp(12px, 1.6vw, 24px) 8px clamp(48px, 6vw, 88px);
+    display: flex; flex-direction: column;
+    gap: clamp(28px, 3.6vw, 56px);
+  }
+
+  /* Editorial blocks inside expanded panes */
+  .ux-block{
+    display: grid;
+    gap: clamp(24px, 3vw, 40px);
+  }
+  .ux-block.two-col{ grid-template-columns: 5fr 7fr; align-items: start; }
+  .ux-block.two-col-flip{ grid-template-columns: 7fr 5fr; align-items: start; }
+  .ux-block.text-only{ grid-template-columns: minmax(0, 64ch); justify-content: start; }
+  @media (max-width: 880px){
+    .ux-block.two-col, .ux-block.two-col-flip{ grid-template-columns: 1fr; }
+  }
+
+  .ux-prose-eyebrow{
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 12px;
+    display: block;
+  }
+  .ux-prose h4{
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: clamp(18px, 1.6vw, 22px);
+    letter-spacing: -0.012em;
+    color: var(--ink);
+    margin: 0 0 12px;
+  }
+  .ux-prose p{
+    font-family: var(--f-body);
+    font-size: clamp(14.5px, 1.05vw, 16px);
+    line-height: 1.7;
+    color: var(--ink-2);
+    margin: 0;
+    max-width: 60ch;
+  }
+  .ux-prose p + p{ margin-top: 1em; }
+  .ux-prose strong{ color: var(--ink); font-weight: 600; }
+
+  /* Generic editorial figure */
+  .ux-fig{
+    position: relative;
+    border-radius: var(--r);
+    overflow: hidden;
+    background: #f6f3ec;
+    border: 1px solid var(--line);
+    min-height: 280px;
+  }
+  .ux-fig.dark{ background: #14141a; color: #fff; border-color: rgba(255,255,255,0.08); }
+  .ux-fig .fig-tag{
+    position: absolute; top: 14px; left: 14px;
+    font-family: var(--f-mono); font-size: 9px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink);
+    padding: 5px 10px; border-radius: 999px;
+    background: rgba(255,255,255,0.85);
+    border: 1px solid rgba(0,0,0,0.06);
+    z-index: 3;
+  }
+  .ux-fig.dark .fig-tag{
+    background: rgba(255,255,255,0.10); color: #fff;
+    border-color: rgba(255,255,255,0.18);
+  }
+  .ux-fig .fig-cap{
+    position: absolute; bottom: 14px; left: 14px;
+    font-family: var(--f-mono); font-size: 9px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted);
+    z-index: 3;
+  }
+
+  /* Requirement board mockup (step 01) */
+  .fig-reqboard{
+    padding: 50px 22px 22px;
+    display: grid;
+    gap: 14px;
+    min-height: 360px;
+  }
+  .fig-reqboard .rb-pill{
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 14px;
+    background: var(--ink);
+    color: #fff;
+    border-radius: 999px;
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    align-self: flex-start;
+    width: max-content;
+  }
+  .fig-reqboard .rb-pill .pill-r{
+    color: rgba(255,255,255,0.4);
+    border-left: 1px solid rgba(255,255,255,0.2);
+    padding-left: 8px;
+    margin-left: 4px;
+  }
+  .fig-reqboard .rb-grid{
+    display: grid; grid-template-columns: 1fr 1fr 1.2fr; gap: 10px;
+    margin-top: 6px;
+  }
+  @media (max-width: 600px){ .fig-reqboard .rb-grid{ grid-template-columns: 1fr; } }
+  .fig-reqboard .rb-col{
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px;
+  }
+  .fig-reqboard .rb-col h6{
+    margin: 0 0 10px;
+    font-family: var(--f-mono); font-size: 9px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .fig-reqboard .rb-col .stack i{
+    display: block; height: 6px; border-radius: 3px;
+    background: linear-gradient(90deg, #ebe4d4, #d6caa8);
+    margin-bottom: 5px;
+  }
+  .fig-reqboard .rb-col .stack i:last-child{ margin-bottom: 0; width: 60%; }
+  .fig-reqboard .rb-col ul{
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 7px;
+  }
+  .fig-reqboard .rb-col li{
+    font-family: var(--f-body); font-size: 11.5px;
+    line-height: 1.4; color: var(--ink-2);
+    padding-left: 14px; position: relative;
+  }
+  .fig-reqboard .rb-col li::before{
+    content:""; position: absolute; left: 0; top: 6px;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+  }
+  .fig-reqboard .rb-col li.muted::before{ background: var(--muted-3); }
+
+  /* "Need" cards row (step 01 supporting) */
+  .ux-needs{
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+  }
+  @media (max-width: 720px){ .ux-needs{ grid-template-columns: 1fr; } }
+  .ux-need{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 22px 20px 24px;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .ux-need .n-n{
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent);
+  }
+  .ux-need .n-h{
+    font-family: var(--f-display); font-weight: 700;
+    font-size: 15px; letter-spacing: -0.005em;
+    color: var(--ink); margin: 2px 0;
+    line-height: 1.2;
+  }
+  .ux-need .n-p{
+    font-family: var(--f-body); font-size: 12.5px;
+    line-height: 1.5; color: var(--muted); margin: 0;
+  }
+
+  /* Flow diagram (step 02) */
+  .ux-flow{
+    background: var(--card-2);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: 28px;
+  }
+  .ux-flow .flow-h{
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 18px;
+  }
+  .ux-flow .flow-row{
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: 10px; align-items: stretch;
+  }
+  @media (max-width: 880px){ .ux-flow .flow-row{ grid-template-columns: 1fr 1fr; } }
+  .flow-node{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px 12px;
+    display: flex; flex-direction: column; gap: 6px;
+    position: relative;
+    min-height: 86px;
+  }
+  .flow-node .step{
+    font-family: var(--f-mono); font-size: 9px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .flow-node .name{
+    font-family: var(--f-display); font-weight: 600;
+    font-size: 13px; letter-spacing: -0.005em;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .flow-node.unhealthy{
+    background: #fff4ed;
+    border-color: #f3c8b5;
+  }
+  .flow-node.unhealthy::after{
+    content: "Unhealthy";
+    position: absolute; top: -8px; right: 8px;
+    font-family: var(--f-mono); font-size: 8px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: #fff; background: var(--accent);
+    padding: 3px 7px; border-radius: 999px;
+  }
+  .flow-node.loops::after{
+    content: "Loops back";
+    position: absolute; top: -8px; right: 8px;
+    font-family: var(--f-mono); font-size: 8px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: #fff; background: var(--ink);
+    padding: 3px 7px; border-radius: 999px;
+  }
+  .ux-issues{
+    margin-top: 22px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  }
+  @media (max-width: 720px){ .ux-issues{ grid-template-columns: 1fr; } }
+  .ux-issue{
+    padding: 18px 20px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .ux-issue .lbl{
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent);
+  }
+  .ux-issue .h{
+    font-family: var(--f-display); font-weight: 600;
+    font-size: 14px; letter-spacing: -0.005em;
+    color: var(--ink);
+  }
+  .ux-issue .p{
+    font-family: var(--f-body); font-size: 12.5px;
+    line-height: 1.5; color: var(--muted);
+  }
+
+  /* Two directions side-by-side (step 03) */
+  .ux-dirs{
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  }
+  @media (max-width: 760px){ .ux-dirs{ grid-template-columns: 1fr; } }
+  .ux-dir{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 22px;
+    position: relative;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .ux-dir.chosen{ border-color: var(--ink); border-width: 1.5px; }
+  .ux-dir .badge{
+    position: absolute; top: 16px; right: 16px;
+    padding: 4px 10px;
+    background: var(--ink); color: #fff;
+    font-family: var(--f-mono); font-size: 9px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    border-radius: 999px;
+  }
+  .ux-dir .d-meta{
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .ux-dir .d-title{
+    font-family: var(--f-display); font-weight: 700;
+    font-size: 18px; letter-spacing: -0.012em;
+    color: var(--ink);
+    margin: 0;
+  }
+  .ux-dir .d-p{
+    font-family: var(--f-body); font-size: 13px;
+    line-height: 1.55; color: var(--muted); margin: 0;
+  }
+  .ux-dir .d-mocks{
+    display: flex; gap: 12px;
+    background: #efeae0;
+    padding: 22px;
+    border-radius: 10px;
+    justify-content: center;
+    margin-top: 4px;
+  }
+  .dir-phone{
+    width: 96px; aspect-ratio: 9/19;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.10);
+    border-radius: 14px;
+    position: relative; overflow: hidden;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+  }
+  .dir-phone::before{
+    content:""; position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
+    width: 30%; height: 3px; border-radius: 999px;
+    background: rgba(0,0,0,0.20);
+  }
+  .dir-phone .body{
+    position: absolute; left: 10%; right: 10%; top: 14%; bottom: 14%;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .dir-phone .body i{
+    display: block; height: 7px; border-radius: 3px;
+    background: linear-gradient(90deg, #f1ede3, #d3cab8);
+  }
+  .dir-phone .body i.t{ height: 10px; width: 60%; background: var(--ink); }
+  .dir-phone .body i.h{ height: 22px; background: linear-gradient(90deg, #f6e6d8, #c89d72); margin: 4px 0; }
+  .dir-phone .body i.r{ height: 14px; background: linear-gradient(90deg, #ece2c8, #c4b58f); }
+
+  /* Step 04 edge cases — two parallel flows */
+  .ux-flows{
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  }
+  @media (max-width: 760px){ .ux-flows{ grid-template-columns: 1fr; } }
+  .ux-flow-block{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 24px;
+  }
+  .ux-flow-block.dark{ background: var(--dark); color: #fff; border-color: var(--dark); }
+  .ux-flow-block .fb-tag{
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 6px;
+  }
+  .ux-flow-block.dark .fb-tag{ color: rgba(255,255,255,0.55); }
+  .ux-flow-block .fb-h{
+    font-family: var(--f-display); font-weight: 700;
+    font-size: 17px; letter-spacing: -0.012em;
+    margin: 0 0 16px;
+  }
+  .ux-flow-block ol{
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 8px;
+    counter-reset: stp;
+  }
+  .ux-flow-block li{
+    counter-increment: stp;
+    padding: 10px 14px;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-family: var(--f-body); font-size: 13px;
+    color: var(--ink);
+    display: grid; grid-template-columns: 24px 1fr; gap: 10px;
+    align-items: center;
+  }
+  .ux-flow-block li::before{
+    content: counter(stp, decimal-leading-zero);
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.12em; color: var(--muted);
+  }
+  .ux-flow-block.dark li{
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.10);
+    color: #fff;
+  }
+  .ux-flow-block.dark li::before{ color: rgba(255,255,255,0.55); }
+  .ux-flow-block li.highlight{
+    background: var(--accent); color: #fff; border-color: var(--accent);
+  }
+  .ux-flow-block.dark li.highlight{ background: var(--accent); color: #fff; border-color: var(--accent); }
+  .ux-flow-block li.highlight::before{ color: rgba(255,255,255,0.85); }
+
+  /* Step 05 competitive */
+  .ux-comps{
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+  }
+  @media (max-width: 760px){ .ux-comps{ grid-template-columns: 1fr; } }
+  .ux-comp{
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .ux-comp .c-tag{
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .ux-comp .c-h{
+    font-family: var(--f-display); font-weight: 700;
+    font-size: 16px; letter-spacing: -0.012em;
+    color: var(--ink);
+    margin: 0;
+  }
+  .ux-comp .c-p{
+    font-family: var(--f-body); font-size: 12.5px;
+    line-height: 1.5; color: var(--muted); margin: 0;
+  }
+  .ux-comp .c-strip{
+    display: flex; gap: 4px;
+    margin-top: 4px;
+  }
+  .ux-comp .c-strip i{
+    flex: 1; height: 5px; border-radius: 3px;
+    background: var(--canvas);
+    border: 1px solid var(--line);
+  }
+  .ux-comp .c-strip i.f{ background: var(--ink); border-color: var(--ink); }
+
+  .ux-findings{
+    margin-top: 22px;
+    padding: 24px 28px;
+    background: var(--card-2);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+  }
+  .ux-findings .f-h{
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 14px;
+  }
+  .ux-findings ul{
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .ux-findings li{
+    font-family: var(--f-body); font-size: 13.5px;
+    line-height: 1.55; color: var(--ink);
+    padding-left: 28px; position: relative;
+  }
+  .ux-findings li::before{
+    content: "→"; position: absolute; left: 0; top: 0;
+    color: var(--accent); font-family: var(--f-mono);
+    font-size: 14px;
+  }
+
+  /* Step 06 deliverable strip */
+  .ux-deliv{
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px;
+    padding: 24px;
+    background: var(--card-2);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+  }
+  @media (max-width: 880px){ .ux-deliv{ grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 600px){ .ux-deliv{ grid-template-columns: repeat(2, 1fr); } }
+  .ux-deliv-item{
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .ux-deliv-item .lbl{
+    font-family: var(--f-mono); font-size: 9px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .ux-deliv-item .lbl b{ color: var(--ink); font-weight: 600; display: block; }
+  .deliv-phone{
+    aspect-ratio: 9/19;
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    position: relative; overflow: hidden;
+    box-shadow: var(--shadow-1);
+  }
+  .deliv-phone::before{
+    content:""; position: absolute; top: 5px; left: 50%; transform: translateX(-50%);
+    width: 28%; height: 3px; border-radius: 999px;
+    background: rgba(0,0,0,0.18);
+  }
+  .deliv-phone .scr{
+    position: absolute; left: 8%; right: 8%; top: 11%; bottom: 11%;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .deliv-phone .scr i{
+    height: 5px; border-radius: 3px;
+    background: linear-gradient(90deg, #f0eadf 0%, #d3cab8 100%);
+  }
+  .deliv-phone .scr i.t{ height: 8px; width: 60%; background: var(--ink); }
+  .deliv-phone .scr i.row{ height: 14px; background: linear-gradient(90deg, #f6efe0, #ebe0c8); margin: 3px 0; }
+  .deliv-phone .scr i.cta{ height: 12px; background: var(--ink); margin-top: 6px; }
+
+  /* ============================================================
+     PORCELAIN NOIR — single large bento section
+     ============================================================ */
+  .pn-bento{
+    --pnb-accent: var(--accent);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: clamp(18px, 1.6vw, 24px);
+    box-shadow: var(--shadow-2);
+    padding: clamp(28px, 3.5vw, 60px);
+    display: grid;
+    gap: clamp(24px, 2.8vw, 40px);
+    position: relative;
+    overflow: hidden;
+  }
+  .pn-bento[data-density="spacious"]{ padding: clamp(36px, 4.4vw, 72px); }
+  .pn-bento[data-density="compact"]{ padding: clamp(22px, 2.6vw, 40px); }
+
+  /* Header */
+  .pn-bento-head{
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px 24px;
+    align-items: start;
+  }
+  .pn-bento-head-l{
+    display: flex; flex-direction: column; gap: 10px;
+    grid-column: 1 / -1;
+    flex-direction: row; flex-wrap: wrap;
+    align-items: center; gap: 12px;
+  }
+  .pn-bento-idx{
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 6px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+  }
+  .pn-bento-title{
+    grid-column: 1 / 2;
+    font-family: var(--f-display);
+    font-weight: 800;
+    font-size: clamp(48px, 7vw, 120px);
+    letter-spacing: -0.04em;
+    line-height: 0.92;
+    margin: 0;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .pn-bento-title .sub{
+    display: block;
+    font-family: var(--f-display);
+    font-weight: 500;
+    font-size: clamp(20px, 1.8vw, 28px);
+    letter-spacing: -0.015em;
+    color: var(--muted);
+    margin-top: 14px;
+  }
+  .pn-bento-deck{
+    grid-column: 2 / 3;
+    margin: 0;
+    align-self: end;
+    max-width: 32ch;
+    font-family: var(--f-body);
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--muted);
+    text-align: right;
+  }
+  @media (max-width: 760px){
+    .pn-bento-head{ grid-template-columns: 1fr; }
+    .pn-bento-deck{ text-align: left; grid-column: 1; }
+  }
+
+  /* Divider */
+  .pn-bento-rule{
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--line) 8%, var(--line) 92%, transparent);
+  }
+
+  /* Body */
+  .pn-bento-body{
+    display: grid;
+    grid-template-columns: minmax(280px, 0.95fr) 1.05fr;
+    gap: clamp(24px, 3vw, 48px);
+    align-items: stretch;
+  }
+  .pn-bento[data-img-pos="right"] .pn-bento-body{
+    grid-template-columns: 1.05fr minmax(280px, 0.95fr);
+  }
+  .pn-bento[data-img-pos="right"] .pn-bento-img{ order: 2; }
+  .pn-bento[data-img-pos="right"] .pn-bento-copy{ order: 1; }
+  @media (max-width: 880px){
+    .pn-bento-body{ grid-template-columns: 1fr !important; }
+    .pn-bento[data-img-pos="right"] .pn-bento-img{ order: 0; }
+    .pn-bento[data-img-pos="right"] .pn-bento-copy{ order: 0; }
+  }
+
+  /* Image */
+  .pn-bento-img{
+    aspect-ratio: 1/1;
+    border-radius: var(--r);
+    overflow: hidden;
+    position: relative;
+    background:
+      radial-gradient(80% 60% at 30% 25%, rgba(232,170,120,0.30), transparent 60%),
+      radial-gradient(80% 60% at 80% 80%, rgba(190,130,70,0.22), transparent 60%),
+      linear-gradient(135deg, #c9a572 0%, #8f6b3f 60%, #5e4222 100%);
+    border: 1px solid var(--line);
+    min-height: 340px;
+  }
+  .pn-bento[data-img-aspect="tall"] .pn-bento-img{ aspect-ratio: 4/5; }
+  .pn-bento[data-img-aspect="wide"] .pn-bento-img{ aspect-ratio: 4/3; }
+  .pn-bento-img::before{
+    content:""; position: absolute; inset: 0;
+    background: repeating-linear-gradient(90deg, rgba(255,210,140,0.10) 0 2px, transparent 2px 9px);
+    mix-blend-mode: screen; opacity: .8;
+  }
+  .pn-bento-img .marker{
+    position: absolute; top: 14px; left: 14px;
+    padding: 6px 12px 6px 10px;
+    background: rgba(255,255,255,0.94);
+    border-radius: 999px;
+    border: 1px solid rgba(0,0,0,0.06);
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink);
+    display: inline-flex; align-items: center; gap: 8px;
+    z-index: 2;
+  }
+  .pn-bento-img .marker .plus{
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--pnb-accent);
+    color: #fff;
+    display: grid; place-items: center;
+    font-size: 11px; line-height: 1;
+  }
+  .pn-bento-img .img-foot{
+    position: absolute; left: 14px; bottom: 14px;
+    padding: 6px 12px;
+    background: rgba(255,255,255,0.94);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 999px;
+    font-family: var(--f-mono);
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink);
+    z-index: 2;
+  }
+  .pn-bento-img .abc{
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%) rotate(-6deg);
+    background: #faf7f1;
+    color: #111;
+    width: 56%; aspect-ratio: 1/1;
+    display: grid; place-items: center;
+    font-family: var(--f-display);
+    font-weight: 900;
+    font-size: clamp(44px, 5.4vw, 84px);
+    letter-spacing: -0.04em;
+    box-shadow: 0 24px 50px rgba(0,0,0,0.30), 0 0 0 1px rgba(0,0,0,0.04);
+    border-radius: 8px;
+  }
+
+  /* Copy */
+  .pn-bento-copy{
+    display: flex; flex-direction: column; gap: 18px;
+    padding-top: 4px;
+  }
+  .pn-bento-copy p{
+    margin: 0;
+    font-family: var(--f-body);
+    font-size: clamp(15px, 1.2vw, 17px);
+    line-height: 1.6;
+    color: var(--ink-2);
+    max-width: 54ch;
+  }
+  .pn-bento-copy strong{ color: var(--ink); font-weight: 600; }
+  .pn-bento-meta{
+    margin-top: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+  }
+  @media (max-width: 760px){
+    .pn-bento-meta{ grid-template-columns: 1fr 1fr; }
+  }
+  .pn-bento-meta > div{
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .pn-bento-meta span{
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .pn-bento-meta b{
+    font-family: var(--f-display);
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+
+  /* Footer */
+  .pn-bento-foot{
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    align-items: center;
+    padding-top: 12px;
+  }
+  @media (max-width: 640px){
+    .pn-bento-foot{ grid-template-columns: 1fr; }
+    .pn-bento-foot-r{ justify-content: flex-start; }
+  }
+  .pn-bento-foot-r{
+    display: flex; gap: 10px; flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .pn-bento .btn-dark .accent-dot{
+    color: var(--pnb-accent);
+  }
+  .pn-bento[data-accent="vermillion"]{ --pnb-accent: #ff5a3c; }
+  .pn-bento[data-accent="black"]{ --pnb-accent: #0a0a0c; }
+  .pn-bento[data-accent="forest"]{ --pnb-accent: #1d6b46; }
+  .pn-bento[data-accent="royal"]{ --pnb-accent: #2a4ec7; }
+
+  /* ============================================================
+     TWEAKS PANEL (vanilla, host protocol-compliant)
+     ============================================================ */
+  #tweaks-panel{
+    position: fixed;
+    right: 18px; bottom: 18px;
+    z-index: 200;
+    width: 300px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    box-shadow: 0 18px 48px rgba(0,0,0,0.18), 0 4px 12px rgba(0,0,0,0.08);
+    font-family: var(--f-body);
+    color: var(--ink);
+    overflow: hidden;
+    user-select: none;
+  }
+  #tweaks-panel[hidden]{ display: none; }
+  #tweaks-panel .tp-head{
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 14px;
+    background: var(--dark);
+    color: #fff;
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    cursor: grab;
+  }
+  #tweaks-panel .tp-head .tp-title{ display: inline-flex; align-items: center; gap: 8px; }
+  #tweaks-panel .tp-head .tp-dot{
+    width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+  }
+  #tweaks-panel .tp-close{
+    background: transparent; border: 0; color: #fff;
+    font-size: 18px; line-height: 1; cursor: pointer; padding: 4px 8px;
+  }
+  #tweaks-panel .tp-body{
+    padding: 14px 16px 18px;
+    display: flex; flex-direction: column; gap: 16px;
+    max-height: 70vh; overflow-y: auto;
+  }
+  #tweaks-panel .tp-section{ display: flex; flex-direction: column; gap: 8px; }
+  #tweaks-panel .tp-label{
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  #tweaks-panel .tp-radio{
+    display: inline-flex;
+    padding: 3px;
+    background: var(--canvas);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    width: 100%;
+  }
+  #tweaks-panel .tp-radio button{
+    flex: 1;
+    padding: 8px 10px;
+    border: 0; background: transparent;
+    border-radius: 999px;
+    font-family: var(--f-body); font-size: 12px;
+    color: var(--muted);
+    cursor: pointer;
+    transition: background 140ms ease, color 140ms ease;
+  }
+  #tweaks-panel .tp-radio button.is-active{
+    background: var(--dark);
+    color: #fff;
+  }
+  #tweaks-panel .tp-swatches{
+    display: flex; gap: 8px;
+  }
+  #tweaks-panel .tp-swatch{
+    width: 36px; height: 36px; border-radius: 999px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    position: relative;
+    transition: transform 140ms ease;
+  }
+  #tweaks-panel .tp-swatch.is-active{
+    border-color: var(--dark);
+    transform: scale(1.05);
+  }
+  #tweaks-panel .tp-swatch::after{
+    content:""; position: absolute; inset: 3px;
+    border-radius: 50%;
+    background: var(--c);
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-brand">PORTFOLIOKOR<sup>©</sup></div>
+  <nav class="topbar-nav">
+    <a href="index.html" class="is-current">Home</a>
+    <a href="#works">Works</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="topbar-meta"></div>
+</header>
+
+<!-- HERO ============================================================== -->
+<section class="hero">
+  <div class="hero-grid">
+    <!-- LEFT CARD -->
+    <div class="hero-left">
+      <div>
+        <h1 class="hero-name">PORTFOLIO<span class="accent">KOR</span></h1>
+        <div class="hero-role">Marketing&nbsp;Communications</div>
+
+        <div class="hero-meta">
+          <span>Portfolio · <b>MMXXVI</b></span>
+          <span>Based · <b>BKK</b></span>
+        </div>
+
+        <nav class="hero-jump" aria-label="Portfolio sections">
+          <a href="#works"><span class="hj-n">01</span> Marketing case study <span class="arr">→</span></a>
+          <a href="#ugc"><span class="hj-n">02</span> UGC contents breakdown <span class="arr">→</span></a>
+          <a href="#ux"><span class="hj-n">03</span> UX &amp; research design <span class="arr">→</span></a>
+        </nav>
+      </div>
+
+      <div class="trusted">
+        <div class="trust-avatars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <div class="trust-meta">
+          <span class="stars">★★★★★</span>
+          <b>Trusted by 100+ collaborators</b>
+          They hit their targets — you're next.
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT BENTO removed -->
+  </div>
+</section>
+
+<!-- MARKETING CASE STUDY (one large bento, tweakable) ================ -->
+<section class="container gutter" id="works" data-reveal>
+  <article
+    id="pn-bento"
+    class="pn-bento"
+    data-img-pos="left"
+    data-img-aspect="square"
+    data-density="spacious"
+    data-accent="vermillion"
+    style="font-weight: 300;"
+  >
+    <!-- Header row -->
+    <header class="pn-bento-head">
+      <div class="pn-bento-head-l">
+        <span class="tag-slash">Marketing case study</span>
+        <span class="tag-slash">Pitch deck · imagined campaign</span>
+      </div>
+      <h2 class="pn-bento-title">Porcelain Noir<br><span class="sub">Marketing case study</span></h2>
+      <p class="pn-bento-deck">
+</p>
+    </header>
+
+    <!-- Divider -->
+    <div class="pn-bento-rule" aria-hidden="true"></div>
+
+    <!-- Body row: image + copy -->
+    <div class="pn-bento-body">
+      <a class="pn-bento-img" href="porcelain-noir.html" aria-label="Porcelain Noir art direction">
+        <span class="marker">Art Direction <span class="plus">+</span></span>
+        <div class="abc">abc</div>
+        <span class="img-foot">Cover · Maison Margiela Beauty</span>
+      </a>
+      <div class="pn-bento-copy">
+        <p><strong>Porcelain Noir</strong> is an imagined campaign pitch deck for a limited-edition beauty collection concept under <strong>Maison Margiela Beauty</strong>, built around the 25-year creative partnership: makeup artist Pat McGrath and designer John Galliano.</p>
+        <p>The collection draws from two shows: Galliano's own-label FW07 Elizabethan Wonderland and Maison Margiela SS24 Artisanal — translated into product, packaging, and visual identity.</p>
+        <div class="pn-bento-meta">
+          <div><span>Role</span><b>Concept + AD</b></div>
+          <div><span>Year</span><b>2026</b></div>
+          <div><span>Format</span><b>Deck </b></div>
+          <div><span>Client</span><b>Imagined </b></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer: actions -->
+    <footer class="pn-bento-foot">
+      <div class="pn-bento-foot-l"></div>
+      <div class="pn-bento-foot-r">
+        <a class="btn btn-dark" href="porcelain-noir.html">
+          Full read <span class="accent-dot">•</span>
+        </a>
+      </div>
+    </footer>
+  </article>
+</section>
+
+<!-- UGC PERSONAL CONTENT CREATION ===================================== -->
+<section class="container gutter" id="ugc" data-reveal>
+  <div class="ugc-head">
+    <div>
+      <span class="tag-slash" style="margin-bottom: 16px;">UGC personal content creation</span>
+      <h2 class="h-display" style="margin-top:14px">UGC Content Creation<br><span style="color:var(--muted); font-weight: 500; font-size: 0.42em; letter-spacing: -0.005em;">— Personal brand collaborations · 04 case studies</span></h2>
+    </div>
+    <a class="btn btn-ghost" href="#archives">View archives <span class="arr">→</span></a>
+  </div>
+
+  <!-- Featured: Javin De Seoul — wide horizontal -->
+  <a class="ugc-card ugc-card-wide" href="javin-jisoo.html">
+    <div class="ugc-cover dark cover-jvds">
+      <div class="cv-meta"><span>01/04</span><span>Featured</span></div>
+      <div class="glyph"></div>
+    </div>
+    <div class="ugc-body">
+      <div class="tag">UGC · Javin De Seoul · Reel</div>
+      <h4 class="title">Jisoo "Eyes Closed" × Javin De Seoul</h4>
+      <p class="desc">Creating a Jisoo "Eyes Closed" inspired makeup look using Javin De Seoul products. From brand brief to final Instagram Reel — full creative direction and production.</p>
+      <div class="row">
+        <span>2026 · 01:24 · 32K Reach</span>
+        <span class="read"><span class="dot-r"></span>Full read →</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- Other three: equal 3-up -->
+  <div class="ugc-grid">
+    <!-- Card — BBC -->
+    <a class="ugc-card" href="bad-bitch-club.html">
+      <div class="ugc-cover dark cover-bbc">
+        <div class="cv-meta"><span>02/04</span><span>Fragrance</span></div>
+        <div class="bottle"></div>
+        <div class="smudge2">Bitch's rich</div>
+      </div>
+      <div class="ugc-body">
+        <div class="tag">UGC · Perfume · Concept video</div>
+        <h4 class="title">Bad Bitch Club Perfume</h4>
+        <p class="desc">A four-archetype campaign concept — Girl Don't Cry, Born To Love, #YOLO, Boom Lavoom — cast as four product capsules with their own visual scent identity.</p>
+        <div class="row">
+          <span>2026 · 4 looks</span>
+          <span class="read"><span class="dot-r"></span>Full read →</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card — MAC -->
+    <a class="ugc-card" href="mac-winter.html">
+      <div class="ugc-cover dark cover-mac">
+        <div class="cv-meta"><span>03/04</span><span>Editorial</span></div>
+        <div class="face"></div>
+        <div class="smudge">powderkiss</div>
+      </div>
+      <div class="ugc-body">
+        <div class="tag">UGC · MAC × winter · Tutorial</div>
+        <h4 class="title">MAC It MAC — Winter Collection</h4>
+        <p class="desc">"I only wear MAC." A winter-world tutorial built around a single sentence — five products, one world, one icy-blue palette of theme, aesthetic and concept.</p>
+        <div class="row">
+          <span>2026 · 5 products</span>
+          <span class="read"><span class="dot-r"></span>Full read →</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card — Two Part -->
+    <a class="ugc-card" href="two-part-strategy.html">
+      <div class="ugc-cover dark cover-jvds" style="background: linear-gradient(135deg, #1a1a20 0%, #08080c 100%);">
+        <div class="cv-meta"><span>04/04</span><span>Strategy</span></div>
+        <div class="glyph"></div>
+      </div>
+      <div class="ugc-body">
+        <div class="tag">UGC · Strategy · Cross-brand</div>
+        <h4 class="title">The Two Part Strategy — Glitzlens × JVDS</h4>
+        <p class="desc">One video for reach, one still carousel for discovery. The same two-part posting structure deployed across two very different brand collaborations.</p>
+        <div class="row">
+          <span>2026 · 2 brands</span>
+          <span class="read"><span class="dot-r"></span>Full read →</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- UX RESEARCH ======================================================= -->
+<section class="container gutter ux-section" id="ux" data-reveal style="margin: 96px 405px 0px">
+  <!-- HEADER: centered, continuous flow -->
+  <header class="ux-header">
+    <span class="tag-slash">UX Research · Case study</span>
+    <h2 class="ux-title" style="font-size: 100px">UX RESEARCH &amp; DESIGN</h2>
+    <p class="ux-deck">Redesigning how Bangkok commuters view, navigate, and manage their transit transaction history — a feature that did not exist in the app at all before this project.</p>
+    <div class="ux-meta-row">
+      <span><b>Role</b>Product Designer</span>
+      <span><b>Year</b>2026</span>
+      <span><b>Scope</b>06 chapters</span>
+      <span><b>Status</b>Documented</span>
+    </div>
+  </header>
+
+  <!-- HERO VISUAL -->
+  <figure class="ux-hero-visual" aria-label="PlayCard MRT — feature overview">
+    <div class="hv-body">
+      <span class="hv-tag"><span class="dot"></span>UX Research · PlayCard MRT</span>
+      <h3 class="hv-title">Transit Menu<br>Concept Directions</h3>
+      <p class="hv-desc">Annotated wireframes across all directions and all states — delivered as a single Figma file.</p>
+      <div class="hv-meta">
+        <span>Role <b>Product Designer</b></span>
+        <span>Scope <b>06 chapters</b></span>
+        <span>Year <b>2026</b></span>
+      </div>
+    </div>
+    <div class="hv-side" aria-hidden="true">
+      <div class="sc">
+        <div class="row t" style="top:14%"></div>
+        <div class="row" style="top:26%;width:80%"></div>
+        <div class="row h" style="top:34%"></div>
+        <div class="row" style="top:50%"></div>
+        <div class="row" style="top:57%;width:65%"></div>
+        <div class="row h" style="top:66%"></div>
+        <div class="row" style="top:80%;width:50%"></div>
+      </div>
+      <span class="sc-label">Figma · 6 screens</span>
+    </div>
+  </figure>
+
+  <!-- ACCORDION — Premium expand/collapse, each step opens to modular editorial -->
+  <div class="ux-accordion">
+
+    <!-- 01 BRIEF ============================================================ -->
+    <div class="ux-step" data-step="01">
+      <button class="ux-step-head" type="button" aria-expanded="false">
+        <span class="ux-step-num">01 / Brief</span>
+        <span class="ux-step-text">
+          <span class="ux-step-title">Getting the requirement board</span>
+          <span class="ux-step-meta">Stakeholder framing · Business slides · Kiosk receipt reference</span>
+        </span>
+        <span class="ux-step-chev" aria-hidden="true"></span>
+      </button>
+      <div class="ux-step-pane">
+        <div class="inner">
+          <div class="ux-step-pane-content">
+
+            <div class="ux-block two-col">
+              <div class="ux-prose">
+                <span class="ux-prose-eyebrow">The starting point</span>
+                <h4>Visibility and trust — clear from the start.</h4>
+                <p>The brief established that users needed a way to view their transit transaction history directly inside the PlayCard app. Before this project, that capability simply did not exist. If an MRT commuter wanted to see what they had spent or where they had travelled, their only option was to walk up to a physical kiosk machine at the station and print a receipt.</p>
+                <p>The requirement board included presentation slides from the business team, a photograph of an actual physical kiosk receipt as a reference for what data fields needed to be displayed, and an initial framing of the problem from the product side. The core user need was clear from the start: <strong>visibility and trust.</strong></p>
+              </div>
+
+              <div class="ux-fig fig-reqboard">
+                <span class="fig-tag">Requirement Board · "Transit Menu"</span>
+                <div class="rb-pill">
+                  <span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);"></span>
+                  Transit Menu
+                  <span class="pill-r">In Progress</span>
+                </div>
+                <div class="rb-grid">
+                  <div class="rb-col">
+                    <h6>Slides</h6>
+                    <div class="stack">
+                      <i></i><i></i><i></i><i></i>
+                    </div>
+                    <p style="font-family:var(--f-body);font-size:11px;line-height:1.45;color:var(--muted);margin:10px 0 0;">Transit feature deck PM/MM card cover</p>
+                  </div>
+                  <div class="rb-col">
+                    <h6>Kiosk Receipt Reference</h6>
+                    <div class="stack">
+                      <i style="height:36px;background:linear-gradient(180deg,#ece4d3,#cabd9b);"></i>
+                    </div>
+                    <p style="font-family:var(--f-body);font-size:11px;line-height:1.45;color:var(--muted);margin:10px 0 0;">Physical receipt as data field reference</p>
+                  </div>
+                  <div class="rb-col">
+                    <h6>What we needed to build</h6>
+                    <ul>
+                      <li>View transit history in-app</li>
+                      <li>Display correct data fields</li>
+                      <li>Support dispute &amp; refund flows</li>
+                      <li class="muted">Receives kiosk as sole touchpoint</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ux-needs">
+              <div class="ux-need">
+                <span class="n-n">Need · 01</span>
+                <h5 class="n-h">View transit history in-app</h5>
+                <p class="n-p">Eliminate the need to visit a kiosk to see basic spend and travel history. Bring it into the app, on the device commuters already carry.</p>
+              </div>
+              <div class="ux-need">
+                <span class="n-n">Need · 02</span>
+                <h5 class="n-h">Display correct data fields</h5>
+                <p class="n-p">Mirror what the physical receipt shows — station, time, fare — so the in-app version reads as trustworthy and complete.</p>
+              </div>
+              <div class="ux-need">
+                <span class="n-n">Need · 03</span>
+                <h5 class="n-h">Support dispute &amp; refund flows</h5>
+                <p class="n-p">A pathway from "something looks wrong" to resolution, without forcing users back out into the physical station to complain.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 ORIGINAL FLOW ====================================================== -->
+    <div class="ux-step" data-step="02">
+      <button class="ux-step-head" type="button" aria-expanded="false">
+        <span class="ux-step-num">02 / Original flow</span>
+        <span class="ux-step-text">
+          <span class="ux-step-title">What existed and why it was not ideal</span>
+          <span class="ux-step-meta">Audit · Existing transaction history · Before redesign</span>
+        </span>
+        <span class="ux-step-chev" aria-hidden="true"></span>
+      </button>
+      <div class="ux-step-pane">
+        <div class="inner">
+          <div class="ux-step-pane-content">
+
+            <div class="ux-block text-only">
+              <div class="ux-prose">
+                <span class="ux-prose-eyebrow">Honest audit</span>
+                <h4>Map what already exists before designing what should.</h4>
+                <p>Before any redesign work began, I mapped out what was already live in the app. Understanding the existing system is not optional. It is the only honest way to know what is actually broken versus what just feels uncomfortable.</p>
+                <p>The existing Transaction History flow required users to pass through the Card Detail screen before reaching their history. This created an <strong>unnecessary detour</strong>. The filter flow was <strong>circular and disorienting</strong>. Checking balance was a <strong>completely separate path</strong> with no connection to history. And when something went wrong, there was <strong>no clear path to resolution</strong> from within the app.</p>
+              </div>
+            </div>
+
+            <div class="ux-flow">
+              <div class="flow-h">Existing Transaction History Flow — Before Redesign</div>
+              <div class="flow-row">
+                <div class="flow-node">
+                  <span class="step">Start</span>
+                  <span class="name">PlayCard Home</span>
+                </div>
+                <div class="flow-node unhealthy">
+                  <span class="step">Detour</span>
+                  <span class="name">Card Detail</span>
+                </div>
+                <div class="flow-node">
+                  <span class="step">Target</span>
+                  <span class="name">Transaction History</span>
+                </div>
+                <div class="flow-node unhealthy">
+                  <span class="step">Filter</span>
+                  <span class="name">Select Filter</span>
+                </div>
+                <div class="flow-node loops">
+                  <span class="step">Back</span>
+                  <span class="name">Transaction History</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="ux-issues">
+              <div class="ux-issue">
+                <span class="lbl">Issue · 01</span>
+                <span class="h">Unnecessary detour via Card Detail</span>
+                <span class="p">Users wanting history had to navigate through card management first — a wrong mental model.</span>
+              </div>
+              <div class="ux-issue">
+                <span class="lbl">Issue · 02</span>
+                <span class="h">Circular filter flow</span>
+                <span class="p">Applying a filter looped users back into the same screens repeatedly. No sense of progress.</span>
+              </div>
+              <div class="ux-issue">
+                <span class="lbl">Issue · 03</span>
+                <span class="h">Balance and history disconnected</span>
+                <span class="p">Check Balance was a separate path with no logical connection to the transaction history.</span>
+              </div>
+              <div class="ux-issue">
+                <span class="lbl">Issue · 04</span>
+                <span class="h">No error recourse in-app</span>
+                <span class="p">When something went wrong, the app gave no in-path forward. Resolution required a station visit.</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 TWO DIRECTIONS ===================================================== -->
+    <div class="ux-step" data-step="03">
+      <button class="ux-step-head" type="button" aria-expanded="false">
+        <span class="ux-step-num">03 / Design directions</span>
+        <span class="ux-step-text">
+          <span class="ux-step-title">Two directions for stakeholder decision</span>
+          <span class="ux-step-meta">History separated by card · All activity in one place</span>
+        </span>
+        <span class="ux-step-chev" aria-hidden="true"></span>
+      </button>
+      <div class="ux-step-pane">
+        <div class="inner">
+          <div class="ux-step-pane-content">
+
+            <div class="ux-block text-only">
+              <div class="ux-prose">
+                <span class="ux-prose-eyebrow">Two answers, one discussion</span>
+                <h4>Bring options, not conclusions.</h4>
+                <p>Rather than designing one solution and presenting it as the answer, I developed two distinct design directions to bring to the stakeholder discussion.</p>
+              </div>
+            </div>
+
+            <div class="ux-dirs">
+              <div class="ux-dir chosen">
+                <span class="badge">Chosen by PO</span>
+                <span class="d-meta">Direction · 01</span>
+                <h5 class="d-title">History separated by card</h5>
+                <p class="d-p">A separate history feed per card. Treats each card as its own financial surface and stakeholder hierarchy. Encourages low overview switching.</p>
+                <div class="d-mocks" aria-hidden="true">
+                  <div class="dir-phone"><div class="body"><i class="t"></i><i></i><i class="h"></i><i></i><i></i><i></i></div></div>
+                  <div class="dir-phone"><div class="body"><i class="t"></i><i></i><i></i><i></i><i class="r"></i><i></i></div></div>
+                </div>
+              </div>
+              <div class="ux-dir">
+                <span class="d-meta">Direction · 02</span>
+                <h5 class="d-title">All activity in one place</h5>
+                <p class="d-p">A unified feed combining transit, top-ups and statement-style charges. Greater financial overview, fewer screens, higher discoverability.</p>
+                <div class="d-mocks" aria-hidden="true">
+                  <div class="dir-phone"><div class="body"><i class="t"></i><i></i><i></i><i class="h"></i><i></i><i class="r"></i><i></i></div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ux-prose" style="max-width: 64ch;">
+              <p><strong>Decision:</strong> the chosen direction was the one keeping a clear and clean view, with the Product Owner. The decision was rooted in the platform's existing design language — and the principles already used elsewhere in the app.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 EDGE CASES ========================================================= -->
+    <div class="ux-step" data-step="04">
+      <button class="ux-step-head" type="button" aria-expanded="false">
+        <span class="ux-step-num">04 / Developing the flow</span>
+        <span class="ux-step-text">
+          <span class="ux-step-title">Cover every edge case after finalizing</span>
+          <span class="ux-step-meta">Two parallel flows · Happy path · Error states</span>
+        </span>
+        <span class="ux-step-chev" aria-hidden="true"></span>
+      </button>
+      <div class="ux-step-pane">
+        <div class="inner">
+          <div class="ux-step-pane-content">
+
+            <div class="ux-block text-only">
+              <div class="ux-prose">
+                <span class="ux-prose-eyebrow">Both paths, both states</span>
+                <h4>The work split into two parallel flows.</h4>
+                <p>After aligning with the Product Owner on direction, I took the chosen approach and expanded it into a complete flow covering not just the happy path but every branch, error case, and edge state the system would need to handle.</p>
+              </div>
+            </div>
+
+            <div class="ux-flows">
+              <div class="ux-flow-block">
+                <span class="fb-tag">Confirmed Card Flow · Normal Path</span>
+                <h5 class="fb-h">Transit History — Normal Path</h5>
+                <ol>
+                  <li>Play Card Menu</li>
+                  <li>Card Detail</li>
+                  <li class="highlight">Transit Summary</li>
+                  <li>Transit History (Full List)</li>
+                  <li>Transit Details</li>
+                </ol>
+                <p style="font-family:var(--f-body);font-size:12.5px;color:var(--muted);line-height:1.55;margin:14px 0 0;">Key change: Transit Summary acts as an intermediate layer giving an at-a-glance balance before users tap into the full list — without forcing a Card Detail load.</p>
+              </div>
+              <div class="ux-flow-block dark">
+                <span class="fb-tag">Confirmed Error Flow · Edge States</span>
+                <h5 class="fb-h">When Something Goes Wrong</h5>
+                <ol>
+                  <li>Transit History — Registration Issue</li>
+                  <li class="highlight">Pending Status — Alert</li>
+                  <li>Input Stop Verification</li>
+                  <li>Confirmation</li>
+                  <li>OTP Notification</li>
+                  <li>Updated Transit Details</li>
+                </ol>
+                <p style="font-family:var(--f-body);font-size:12.5px;color:rgba(255,255,255,0.65);line-height:1.55;margin:14px 0 0;">Every error case routes the user toward a clear, in-app resolution path. No more "go visit a station" dead ends.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 COMPETITIVE RESEARCH =============================================== -->
+    <div class="ux-step" data-step="05">
+      <button class="ux-step-head" type="button" aria-expanded="false">
+        <span class="ux-step-num">05 / Competitive research</span>
+        <span class="ux-step-text">
+          <span class="ux-step-title">Validate against what users already know</span>
+          <span class="ux-step-meta">Transit apps · Payment apps · MRT ecosystem benchmarks</span>
+        </span>
+        <span class="ux-step-chev" aria-hidden="true"></span>
+      </button>
+      <div class="ux-step-pane">
+        <div class="inner">
+          <div class="ux-step-pane-content">
+
+            <div class="ux-block text-only">
+              <div class="ux-prose">
+                <span class="ux-prose-eyebrow">Mental-model alignment</span>
+                <h4>Ground the design in what users already recognise.</h4>
+                <p>Before finalising the wireframes, I conducted competitive research to validate the design patterns I was building and understand what users were already familiar with.</p>
+                <p>The research focused on real transit and payment apps, especially stronger market examples already operating in similar spaces, including the primary MRT ecosystem. Since PlayCard existed as a secondary experience within a larger app environment, it was important to study how leading platforms structured these flows in practice.</p>
+                <p>The goal was not to copy competitors. It was to understand the mental models users had already built from the apps they used most often, so PlayCard could align with familiar behaviours and reduce unnecessary learning. By grounding the design in patterns users already recognised, the experience could feel more intuitive from the first tap.</p>
+              </div>
+            </div>
+
+            <div class="ux-comps">
+              <div class="ux-comp">
+                <span class="c-tag">Benchmark · 01</span>
+                <h5 class="c-h">BMV Apps (Market)</h5>
+                <p class="c-p">BVA's transit history flow with standard list view, filter panel, fares results, individual transaction detail, and clear flow action — all within Bangkok's most familiar MRT app.</p>
+                <div class="c-strip" aria-hidden="true"><i class="f"></i><i class="f"></i><i class="f"></i><i></i><i></i></div>
+              </div>
+              <div class="ux-comp">
+                <span class="c-tag">Benchmark · 02</span>
+                <h5 class="c-h">PaaMaegmum App (revisit)</h5>
+                <p class="c-p">Booming app design from a brand based in a market we've adopted: balancing financial overview screen mid-route navigation, dispute initiation entry points and edit access.</p>
+                <div class="c-strip" aria-hidden="true"><i class="f"></i><i class="f"></i><i></i><i></i><i></i></div>
+              </div>
+              <div class="ux-comp">
+                <span class="c-tag">Benchmark · 03</span>
+                <h5 class="c-h">Filter UX Patterns</h5>
+                <p class="c-p">How leading apps structure filters: bottom sheets, sticky chips, and where users tend to tap most readily without falling into circular loops.</p>
+                <div class="c-strip" aria-hidden="true"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i></i></div>
+              </div>
+            </div>
+
+            <div class="ux-findings">
+              <div class="f-h">What the research produced</div>
+              <ul>
+                <li>Transit components and connected steps, success state after engagement, and matching transactions to selected filters — aligned to be expressive for transit-grade research in this domain.</li>
+                <li>Transactional / transaction structures — common formats already proven across selected expressive flows, so users feel oriented from the first tap.</li>
+                <li>Empty state messaging — clear, reassuring language without leaving the user wondering whether something is actually broken.</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 DELIVERABLES ======================================================= -->
+    <div class="ux-step" data-step="06">
+      <button class="ux-step-head" type="button" aria-expanded="false">
+        <span class="ux-step-num">06 / Final deliverables</span>
+        <span class="ux-step-text">
+          <span class="ux-step-title">Everything documented</span>
+          <span class="ux-step-meta">Figma · Transit Menu Concept Directions · All states annotated</span>
+        </span>
+        <span class="ux-step-chev" aria-hidden="true"></span>
+      </button>
+      <div class="ux-step-pane">
+        <div class="inner">
+          <div class="ux-step-pane-content">
+
+            <div class="ux-block text-only">
+              <div class="ux-prose">
+                <span class="ux-prose-eyebrow">Handoff</span>
+                <h4>A complete Figma file, annotated end-to-end.</h4>
+                <p>The final deliverable is a complete Figma file titled <strong>"Transit Menu Concept Directions"</strong> containing fully annotated wireframes across all directions and all states.</p>
+              </div>
+            </div>
+
+            <div class="ux-deliv">
+              <div class="ux-deliv-item">
+                <div class="deliv-phone" aria-hidden="true"><div class="scr"><i class="t"></i><i></i><i></i><i class="row"></i><i></i><i></i><i></i><i class="cta"></i></div></div>
+                <span class="lbl">Direction 1 · Option A<b>Full transit history flow</b></span>
+              </div>
+              <div class="ux-deliv-item">
+                <div class="deliv-phone" aria-hidden="true"><div class="scr"><i class="t"></i><i></i><i class="row"></i><i></i><i></i><i></i><i class="cta"></i></div></div>
+                <span class="lbl">Direction 1 · Option B<b>Standard list view</b></span>
+              </div>
+              <div class="ux-deliv-item">
+                <div class="deliv-phone" aria-hidden="true"><div class="scr"><i class="t"></i><i></i><i></i><i></i><i class="row"></i><i class="row"></i><i></i><i></i></div></div>
+                <span class="lbl">Direction 1 · Option C<b>Refund recourse path</b></span>
+              </div>
+              <div class="ux-deliv-item">
+                <div class="deliv-phone" aria-hidden="true"><div class="scr"><i class="t"></i><i></i><i class="row"></i><i></i><i class="row"></i><i></i><i class="cta"></i></div></div>
+                <span class="lbl">Direction 2 · Option A<b>Unified activity feed</b></span>
+              </div>
+              <div class="ux-deliv-item">
+                <div class="deliv-phone" aria-hidden="true"><div class="scr"><i class="t"></i><i></i><i></i><i></i><i class="row"></i><i></i><i></i><i></i></div></div>
+                <span class="lbl">Direction 2 · Option B<b>Filter — empty state</b></span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  // UX accordion — click to toggle, single-open mode
+  (function(){
+    const steps = document.querySelectorAll('.ux-step');
+    steps.forEach(step => {
+      const head = step.querySelector('.ux-step-head');
+      head.addEventListener('click', () => {
+        const willOpen = !step.classList.contains('is-open');
+        if (willOpen){
+          steps.forEach(s => { s.classList.remove('is-open'); s.querySelector('.ux-step-head').setAttribute('aria-expanded','false'); });
+        }
+        step.classList.toggle('is-open', willOpen);
+        head.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+      });
+    });
+  })();
+</script>
+
+<!-- FOOTER ============================================================ -->
+<footer class="site-foot" id="contact">
+  <div class="container">
+    <div class="foot-card">
+      <div>
+        <span class="tag-slash solid" style="margin-bottom: 18px;">Contact</span>
+        <h2 class="get-in-touch">Get In Touch.</h2>
+      </div>
+
+    </div>
+    <div class="foot-row">
+      <div class="foot-links">
+        <a href="mailto:best1nahathai@gmail.com">Email</a>
+        <a href="https://www.instagram.com/bbestnkk1/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.tiktok.com/@bbestnkk" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://www.behance.net/nk43" target="_blank" rel="noopener">Behance</a>
+        <a href="https://www.linkedin.com/in/nahathai-k/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Tweaks panel ===================================================== -->
+<div id="tweaks-panel" hidden>
+  <div class="tp-head">
+    <span class="tp-title"><span class="tp-dot"></span> Tweaks · Marketing case</span>
+    <button class="tp-close" aria-label="Close">×</button>
+  </div>
+  <div class="tp-body">
+    <div class="tp-section">
+      <div class="tp-label">Image position</div>
+      <div class="tp-radio" data-key="imgPos">
+        <button data-value="left">Left</button>
+        <button data-value="right">Right</button>
+      </div>
+    </div>
+    <div class="tp-section">
+      <div class="tp-label">Image shape</div>
+      <div class="tp-radio" data-key="imgAspect">
+        <button data-value="square">Square</button>
+        <button data-value="tall">Tall</button>
+        <button data-value="wide">Wide</button>
+      </div>
+    </div>
+    <div class="tp-section">
+      <div class="tp-label">Card density</div>
+      <div class="tp-radio" data-key="density">
+        <button data-value="compact">Compact</button>
+        <button data-value="default">Default</button>
+        <button data-value="spacious">Spacious</button>
+      </div>
+    </div>
+    <div class="tp-section">
+      <div class="tp-label">Accent</div>
+      <div class="tp-swatches" data-key="accent">
+        <button class="tp-swatch" data-value="vermillion" style="--c:#ff5a3c" aria-label="Vermillion"></button>
+        <button class="tp-swatch" data-value="black" style="--c:#0a0a0c" aria-label="Black"></button>
+        <button class="tp-swatch" data-value="forest" style="--c:#1d6b46" aria-label="Forest"></button>
+        <button class="tp-swatch" data-value="royal" style="--c:#2a4ec7" aria-label="Royal"></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // Tweakable defaults — host edits this JSON in place
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "imgPos": "left",
+    "imgAspect": "square",
+    "density": "spacious",
+    "accent": "vermillion"
+  }/*EDITMODE-END*/;
+
+  const panel = document.getElementById('tweaks-panel');
+  const target = document.getElementById('pn-bento');
+  let state = Object.assign({}, TWEAK_DEFAULTS);
+
+  const ATTR_MAP = {
+    imgPos: 'data-img-pos',
+    imgAspect: 'data-img-aspect',
+    density: 'data-density',
+    accent: 'data-accent'
+  };
+
+  function applyState(){
+    if (!target) return;
+    for (const k in ATTR_MAP){
+      target.setAttribute(ATTR_MAP[k], state[k]);
+    }
+    // Reflect active state in panel UI
+    panel.querySelectorAll('.tp-radio').forEach(group => {
+      const key = group.getAttribute('data-key');
+      group.querySelectorAll('button').forEach(btn => {
+        btn.classList.toggle('is-active', btn.dataset.value === state[key]);
+      });
+    });
+    panel.querySelectorAll('.tp-swatches').forEach(group => {
+      const key = group.getAttribute('data-key');
+      group.querySelectorAll('.tp-swatch').forEach(btn => {
+        btn.classList.toggle('is-active', btn.dataset.value === state[key]);
+      });
+    });
+  }
+
+  function setTweak(partial){
+    Object.assign(state, partial);
+    applyState();
+    try{
+      window.parent.postMessage({ type: '__edit_mode_set_keys', edits: partial }, '*');
+    }catch(e){}
+  }
+
+  // Wire panel controls
+  panel.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-value]');
+    if (!btn) return;
+    const group = btn.closest('[data-key]');
+    if (!group) return;
+    setTweak({ [group.getAttribute('data-key')]: btn.dataset.value });
+  });
+  panel.querySelector('.tp-close').addEventListener('click', () => {
+    panel.hidden = true;
+    try{ window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*'); }catch(e){}
+  });
+
+  // Make panel draggable
+  (function makeDraggable(){
+    const head = panel.querySelector('.tp-head');
+    let dragging = false, sx = 0, sy = 0, ox = 0, oy = 0;
+    head.addEventListener('mousedown', (e) => {
+      if (e.target.closest('.tp-close')) return;
+      dragging = true;
+      const rect = panel.getBoundingClientRect();
+      sx = e.clientX; sy = e.clientY; ox = rect.left; oy = rect.top;
+      panel.style.right = 'auto'; panel.style.bottom = 'auto';
+      panel.style.left = ox + 'px'; panel.style.top = oy + 'px';
+      head.style.cursor = 'grabbing';
+      e.preventDefault();
+    });
+    document.addEventListener('mousemove', (e) => {
+      if (!dragging) return;
+      panel.style.left = (ox + e.clientX - sx) + 'px';
+      panel.style.top = (oy + e.clientY - sy) + 'px';
+    });
+    document.addEventListener('mouseup', () => {
+      dragging = false; head.style.cursor = 'grab';
+    });
+  })();
+
+  // Host protocol
+  window.addEventListener('message', (event) => {
+    const data = event.data;
+    if (!data || typeof data !== 'object') return;
+    if (data.type === '__activate_edit_mode'){ panel.hidden = false; }
+    else if (data.type === '__deactivate_edit_mode'){ panel.hidden = true; }
+  });
+
+  applyState();
+  try{
+    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+  }catch(e){}
+})();
+</script>
+
+<script src="site.js"></script>
+</body>
+</html>

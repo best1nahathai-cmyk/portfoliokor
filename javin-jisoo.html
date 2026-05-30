@@ -1,0 +1,774 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Javin De Seoul × Jisoo · Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+  .cs-hero{
+    padding: clamp(28px, 4vw, 56px) var(--pad-x) clamp(40px, 5vw, 64px);
+    max-width: var(--max-w); margin: 0 auto;
+  }
+  .cs-hero .meta{ display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; }
+  .cs-hero h1{
+    font-family: var(--f-display); font-weight: 800;
+    font-size: clamp(54px, 9vw, 144px);
+    letter-spacing: -0.04em; line-height: 0.9;
+    margin: 0; color: var(--ink); text-wrap: balance;
+  }
+  .cs-hero h1 .accent{ color: var(--accent); }
+  .cs-hero .deck{
+    margin-top: 24px;
+    font-size: clamp(15px, 1.4vw, 18px); line-height: 1.6;
+    color: var(--ink-2); max-width: 62ch;
+  }
+
+  /* hero refs strip */
+  .ref-strip{
+    margin-top: 32px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap);
+  }
+  @media (max-width: 880px){ .ref-strip{ grid-template-columns: 1fr; } }
+  .ref{
+    aspect-ratio: 4/3;
+    position: relative; overflow: hidden;
+    border-radius: var(--r);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-1);
+    background:
+      radial-gradient(60% 70% at 50% 40%, rgba(220,30,30,0.20), transparent 65%),
+      linear-gradient(135deg, #2a1010 0%, #100808 100%);
+    color: #fff;
+  }
+  .ref .face{
+    position: absolute; left: 28%; right: 28%; top: 18%; bottom: 24%;
+    background: radial-gradient(50% 80% at 50% 30%, rgba(245,235,225,0.55), transparent 70%);
+  }
+  .ref .tag{
+    position: absolute; top: 12px; left: 12px;
+    font-family: var(--f-mono); font-size: 9px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: #fff;
+    padding: 4px 8px; border-radius: 999px;
+    background: rgba(0,0,0,0.55);
+    border: 1px solid rgba(255,255,255,0.18);
+  }
+  .ref .cap{
+    position: absolute; bottom: 12px; left: 12px; right: 12px;
+    font-family: var(--f-mono); font-size: 9px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: #fff;
+    padding: 6px 10px;
+    background: rgba(0,0,0,0.55);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 999px;
+    width: max-content; max-width: calc(100% - 24px);
+  }
+  .ref .cap b{ color: #fff; display: block; font-size: 11px; }
+
+  /* section card */
+  .sec-head{
+    display: grid; grid-template-columns: auto 1fr auto;
+    gap: 18px; align-items: center;
+    padding: 18px 24px;
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--r); box-shadow: var(--shadow-1);
+  }
+  .sec-head .nu{
+    font-family: var(--f-mono); font-size: 12px;
+    letter-spacing: 0.14em; padding: 6px 12px;
+    background: var(--dark); color: #fff; border-radius: 999px;
+  }
+  .sec-head .h{
+    font-family: var(--f-display); font-weight: 700;
+    font-size: clamp(22px, 2.2vw, 30px);
+    letter-spacing: -0.018em; margin: 0; color: var(--ink);
+  }
+  .sec-head .kick{
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .sec-block{ margin-top: clamp(36px, 5vw, 56px); }
+  .text-card{
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--r); padding: clamp(22px, 3vw, 36px);
+    box-shadow: var(--shadow-1); margin-top: var(--gap);
+  }
+  .text-card p{
+    margin: 0; font-size: 15px; line-height: 1.65;
+    color: var(--ink-2); max-width: 64ch;
+  }
+  .text-card p + p{ margin-top: 1em; }
+  .text-card strong{ color: var(--ink); font-weight: 600; }
+
+  /* Directions bento */
+  .dir-grid{
+    margin-top: var(--gap);
+    display: grid; grid-template-columns: 1.3fr 1fr 1fr;
+    grid-template-rows: 220px 220px;
+    gap: var(--gap);
+  }
+  @media (max-width: 880px){
+    .dir-grid{ grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+  }
+  .dir{
+    border-radius: var(--r); overflow: hidden;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-1);
+    position: relative;
+    background: var(--card);
+  }
+  .dir.tall{ grid-row: span 2; }
+  .dir .tag{
+    position: absolute; top: 14px; left: 14px;
+    font-family: var(--f-mono); font-size: 9px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    padding: 4px 8px; border-radius: 999px;
+    background: rgba(255,255,255,0.92);
+    color: var(--ink);
+    border: 1px solid rgba(0,0,0,0.06);
+    z-index: 2;
+  }
+  .dir.dark .tag{
+    background: rgba(0,0,0,0.55); color: #fff;
+    border-color: rgba(255,255,255,0.18);
+  }
+  .dir .title{
+    position: absolute; left: 14px; right: 14px; bottom: 14px;
+    z-index: 2;
+    font-family: var(--f-display); font-weight: 700;
+    font-size: 16px; letter-spacing: -0.005em;
+    color: var(--ink); line-height: 1.15;
+  }
+  .dir.dark .title{ color: #fff; }
+  .dir .title .sub{
+    display: block; font-family: var(--f-mono); font-size: 9px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted); font-weight: 500; margin-top: 4px;
+  }
+  .dir.dark .title .sub{ color: rgba(255,255,255,0.7); }
+  .dir.red-plate{
+    background:
+      radial-gradient(60% 70% at 40% 50%, rgba(220,30,30,0.40), transparent 60%),
+      linear-gradient(135deg, #1a0606 0%, #2a0a0a 50%, #0a0303 100%);
+    color: #fff;
+  }
+  .dir.red-plate::after{
+    content:""; position: absolute; left: 14%; right: 12%; top: 22%; bottom: 30%;
+    background: linear-gradient(180deg, #d8d4cf 0%, #6b675f 35%, #1a1714 100%);
+    border-radius: 3px; box-shadow: 0 22px 50px rgba(0,0,0,0.4);
+  }
+  .dir.chess{
+    background: linear-gradient(135deg, #f4ecd6, #d8c8a0);
+  }
+  .dir.chess::after{
+    content:""; position:absolute; inset: 16%;
+    background-image:
+      linear-gradient(45deg, rgba(20,15,12,0.92) 25%, transparent 25%, transparent 75%, rgba(20,15,12,0.92) 75%),
+      linear-gradient(45deg, rgba(20,15,12,0.92) 25%, transparent 25%, transparent 75%, rgba(20,15,12,0.92) 75%);
+    background-size: 36px 36px; background-position: 0 0, 18px 18px;
+    border-radius: 4px;
+    box-shadow: 0 14px 24px rgba(0,0,0,0.20);
+  }
+  .dir.space{
+    background:
+      radial-gradient(50% 60% at 50% 30%, rgba(160,180,220,0.20), transparent 60%),
+      linear-gradient(180deg, #0a0e1a 0%, #14141d 70%, #06080c 100%);
+    color: #fff;
+  }
+  .dir.space::after{
+    content:""; position:absolute; left:35%; right:35%; top:36%; bottom: 20%;
+    background:
+      radial-gradient(circle at 35% 30%, #ffffff 0%, #c5c8cd 35%, #4a4d52 75%, #16171b 100%);
+    border-radius: 50%;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.6);
+  }
+  .dir.note{
+    background: linear-gradient(180deg, #c8232c 0%, #800c14 100%);
+    padding: 22px; display: flex; flex-direction: column;
+    justify-content: space-between; color: #fff;
+  }
+  .dir.note .lbl{
+    font-family: var(--f-mono); font-size: 9px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+  }
+  .dir.note .body{
+    font-family: var(--f-body); font-size: 12.5px;
+    line-height: 1.55; color: rgba(255,255,255,0.95);
+    margin-top: auto;
+  }
+
+  /* Storyboard pad 2-up */
+  .sb-row{
+    margin-top: var(--gap);
+    display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap);
+  }
+  @media (max-width: 760px){ .sb-row{ grid-template-columns: 1fr; } }
+  .sb-pad{
+    background: linear-gradient(180deg, #f3eee2 0%, #d4cebe 100%);
+    border-radius: var(--r); border: 1px solid var(--line);
+    box-shadow: var(--shadow-1);
+    padding: 22px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    position: relative;
+    color: #1a1a1f;
+  }
+  .sb-pad .pf{
+    background: rgba(255,255,255,0.65);
+    border: 1px solid rgba(0,0,0,0.10);
+    border-radius: var(--r-sm);
+    padding: 10px;
+    font-family: var(--f-mono);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #2c2d33;
+    aspect-ratio: 5/3;
+  }
+  .sb-pad .pf .h{ color: #050507; font-weight: 600; }
+  .sb-pad .corner-stamp{
+    position: absolute; top: 14px; right: 14px;
+    font-family: var(--f-mono); font-size: 9px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: #444;
+  }
+
+  /* Production photo + checklist */
+  .prod-row{
+    margin-top: var(--gap);
+    display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap);
+  }
+  @media (max-width: 880px){ .prod-row{ grid-template-columns: 1fr; } }
+  .prod-photo{
+    aspect-ratio: 4/3;
+    border-radius: var(--r); border: 1px solid var(--line);
+    box-shadow: var(--shadow-1); overflow: hidden;
+    background:
+      radial-gradient(60% 80% at 50% 50%, rgba(255,255,255,0.25), transparent 65%),
+      linear-gradient(180deg, #f4f0e6 0%, #d4cebe 60%, #a89e8c 100%);
+    position: relative;
+  }
+  .prod-photo .cube{
+    position: absolute; bottom: 20%; left: 30%; width: 12%; aspect-ratio: 1/1;
+    background: linear-gradient(180deg, #c0353a 0%, #8a1418 100%);
+    transform: rotate(-3deg);
+    box-shadow: 0 14px 24px rgba(0,0,0,0.20);
+  }
+  .prod-photo .cube.b{ left: 50%; bottom: 16%; width: 10%; transform: rotate(4deg); }
+  .prod-photo .cube.c{ left: 64%; bottom: 24%; width: 8%; transform: rotate(-8deg); }
+  .prod-photo .tag{
+    position: absolute; left: 12px; top: 12px;
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: #2c2d33;
+    background: rgba(255,255,255,0.85);
+    padding: 4px 10px; border-radius: 999px;
+    border: 1px solid rgba(0,0,0,0.10);
+  }
+  .prod-list{
+    background: var(--dark); color: #fff;
+    border-radius: var(--r);
+    padding: 28px 32px;
+  }
+  .prod-list .h{
+    font-family: var(--f-display); font-weight: 700;
+    font-size: 16px; text-transform: uppercase; letter-spacing: 0.02em;
+    color: #fff; margin: 0 0 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .prod-list ul{ list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 12px; }
+  .prod-list li{
+    font-family: var(--f-body); font-size: 13px;
+    line-height: 1.55; color: rgba(255,255,255,0.85);
+    padding-left: 24px; position: relative;
+  }
+  .prod-list li::before{
+    content:"☐"; position: absolute; left: 0; top: 0;
+    color: rgba(255,255,255,0.4); font-family: var(--f-mono);
+  }
+  .prod-list li.done::before{
+    content:"☑"; color: var(--accent);
+  }
+
+  /* Product worlds alternating */
+  .pw{
+    margin-top: var(--gap);
+    display: grid; gap: var(--gap);
+  }
+  .pw .row{
+    display: grid; grid-template-columns: 1.1fr 1fr;
+    gap: var(--gap); align-items: stretch;
+  }
+  .pw .row.flip{ grid-template-columns: 1fr 1.1fr; }
+  .pw .row.flip .visual{ order: 2; }
+  .pw .row.flip .txt{ order: 1; }
+  @media (max-width: 760px){
+    .pw .row, .pw .row.flip{ grid-template-columns: 1fr; }
+    .pw .row.flip .visual, .pw .row.flip .txt{ order: initial; }
+  }
+  .pw .visual{
+    aspect-ratio: 4/3;
+    border-radius: var(--r); border: 1px solid var(--line);
+    box-shadow: var(--shadow-1); overflow: hidden;
+    position: relative;
+  }
+  .v-red{
+    background:
+      radial-gradient(70% 80% at 50% 50%, rgba(220,30,30,0.50), transparent 65%),
+      linear-gradient(180deg, #1a0606, #050203);
+  }
+  .v-red::after{
+    content:""; position: absolute; left: 38%; right: 38%; top: 22%; bottom: 22%;
+    background: linear-gradient(180deg, #d8d4cf 0%, #6b675f 30%, #1a1714 100%);
+    border-radius: 50%;
+    box-shadow: 0 18px 36px rgba(0,0,0,0.4);
+  }
+  .v-chess{
+    background: linear-gradient(135deg, #f4ecd6, #d8c8a0);
+  }
+  .v-chess::after{
+    content:""; position: absolute; inset: 18%;
+    background-image:
+      linear-gradient(45deg, rgba(20,15,12,0.92) 25%, transparent 25%, transparent 75%, rgba(20,15,12,0.92) 75%),
+      linear-gradient(45deg, rgba(20,15,12,0.92) 25%, transparent 25%, transparent 75%, rgba(20,15,12,0.92) 75%);
+    background-size: 36px 36px; background-position: 0 0, 18px 18px;
+  }
+  .v-mirror{
+    background:
+      radial-gradient(60% 80% at 50% 40%, rgba(160,180,220,0.30), transparent 65%),
+      linear-gradient(180deg, #e8edf3, #b8c0cc 100%);
+  }
+  .v-mirror::after{
+    content:""; position: absolute; left: 30%; right: 30%; top: 18%; bottom: 18%;
+    border-radius: 999px 999px 60% 60% / 999px 999px 30% 30%;
+    background: radial-gradient(60% 90% at 50% 30%, rgba(255,255,255,0.85), rgba(200,205,210,0.30) 60%, transparent 80%);
+    box-shadow: inset 0 0 0 2px rgba(255,255,255,0.05);
+  }
+  .pw .visual .num{
+    position: absolute; top: 12px; left: 12px;
+    font-family: var(--f-mono); font-size: 9px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink);
+    padding: 4px 8px;
+    background: rgba(255,255,255,0.92);
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 999px;
+  }
+  .v-red .num, .v-chess .num{ color: var(--ink); }
+  .pw .txt{
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--r); box-shadow: var(--shadow-1);
+    padding: clamp(22px, 3vw, 36px);
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .pw .txt .label-red{
+    display: inline-block; padding: 4px 10px;
+    background: oklch(0.62 0.22 25); color: #fff;
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    align-self: flex-start;
+    border-radius: 999px;
+  }
+  .pw .txt .title{
+    font-family: var(--f-display); font-weight: 700;
+    font-size: 18px; letter-spacing: -0.005em;
+    color: var(--ink); margin: 0;
+  }
+  .pw .txt .p{
+    font-family: var(--f-body); font-size: 14px;
+    line-height: 1.65; color: var(--muted); margin: 0;
+  }
+
+  /* Big editorial Javin slate */
+  .jvds-slate{
+    margin-top: var(--gap);
+    aspect-ratio: 21/9;
+    border-radius: var(--r); border: 1px solid var(--line);
+    box-shadow: var(--shadow-1); overflow: hidden;
+    position: relative;
+    background:
+      radial-gradient(70% 100% at 30% 50%, rgba(220,30,30,0.50), transparent 60%),
+      linear-gradient(135deg, #1a0606 0%, #2a0a0a 50%, #0a0303 100%);
+    color: #fff;
+  }
+  .jvds-slate .figure{
+    position: absolute; right: 8%; top: 10%; bottom: 0; width: 36%;
+    background: radial-gradient(50% 70% at 50% 25%, rgba(245,235,225,0.40), transparent 70%);
+  }
+  .jvds-slate .stage{
+    position: absolute; left:0; right:0; bottom:0; height: 35%;
+    background: linear-gradient(180deg, transparent, rgba(220,30,30,0.7));
+  }
+  .jvds-slate .title{
+    position: absolute; left: 6%; top: 18%;
+    font-family: var(--f-display); font-weight: 800;
+    font-size: clamp(38px, 6vw, 92px);
+    line-height: 0.9; letter-spacing: -0.03em;
+    color: #fff;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.5);
+  }
+  .jvds-slate .sub{
+    position: absolute; left: 6%; top: calc(18% + 4em);
+    font-family: var(--f-edit); font-style: italic;
+    font-size: clamp(18px, 1.6vw, 26px); color: rgba(255,255,255,0.95);
+  }
+  .jvds-slate .corner{
+    position: absolute; right: 14px; top: 14px;
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: #fff;
+    padding: 5px 10px;
+    background: rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 999px;
+  }
+
+  /* palette 4-up */
+  .palette4{
+    margin-top: var(--gap);
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--gap);
+  }
+  @media (max-width: 760px){ .palette4{ grid-template-columns: repeat(2, 1fr); } }
+  .sw{
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--r); overflow: hidden;
+    box-shadow: var(--shadow-1);
+  }
+  .sw .clr{ aspect-ratio: 4/3; margin: 12px 12px 0; border-radius: var(--r-sm); }
+  .sw .info{ padding: 14px 16px 18px; }
+  .sw .info .nm{ font-family: var(--f-display); font-weight: 700; font-size: 14px; color: var(--ink); margin-bottom: 4px; }
+  .sw .info .hex{
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 8px;
+  }
+  .sw .info .use{ font-family: var(--f-body); font-size: 12.5px; line-height: 1.5; color: var(--muted); }
+
+  /* TOC */
+  .cs-toc{
+    position: fixed; left: 14px; top: 50%;
+    transform: translateY(-50%); z-index: 50;
+    display: flex; flex-direction: column; gap: 2px;
+    font-family: var(--f-mono); font-size: 9px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted);
+    background: rgba(255,255,255,0.85); backdrop-filter: blur(10px);
+    border: 1px solid var(--line); border-radius: var(--r);
+    padding: 14px 12px;
+  }
+  .cs-toc a{ display:flex; align-items: center; gap: 8px; padding: 4px; color: var(--muted); }
+  .cs-toc a:hover{ color: var(--ink); }
+  .cs-toc .dash{ width: 14px; height: 1px; background: currentColor; opacity: .6; }
+  @media (max-width: 1320px){ .cs-toc{ display: none; } }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-brand">PORTFOLIOKOR<sup>©</sup></div>
+  <nav class="topbar-nav">
+    <a href="index.html" class="is-current">← Back to homepage</a>
+  </nav>
+  <div class="topbar-meta">
+    <span class="dot" aria-hidden="true"></span>
+    <span>CDMX</span>
+    <span class="clock" data-cdmx-clock>00:00:00 AM</span>
+  </div>
+</header>
+
+<aside class="cs-toc">
+  <a href="#sec-03"><span class="dash"></span> 03 · Directions</a>
+  <a href="#sec-04"><span class="dash"></span> 04 · Frames</a>
+  <a href="#sec-05"><span class="dash"></span> 05 · Set built</a>
+  <a href="#sec-06"><span class="dash"></span> 06 · World</a>
+  <a href="#sec-01"><span class="dash"></span> 01 · MV first</a>
+  <a href="#sec-02"><span class="dash"></span> 02 · Look</a>
+  <a href="#sec-07"><span class="dash"></span> 07 · Published</a>
+</aside>
+
+<!-- HERO -->
+<section class="cs-hero">
+  <div class="meta">
+    <span class="tag-slash solid">Case study · Javin De Seoul × Jisoo</span>
+    <span class="tag-slash">UGC · 01 of 04</span>
+  </div>
+  <h1>Javin De Seoul<br>× <span class="accent">Jisoo</span></h1>
+  <p class="deck">Creating a Jisoo "Eyes Closed" inspired makeup look using Javin De Seoul products — from brand brief to final Instagram Reel. Full creative direction, set build, palette study, and production.</p>
+
+  <div class="ref-strip">
+    <div class="ref">
+      <img src="photos/kieu-trang-diem-jisoo-trong-eyes-closed.jpg" alt="Cinematic reference" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      <span class="tag">REF · 01</span>
+      <div class="cap"><b>Cinematic</b>Red key · close-up</div>
+    </div>
+    <div class="ref">
+      <img src="photos/images.jpg" alt="Reference Pull - Eyes Closed MV" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      <span class="tag">REF · 02</span>
+      <div class="cap"><b>Reference Pull</b>"Eyes Closed" MV</div>
+    </div>
+    <div class="ref">
+      <img src="photos/best-jisoo-earthquake-beauty-looks-vogue-singapore-02.jpg" alt="Spark detail reference" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      <span class="tag">REF · 03</span>
+      <div class="cap"><b>Spark / Detail</b>Heat sparkle outliner</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 03 -->
+<section class="container sec-block" id="sec-03" data-reveal>
+  <div class="sec-head">
+    <span class="nu">03</span>
+    <h2 class="h">Three directions with one clear winner</h2>
+    <span class="kick">Pre-production</span>
+  </div>
+  <div class="text-card">
+    <p>Before locking the shoot, I pitched three concepts. Each had a distinct set, palette, and emotional register — Red silver-plated flatware, a chessboard editorial, and Sparkle in outer space. The brand selected the red flatware option for its production value and cinematic palette.</p>
+  </div>
+
+  <div class="dir-grid">
+    <div class="dir red-plate tall dark">
+      <span class="tag">Option 01 · Selected</span>
+      <div class="title">Red silver-plated flatware<span class="sub">Cinematic · single light source</span></div>
+    </div>
+    <div class="dir chess">
+      <span class="tag">Option 02</span>
+      <div class="title">Chessboard editorial<span class="sub">Tonal · midday key</span></div>
+    </div>
+    <div class="dir space dark">
+      <span class="tag">Option 03</span>
+      <div class="title">Sparkle in outer space<span class="sub">High glam · neon</span></div>
+    </div>
+    <div class="dir note">
+      <div class="lbl">Brand pick · rationale</div>
+      <div class="body">"The red flatware best mirrors the 'Eyes Closed' palette and lets the product disappear into the scene. JVDS products on a chessboard read more editorial, but feel less narrative." — Decision note</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 04 -->
+<section class="container sec-block" id="sec-04" data-reveal>
+  <div class="sec-head">
+    <span class="nu">04</span>
+    <h2 class="h">Every frame planned before filming</h2>
+    <span class="kick">Storyboard</span>
+  </div>
+  <div class="text-card">
+    <p>Before filming began, I created a full hand-drawn storyboard for both the intro and the product showcase. During the planning stage, I also realised that some of the AD-assisted transitions would not reach the quality I wanted without additional equipment, so the storyboard was refined shot-by-shot to keep the execution realistic and visually strong.</p>
+  </div>
+  <div class="sb-row">
+    <div class="sb-pad">
+      <span class="corner-stamp">Sheet 01 · Intro</span>
+      <div class="pf"><div class="h">Frame 01</div>Mirror reveal · eyes closed</div>
+      <div class="pf"><div class="h">Frame 02</div>Tilt down to flatware spread</div>
+      <div class="pf"><div class="h">Frame 03</div>Hand to lid · slow grab</div>
+      <div class="pf"><div class="h">Frame 04</div>Macro · pour the highlight</div>
+    </div>
+    <div class="sb-pad">
+      <span class="corner-stamp">Sheet 02 · Product</span>
+      <div class="pf"><div class="h">Frame 05</div>Cube stand reveal</div>
+      <div class="pf"><div class="h">Frame 06</div>Single product, single light</div>
+      <div class="pf"><div class="h">Frame 07</div>Tap on lid · slow flick</div>
+      <div class="pf"><div class="h">Frame 08</div>Hand walks away from set</div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 05 -->
+<section class="container sec-block" id="sec-05" data-reveal>
+  <div class="sec-head">
+    <span class="nu">05</span>
+    <h2 class="h">The set didn't exist, so I built it</h2>
+    <span class="kick">Set build</span>
+  </div>
+  <div class="text-card">
+    <p>After finalising the chessboard concept, the production setup was built from scratch. I sourced the props, painted miniature cubes to match the palette, found fabric, lots, fans for the table cover, then ironed, cut, and arranged every material to fit the composition planned in the storyboard.</p>
+    <p>This was the stage that turned the project from a single-phone video into something more intentional. Every detail in the frame — from the fabric placement to the positioning of the cubes and products, was planned before filming began.</p>
+  </div>
+  <div class="prod-row">
+    <div class="prod-photo">
+      <span class="tag">BTS · Set build · 22:14</span>
+      <div class="cube"></div>
+      <div class="cube b"></div>
+      <div class="cube c"></div>
+    </div>
+    <div class="prod-list">
+      <div class="h">Production checklist</div>
+      <ul>
+        <li class="done">Source red flatware (15 pieces).</li>
+        <li class="done">Paint miniature cubes (3 colour-passes).</li>
+        <li class="done">Match-and-iron the table fabric.</li>
+        <li>Build single-light cinematic rig.</li>
+        <li>Steady-cam test for opening reveal.</li>
+        <li>Mark cue points on table for hand path.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 06 -->
+<section class="container sec-block" id="sec-06" data-reveal>
+  <div class="sec-head">
+    <span class="nu">06</span>
+    <h2 class="h">Each product got its own world</h2>
+    <span class="kick">Composition</span>
+  </div>
+  <div class="text-card">
+    <p>Rather than filming all three JVDS products in the same set, I gave each one a distinct visual treatment. Each scene had its own mood, lighting, and styling logic. The decision came from a simple observation: products felt more special when they sat not competing with each other for attention in one frame.</p>
+  </div>
+  <div class="pw">
+    <div class="row">
+      <div class="visual v-red"><span class="num">01 · Cushion</span></div>
+      <div class="txt">
+        <span class="label-red">The red palette</span>
+        <h4 class="title">Cushion · The Red Palette</h4>
+        <p class="p">The red palette area was a callback line from the MV. Pieces of red sit close around the centre, the lighting is single-source, and the highlight is the only motion in the frame. The cushion disappears into the set, and only its top opens once.</p>
+      </div>
+    </div>
+    <div class="row flip">
+      <div class="visual v-chess"><span class="num">02 · Eyeshadow</span></div>
+      <div class="txt">
+        <span class="label-red">The chessboard</span>
+        <h4 class="title">Eyeshadow · The Chessboard</h4>
+        <p class="p">The shadow palette FW07 logic flipped: black-and-white tiles painted on a wood-floor base, then aged. With one product set into the centre tile, the chessboard pattern reads as the brand's signature texture.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="visual v-mirror"><span class="num">03 · Lip Primer</span></div>
+      <div class="txt">
+        <span class="label-red">The vanity mirror</span>
+        <h4 class="title">Lip Primer · The Vanity Mirror</h4>
+        <p class="p">A blue-felt-lined surface and a single brass-shape mirror lit from one direction. The product lives in the reflection more than in the hand-held shot. The reflection gives the lip a glow without lighting it directly.</p>
+      </div>
+    </div>
+  </div>
+  <div class="text-card">
+    <p>With the palette and makeup direction confirmed, I moved to concepting the video's visual themes. Three directions were developed from interest and a video by using the brief, each had to make the products feel intentional and cinematic while keeping them as the clear focus of the frame.</p>
+  </div>
+
+  <div class="jvds-slate">
+    <span class="corner">Reel · IG · Draft · 01:24</span>
+    <div class="figure"></div>
+    <div class="stage"></div>
+    <h3 class="title">Javin<br>De Seoul</h3>
+    <div class="sub">Eye Closed Makeup</div>
+  </div>
+</section>
+
+<!-- SECTION 01 -->
+<section class="container sec-block" id="sec-01" data-reveal>
+  <div class="sec-head">
+    <span class="nu">01</span>
+    <h2 class="h">Start with the MV, not the products</h2>
+    <span class="kick">The brief</span>
+  </div>
+  <div class="text-card">
+    <p>The brief from Javin De Seoul was to recreate Jisoo's look from the "Eyes Closed" music video using their products. Before getting into anything, I watched the video all the way through and used a colour picker to pull the main tones from the visuals. The palette came out as deep reds, near blacks, and soft silvers.</p>
+    <p>These three colours guided everything that came after, from the set and styling to the lighting and how the products were placed. Starting from the palette instead of a general mood helped keep the visuals aligned with the original, while still feeling like my own take on it.</p>
+  </div>
+</section>
+
+<!-- SECTION 02 -->
+<section class="container sec-block" id="sec-02" data-reveal>
+  <div class="sec-head">
+    <span class="nu">02</span>
+    <h2 class="h">Study the look before building it</h2>
+    <span class="kick">Look study</span>
+  </div>
+  <div class="palette4">
+    <div class="sw">
+      <div class="clr" style="background:linear-gradient(160deg,#7a0d10,#3a0608);"></div>
+      <div class="info"><div class="nm">Eyes Closed Red</div><div class="hex">#7A0D10</div><div class="use">Backdrop · key colour.</div></div>
+    </div>
+    <div class="sw">
+      <div class="clr" style="background:linear-gradient(160deg,#26262a,#0e0e12);"></div>
+      <div class="info"><div class="nm">Near-Black</div><div class="hex">#0E0E12</div><div class="use">Shadow / lacquer.</div></div>
+    </div>
+    <div class="sw">
+      <div class="clr" style="background:linear-gradient(160deg,#c8c9cf,#7e8087);"></div>
+      <div class="info"><div class="nm">Soft Silver</div><div class="hex">#9FA1A8</div><div class="use">Product silhouette.</div></div>
+    </div>
+    <div class="sw">
+      <div class="clr" style="background:linear-gradient(160deg,#f6efe1,#dccfb2);"></div>
+      <div class="info"><div class="nm">Warm Off-White</div><div class="hex">#EFE6CF</div><div class="use">Skin · accent linen.</div></div>
+    </div>
+  </div>
+  <div class="text-card">
+    <p>Once the palette was locked, I moved to the makeup reference selection. Jisoo has dramatic and dark contoured eyes, and I tried borrowing from a specific look from careful research. I focused on her eye makeup look and how it was executed by &#64;jonna's makeup from the Portuguese MV period onwards. Each reference was evaluated against two criteria: whether it most closely on-camera read range, and whether it could be executed in a single take by Jisoo. I added two cool product brown eyeshadow to my own kit before booking the date.</p>
+  </div>
+</section>
+
+<!-- SECTION 07 -->
+<section class="container sec-block" id="sec-07" data-reveal>
+  <div class="sec-head">
+    <span class="nu">07</span>
+    <h2 class="h">Filmed, edited &amp; published</h2>
+    <span class="kick">Outcome</span>
+  </div>
+  <div class="text-card">
+    <p>Makeup applied following the selected reference look. Filming followed the storyboard, with real-time adjustments made to lighting and what the camera could capture cleanly at that scale. Delivered in two formats.</p>
+  </div>
+  <div class="stats" style="margin-top: var(--gap);">
+    <div class="stat"><div class="stat-n">30+</div><div class="stat-lbl">Awards</div></div>
+    <div class="stat"><div class="stat-n">32+</div><div class="stat-lbl">Investments</div></div>
+    <div class="stat"><div class="stat-n">10K</div><div class="stat-lbl">Users</div></div>
+  </div>
+</section>
+
+<!-- ARCHIVES -->
+<section class="container gutter" id="archives" data-reveal>
+  <div style="display:grid; grid-template-columns: 1fr auto; align-items: end; gap: 24px; margin-bottom: 22px;">
+    <div>
+      <span class="tag-slash">Archives</span>
+      <h2 class="h-section" style="margin-top:14px">The Archives<br>— Click to see other contents</h2>
+    </div>
+    <a class="btn btn-ghost" href="index.html#works">All works <span class="arr">→</span></a>
+  </div>
+  <div class="arch-grid">
+    <a class="arch-card" href="mac-winter.html">
+      <div class="arch-img"><div class="ph cream"><span class="label-corner">01 · MAC</span><span class="label">Winter Collection</span></div></div>
+      <div class="arch-foot"><span class="arch-title">MAC · Winter Collection</span><span class="arch-view">View →</span></div>
+    </a>
+    <a class="arch-card" href="bad-bitch-club.html">
+      <div class="arch-img"><div class="ph dark"><span class="label-corner">02 · BBC</span><span class="label">Bad Bitch Club</span></div></div>
+      <div class="arch-foot"><span class="arch-title">Bad Bitch Club Perfume</span><span class="arch-view">View →</span></div>
+    </a>
+    <a class="arch-card" href="two-part-strategy.html">
+      <div class="arch-img"><div class="ph warm"><span class="label-corner">03 · 2-PART</span><span class="label">Two Part Strategy</span></div></div>
+      <div class="arch-foot"><span class="arch-title">Glitzlens & JVDS</span><span class="arch-view">View →</span></div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-foot" id="contact">
+  <div class="container">
+    <div class="foot-card">
+      <div>
+        <span class="tag-slash solid" style="margin-bottom: 18px;">Contact</span>
+        <h2 class="get-in-touch">Get In Touch.</h2>
+      </div>
+
+    </div>
+    <div class="foot-row">
+      <div class="foot-links">
+        <a href="mailto:best1nahathai@gmail.com">Email</a>
+        <a href="https://www.instagram.com/bbestnkk1/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.tiktok.com/@bbestnkk" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://www.behance.net/nk43" target="_blank" rel="noopener">Behance</a>
+        <a href="https://www.linkedin.com/in/nahathai-k/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>

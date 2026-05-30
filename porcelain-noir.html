@@ -1,0 +1,724 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Porcelain Noir — Maison Margiela Beauty · Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+  /* ====== Case-study white theme (shared structure) ====== */
+  .cs-hero{
+    padding: clamp(28px, 4vw, 56px) var(--pad-x) clamp(40px, 5vw, 64px);
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+  .cs-hero .meta{ display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; }
+  .cs-hero h1{
+    font-family: var(--f-display);
+    font-weight: 800;
+    font-size: clamp(54px, 9vw, 150px);
+    letter-spacing: -0.045em;
+    line-height: 0.88;
+    margin: 0;
+    color: var(--ink);
+    text-transform: uppercase;
+    text-wrap: balance;
+  }
+  .cs-hero h1 .accent{ color: var(--accent); }
+  .cs-hero .deck{
+    margin-top: 24px;
+    font-family: var(--f-body);
+    font-size: clamp(15px, 1.4vw, 18px);
+    line-height: 1.6;
+    color: var(--ink-2);
+    max-width: 64ch;
+  }
+  .cs-hero .row{
+    margin-top: 26px;
+    display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+  }
+
+  /* Hero cover banner */
+  .pn-cover{
+    margin-top: 32px;
+    aspect-ratio: 21/9;
+    position: relative;
+    border-radius: var(--r);
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.05);
+    box-shadow: var(--shadow-2);
+    background:
+      radial-gradient(60% 90% at 78% 30%, rgba(220,210,200,0.16), transparent 60%),
+      linear-gradient(150deg, #15131a 0%, #0a0810 55%, #050406 100%);
+    color: #fff;
+    display: flex; align-items: flex-end;
+  }
+  @media (max-width: 760px){ .pn-cover{ aspect-ratio: 4/5; } }
+  .pn-cover .mask{
+    position: absolute; right: 7%; top: 50%; transform: translateY(-50%);
+    width: 26%; aspect-ratio: 3/4;
+    background:
+      radial-gradient(55% 60% at 50% 38%, rgba(245,240,236,0.92), rgba(220,212,205,0.5) 62%, transparent 78%);
+    filter: blur(0.4px);
+    border-radius: 50% 50% 48% 48% / 60% 60% 40% 40%;
+  }
+  @media (max-width: 760px){ .pn-cover .mask{ top: 32%; width: 44%; right: 50%; transform: translate(50%,-50%); } }
+  .pn-cover .c-corner{
+    position: absolute; top: 18px; left: 18px;
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    padding: 6px 12px; border-radius: 999px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.16);
+    backdrop-filter: blur(8px);
+  }
+  .pn-cover .c-stamp{
+    position: absolute; top: 18px; right: 18px;
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: #fff; padding: 6px 12px; border-radius: 999px;
+    background: var(--accent);
+  }
+  .pn-cover .c-body{
+    position: relative; z-index: 2;
+    padding: clamp(22px, 3vw, 44px);
+    max-width: 60%;
+  }
+  @media (max-width: 760px){ .pn-cover .c-body{ max-width: 100%; } }
+  .pn-cover .c-title{
+    font-family: var(--f-display); font-weight: 800;
+    font-size: clamp(34px, 5vw, 76px);
+    letter-spacing: -0.03em; line-height: 0.92;
+    text-transform: uppercase;
+    margin: 0;
+  }
+  .pn-cover .c-sub{
+    margin: 14px 0 0;
+    font-family: var(--f-edit); font-style: italic;
+    font-size: clamp(16px, 1.6vw, 24px);
+    color: rgba(255,255,255,0.86);
+    max-width: 40ch;
+  }
+  .pn-cover .c-credits{
+    margin-top: 18px;
+    display: flex; flex-wrap: wrap; gap: 8px 18px;
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(255,255,255,0.62);
+  }
+  .pn-cover .c-credits b{ color: #fff; font-weight: 600; }
+
+  /* Section header bar */
+  .sec-head{
+    display: grid; grid-template-columns: auto 1fr auto;
+    gap: 18px; align-items: center;
+    padding: 18px 24px;
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--r); box-shadow: var(--shadow-1);
+  }
+  .sec-head .nu{
+    font-family: var(--f-mono); font-size: 12px;
+    letter-spacing: 0.14em; padding: 6px 12px;
+    background: var(--dark); color: #fff; border-radius: 999px;
+  }
+  .sec-head .h{
+    font-family: var(--f-display); font-weight: 700;
+    font-size: clamp(22px, 2.2vw, 30px);
+    letter-spacing: -0.018em; margin: 0; color: var(--ink);
+  }
+  .sec-head .kick{
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted); text-align: right;
+  }
+  @media (max-width: 640px){
+    .sec-head{ grid-template-columns: auto 1fr; }
+    .sec-head .kick{ display: none; }
+  }
+  .sec-block{ margin-top: clamp(36px, 5vw, 56px); }
+
+  .text-card{
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--r); padding: clamp(22px, 3vw, 36px);
+    box-shadow: var(--shadow-1); margin-top: var(--gap);
+  }
+  .text-card .lead-q{
+    font-family: var(--f-edit); font-style: italic;
+    font-size: clamp(22px, 2.6vw, 34px);
+    line-height: 1.25; letter-spacing: -0.01em;
+    color: var(--ink); margin: 0 0 18px;
+    text-wrap: balance;
+  }
+  .text-card p{
+    margin: 0; font-family: var(--f-body);
+    font-size: 15px; line-height: 1.7;
+    color: var(--ink-2); max-width: 66ch;
+  }
+  .text-card p + p{ margin-top: 1em; }
+  .text-card strong{ color: var(--ink); font-weight: 600; }
+
+  /* 3-reason cards (brand strategy) */
+  .reasons{
+    margin-top: var(--gap);
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap);
+  }
+  @media (max-width: 880px){ .reasons{ grid-template-columns: 1fr; } }
+  .reason{
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--r); padding: 26px 24px 24px;
+    box-shadow: var(--shadow-1);
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .reason .r-n{
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--accent);
+  }
+  .reason .r-h{
+    font-family: var(--f-display); font-weight: 700;
+    font-size: 17px; letter-spacing: -0.012em;
+    color: var(--ink); margin: 0; line-height: 1.2;
+  }
+  .reason .r-p{
+    font-family: var(--f-body); font-size: 13px;
+    line-height: 1.6; color: var(--muted); margin: 0;
+  }
+  .reason .r-take{
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    font-family: var(--f-body); font-size: 12.5px;
+    line-height: 1.5; color: var(--ink);
+    display: flex; gap: 8px;
+  }
+  .reason .r-take::before{ content: "→"; color: var(--accent); }
+
+  /* Competitor cards */
+  .comp-grid{
+    margin-top: var(--gap);
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap);
+  }
+  @media (max-width: 880px){ .comp-grid{ grid-template-columns: 1fr; } }
+  .comp{
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--r); padding: 24px; box-shadow: var(--shadow-1);
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .comp .c-tag{
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .comp .c-name{
+    font-family: var(--f-display); font-weight: 700;
+    font-size: 18px; letter-spacing: -0.015em;
+    color: var(--ink); margin: 0;
+  }
+  .comp .c-collab{
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.08em; color: var(--accent);
+  }
+  .comp .c-p{
+    font-family: var(--f-body); font-size: 13px;
+    line-height: 1.6; color: var(--muted); margin: 0;
+  }
+  .comp.feature{ background: var(--dark); border-color: var(--dark); color: #fff; }
+  .comp.feature .c-tag{ color: rgba(255,255,255,0.55); }
+  .comp.feature .c-name{ color: #fff; }
+  .comp.feature .c-p{ color: rgba(255,255,255,0.82); }
+  .comp.feature .c-collab{ color: #fff; }
+
+  /* Map note */
+  .map-note{
+    margin-top: var(--gap);
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .map-note::before{ content:""; width: 24px; height: 1px; background: var(--line-strong); }
+
+  /* PR platform cards */
+  .pr-grid{
+    margin-top: var(--gap);
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--gap);
+  }
+  @media (max-width: 760px){ .pr-grid{ grid-template-columns: 1fr; } }
+  .pr{
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--r); padding: 26px; box-shadow: var(--shadow-1);
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .pr .p-plat{
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--f-mono); font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink);
+  }
+  .pr .p-plat .dot{ width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+  .pr .p-p{
+    font-family: var(--f-body); font-size: 13.5px;
+    line-height: 1.62; color: var(--ink-2); margin: 0;
+  }
+  .pr .p-stat{
+    margin-top: auto; padding-top: 14px;
+    border-top: 1px solid var(--line);
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .pr .p-stat .t{
+    font-family: var(--f-display); font-weight: 700;
+    font-size: 14px; color: var(--ink); letter-spacing: -0.01em;
+  }
+  .pr .p-stat .c{
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.06em; color: var(--muted); line-height: 1.5;
+  }
+  .pr.wide{ grid-column: 1 / -1; }
+
+  /* Timeline */
+  .timeline{
+    margin-top: var(--gap);
+    display: flex; flex-direction: column;
+    border: 1px solid var(--line); border-radius: var(--r);
+    overflow: hidden; box-shadow: var(--shadow-1);
+    background: var(--card);
+  }
+  .tl-row{
+    display: grid; grid-template-columns: 180px 1fr;
+    gap: 20px;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--line);
+    align-items: start;
+  }
+  .tl-row:last-child{ border-bottom: none; }
+  @media (max-width: 640px){ .tl-row{ grid-template-columns: 1fr; gap: 8px; } }
+  .tl-week{
+    font-family: var(--f-mono); font-size: 11px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent);
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .tl-week b{ color: var(--ink); font-weight: 600; font-size: 13px; letter-spacing: -0.005em; }
+  .tl-desc{
+    font-family: var(--f-body); font-size: 13.5px;
+    line-height: 1.6; color: var(--ink-2); margin: 0;
+  }
+
+  /* Closing block */
+  .closing{
+    margin-top: clamp(36px, 5vw, 56px);
+    background: var(--dark); color: #fff;
+    border-radius: var(--r);
+    padding: clamp(40px, 6vw, 88px) clamp(28px, 4vw, 56px);
+    text-align: center;
+  }
+  .closing .c-lines{
+    font-family: var(--f-display); font-weight: 800;
+    font-size: clamp(36px, 6vw, 88px);
+    letter-spacing: -0.035em; line-height: 0.98;
+    text-transform: uppercase; margin: 0;
+  }
+  .closing .c-lines span{ display: block; }
+  .closing .c-lines span:nth-child(2){ color: var(--muted-2); }
+  .closing .c-tribute{
+    margin: 28px auto 0;
+    font-family: var(--f-body); font-size: 15px;
+    line-height: 1.65; color: rgba(255,255,255,0.78);
+    max-width: 58ch;
+  }
+  .closing .c-facts{
+    margin-top: 26px;
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 10px;
+  }
+  .closing .c-facts span{
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(255,255,255,0.78);
+    padding: 8px 14px;
+    border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 999px;
+  }
+
+  /* TOC */
+  .cs-toc{
+    position: fixed; left: 14px; top: 50%;
+    transform: translateY(-50%); z-index: 50;
+    display: flex; flex-direction: column; gap: 2px;
+    font-family: var(--f-mono); font-size: 9px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted);
+    background: rgba(255,255,255,0.85); backdrop-filter: blur(10px);
+    border: 1px solid var(--line); border-radius: var(--r);
+    padding: 14px 12px;
+  }
+  .cs-toc a{ display:flex; align-items: center; gap: 8px; padding: 4px; color: var(--muted); }
+  .cs-toc a:hover{ color: var(--ink); }
+  .cs-toc .dash{ width: 14px; height: 1px; background: currentColor; opacity: .6; }
+  @media (max-width: 1320px){ .cs-toc{ display: none; } }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-brand">PORTFOLIOKOR<sup>©</sup></div>
+  <nav class="topbar-nav">
+    <a href="index.html" class="is-current">← Back to homepage</a>
+  </nav>
+  <div class="topbar-meta">
+    <span class="dot" aria-hidden="true"></span>
+    <span>CDMX</span>
+    <span class="clock" data-cdmx-clock>00:00:00 AM</span>
+  </div>
+</header>
+
+<aside class="cs-toc">
+  <a href="#sec-overview"><span class="dash"></span> 00 · Overview</a>
+  <a href="#sec-01"><span class="dash"></span> 01 · Brand strategy</a>
+  <a href="#sec-02"><span class="dash"></span> 02 · Product design</a>
+  <a href="#sec-03"><span class="dash"></span> 03 · Competitive</a>
+  <a href="#sec-04"><span class="dash"></span> 04 · Audience</a>
+  <a href="#sec-05"><span class="dash"></span> 05 · PR campaign</a>
+  <a href="#sec-06"><span class="dash"></span> 06 · KPIs</a>
+  <a href="#sec-close"><span class="dash"></span> — · Become it</a>
+</aside>
+
+<!-- HERO -->
+<section class="cs-hero">
+  <div class="meta">
+    <span class="tag-slash solid">Marketing case study</span>
+    <span class="tag-slash">Imagined pitch</span>
+  </div>
+  <h1>Porcelain <span class="accent">Noir</span></h1>
+  <p class="deck">A tribute collection by Maison Margiela Beauty, honoring the creative world of John Galliano and Pat McGrath presented at Paris Haute Couture Week, January 2026. A pitch built around a 25-year creative convergence.</p>
+
+  <!-- COVER -->
+  <figure class="pn-cover" aria-label="Porcelain Noir — campaign cover">
+    <span class="c-corner">Imagined pitch</span>
+    <span class="c-stamp">Paris HCW · Jan 2026</span>
+    <div class="mask" aria-hidden="true"></div>
+    <div class="c-body">
+      <h2 class="c-title">Porcelain Noir</h2>
+      <p class="c-sub">A tribute collection by Maison Margiela Beauty.</p>
+      <div class="c-credits">
+        <span><b>Maison Margiela Beauty</b></span>
+        <span><b>Pat McGrath</b></span>
+        <span><b>John Galliano</b></span>
+        <span>Paris Haute Couture Week — January 2026</span>
+      </div>
+    </div>
+  </figure>
+</section>
+
+<!-- 00 OVERVIEW -->
+<section class="container sec-block" id="sec-overview" data-reveal>
+  <div class="sec-head">
+    <span class="nu">00</span>
+    <h2 class="h">Collaboration overview</h2>
+    <span class="kick">The premise</span>
+  </div>
+  <div class="text-card">
+    <p>A limited-edition beauty collection concept under <strong>Maison Margiela Beauty</strong>, built around the 25-year creative partnership between makeup artist <strong>Pat McGrath</strong> and designer <strong>John Galliano</strong>. The pitch frames the collection as a tribute — not a celebrity drop — anchored to Paris Haute Couture Week and a single, deliberately scarce release.</p>
+  </div>
+</section>
+
+<!-- 01 BRAND STRATEGY -->
+<section class="container sec-block" id="sec-01" data-reveal>
+  <div class="sec-head">
+    <span class="nu">01</span>
+    <h2 class="h">Brand strategy</h2>
+    <span class="kick">Why not a celebrity collab?</span>
+  </div>
+  <div class="text-card">
+    <p class="lead-q">"This brand doesn't sell 'fame'. It sells perspective and meaning."</p>
+    <p>The strategy opens on a deliberate question: <strong>why not a standalone product? Why not a celebrity collab?</strong> The answer is that Margiela Beauty × McGrath × Galliano is not a marketing arrangement — it is a convergence of three creative forces that have shaped fashion and beauty with lasting cultural impact.</p>
+  </div>
+
+  <div class="reasons">
+    <div class="reason">
+      <span class="r-n">Reason · 01</span>
+      <h3 class="r-h">Structural credibility, not attention</h3>
+      <p class="r-p">Celebrity collabs bring short-term attention. But this convergence of three creative forces has shaped fashion and beauty with lasting cultural impact.</p>
+      <div class="r-take">Not just marketing, but structural credibility.</div>
+    </div>
+    <div class="reason">
+      <span class="r-n">Reason · 02</span>
+      <h3 class="r-h">Long-term cultural value</h3>
+      <p class="r-p">Celebrity drops follow hype cycles. This collaboration elevates the collection into something with future cultural relevance.</p>
+      <div class="r-take">Value that compounds over time, not tied to a moment or a person.</div>
+    </div>
+    <div class="reason">
+      <span class="r-n">Reason · 03</span>
+      <h3 class="r-h">Truth over visibility</h3>
+      <p class="r-p">Margiela has always communicated through concept, material, and art. This isn't entertainment — it's a meeting of creators the brand can stand beside without compromise.</p>
+      <div class="r-take">Aligned with brand philosophy, not in conflict with it.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 PRODUCT DESIGN -->
+<section class="container sec-block" id="sec-02" data-reveal>
+  <div class="sec-head">
+    <span class="nu">02</span>
+    <h2 class="h">Product design</h2>
+    <span class="kick">The object</span>
+  </div>
+  <div class="text-card">
+    <p>The collection translates the partnership into a physical object — a tribute housed across <strong>two drawers</strong> within <strong>one Victorian runway house</strong>, drawing from Galliano's own-label FW07 Elizabethan Wonderland and Maison Margiela SS24 Artisanal. The product is engineered to generate its own viral content without a campaign brief: the <strong>Invisible Mask</strong> technique becomes the hero mechanic of the design.</p>
+  </div>
+</section>
+
+<!-- 03 COMPETITIVE ANALYSIS -->
+<section class="container sec-block" id="sec-03" data-reveal>
+  <div class="sec-head">
+    <span class="nu">03</span>
+    <h2 class="h">Market positioning &amp; competitive analysis</h2>
+    <span class="kick">Where Porcelain Noir sits</span>
+  </div>
+  <div class="text-card">
+    <p class="lead-q">Why Porcelain Noir has no direct competitors.</p>
+    <p>Three collabs each captured one layer of what Porcelain Noir combines — but none achieved all three simultaneously. Each one gets part of the equation right, but not all of it. <strong>"Porcelain Noir" is the only one where the distribution is restrictive enough to function as a collector mechanic and the cultural legitimacy existed before the campaign did.</strong></p>
+  </div>
+
+  <div class="comp-grid">
+    <div class="comp">
+      <span class="c-tag">Possible competitor · 01</span>
+      <h3 class="c-name">Valentino Beauty</h3>
+      <span class="c-collab">Pierpaolo Piccioli × Raoul Alejandre × Valentino</span>
+      <p class="c-p">Art-directed and credible, but it sells through Sephora and global retail — accessible by design, not exclusive.</p>
+    </div>
+    <div class="comp">
+      <span class="c-tag">Possible competitor · 02</span>
+      <h3 class="c-name">Half Magic</h3>
+      <span class="c-collab">Donni Davy × A24 × Euphoria series</span>
+      <p class="c-p">Had genuine organic demand from Euphoria, but the brand itself is a commercial response to that moment, not the moment itself — and it distributes through Ulta and Sephora.</p>
+    </div>
+    <div class="comp">
+      <span class="c-tag">Possible competitor · 03</span>
+      <h3 class="c-name">Byredo Cosmetics</h3>
+      <span class="c-collab">Byredo × Isamaya Ffrench</span>
+      <p class="c-p">Comes closest in terms of conceptual restraint, but the partnership was built for the collab. There was no pre-existing relationship the audience already knew.</p>
+    </div>
+  </div>
+
+  <div class="text-card">
+    <p><strong>Why the product can't be replicated.</strong> Byredo proves the makeup-artist co-creator model works. Half Magic proves demand from existing creative work converts to product sales. Valentino proves a fashion house can anchor a beauty line without celebrity. However, none of them do all three simultaneously — and none have a product that generates its own viral content without a campaign brief.</p>
+  </div>
+  <div class="map-note">Map is directional, not data-driven. Based on brand positioning analysis and press coverage.</div>
+</section>
+
+<!-- 04 TARGET AUDIENCE -->
+<section class="container sec-block" id="sec-04" data-reveal>
+  <div class="sec-head">
+    <span class="nu">04</span>
+    <h2 class="h">Target audience &amp; study demographics</h2>
+    <span class="kick">Who it's for</span>
+  </div>
+  <div class="text-card">
+    <p>The collection is positioned for a collector-minded audience that recognizes cultural legitimacy before a campaign tells them to — the segment that follows McGrath and Galliano's authorship directly, and treats a scarce, numbered release as identity rather than purchase.</p>
+  </div>
+</section>
+
+<!-- 05 PR CAMPAIGN -->
+<section class="container sec-block" id="sec-05" data-reveal>
+  <div class="sec-head">
+    <span class="nu">05</span>
+    <h2 class="h">Marketing strategy &amp; PR campaign</h2>
+    <span class="kick">Awareness → sold out in 6 hours</span>
+  </div>
+  <div class="text-card">
+    <p class="lead-q">How awareness becomes a sold-out in six hours.</p>
+    <p>Every phase of this campaign maps to a specific job. Three platforms, three rhythms — each with a different job in the funnel — converging on a single midnight drop with no restock.</p>
+  </div>
+
+  <!-- Platforms -->
+  <div class="pr-grid">
+    <div class="pr">
+      <span class="p-plat"><span class="dot"></span>TikTok</span>
+      <p class="p-p">The Invisible Mask face reveal is the content itself, with Pat McGrath posting first and the community instantly recreating it — removing the need for any creator brief as the product naturally generates its own campaign.</p>
+      <div class="p-stat">
+        <div class="t">Target: 2M organic impressions · Zero paid spend</div>
+        <div class="c">Comparable: SS24 show hit 50M+ with no paid campaign at all. (WWD, Jan 2024)</div>
+      </div>
+    </div>
+    <div class="pr">
+      <span class="p-plat"><span class="dot"></span>Instagram</span>
+      <p class="p-p">McGrath posts the first Invisible Mask activation. The face appearing on camera is the content. 50 Runway house press kits land simultaneously.</p>
+      <div class="p-stat">
+        <div class="t">Target: 500K pre-interest registrations</div>
+        <div class="c">TikTok beauty content: 100B+ views in 2023. Recurring SS24 recreation video alone: 2.1M likes.</div>
+      </div>
+    </div>
+    <div class="pr">
+      <span class="p-plat"><span class="dot"></span>Xiaohongshu</span>
+      <p class="p-p">The skincare sequence unfolds through serum selection, brush activation, and mask application — turning multi-step routines into compelling content, while collector-driven posts like "which face did you get" amplify engagement and deepen the sense of ownership and identity within the drop.</p>
+      <div class="p-stat">
+        <div class="t">Target: 500K reach · 5K saves on ritual posts</div>
+        <div class="c">Xiaohongshu luxury beauty: 2.3B posts in 2023. K-beauty skincare ritual content drives highest save rates.</div>
+      </div>
+    </div>
+    <div class="pr">
+      <span class="p-plat"><span class="dot"></span>YouTube</span>
+      <p class="p-p">A 90-second hero campaign film unfolds as a mini-documentary tracing 25 years of the collab, with McGrath herself explaining the Invisible Mask technique — grounding the story in authorship while elevating it beyond a typical campaign into a cultural and archival piece.</p>
+      <div class="p-stat">
+        <div class="t">Target: 2M views · 80% completion rate on hero film</div>
+        <div class="c">Comparable: Byredo campaign film: 1.8M views organic. Documentary-style beauty content: avg 78% completion. (YouTube data, 2024)</div>
+      </div>
+    </div>
+    <div class="pr">
+      <span class="p-plat"><span class="dot"></span>Private reveal + Gwendoline Christie</span>
+      <p class="p-p">80 guests at the Paris opening event. McGrath demonstrates the mask live. Christie, who closed the SS24 show, inspired this collection.</p>
+      <div class="p-stat">
+        <div class="t">Target: every major fashion and beauty editor in the room before launch</div>
+        <div class="c">Christie closed the Margiela SS24 Artisanal show, January 2024.</div>
+      </div>
+    </div>
+    <div class="pr">
+      <span class="p-plat"><span class="dot"></span>Social media · Physical drop</span>
+      <p class="p-p">3,000 units with no restock. Launch at midnight Paris time. One unit per customer. No retail partners. The sold-out timestamp becomes part of the story. The resale market begins within hours.</p>
+      <div class="p-stat">
+        <div class="t">Target: sold out in under 6 hours</div>
+        <div class="c">McGrath early drops sold out within minutes — her own words. (Fashionista, Aug 2017)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content calendar -->
+  <div class="sec-head" style="margin-top: clamp(36px,5vw,56px);">
+    <span class="nu">05·b</span>
+    <h2 class="h">Content calendar</h2>
+    <span class="kick">Three platforms, three rhythms</span>
+  </div>
+  <div class="timeline">
+    <div class="tl-row">
+      <div class="tl-week">Phase 01<b>Nov 2025 · Wk 1–2</b></div>
+      <p class="tl-desc">All three accounts go dark. Profile images change to a single white mask. No announcement, no explanation. Fashion press notices within 48 hours. Zero paid spend.</p>
+    </div>
+    <div class="tl-row">
+      <div class="tl-week">Phase 02<b>Nov 2025 · Wk 3 – Dec</b></div>
+      <p class="tl-desc">The Invisible Mask face reveal is the content itself — Pat McGrath posting first and the community instantly recreating it, removing the need for any creator brief as the product naturally generates its own campaign.</p>
+    </div>
+    <div class="tl-row">
+      <div class="tl-week">Phase 03<b>Nov Wk 4 – 13 Dec</b></div>
+      <p class="tl-desc">One Invisible Mask model face revealed per week for ten weeks. Pre-interest list opens. Community starts discussing, tracking, and anticipating which face they want.</p>
+    </div>
+    <div class="tl-row">
+      <div class="tl-week">Phase 04<b>Wk 14 · Jan 19</b></div>
+      <p class="tl-desc">Eighty-guest event in Paris. McGrath demonstrates the Invisible Mask live. The face appears in real time. Demonstration is filmed but no posting until the promised date.</p>
+    </div>
+    <div class="tl-row">
+      <div class="tl-week">Phase 05<b>Wk 15 · Jan 20</b></div>
+      <p class="tl-desc">Pre-order opens at midnight Paris time. 3,000 units across maisonmargiela.com, patmcgrath.com, and four flagships. Hero film drops. Target: sold out in under 6 hours.</p>
+    </div>
+    <div class="tl-row">
+      <div class="tl-week">Phase 06<b>Wk 16 · Jan 30</b></div>
+      <p class="tl-desc">Global press drops in sync with launch — System Magazine exclusive; Vogue / Dazed / i-D / AnOther features; Allure technical story; WWD + Business of Fashion industry coverage.</p>
+    </div>
+    <div class="tl-row">
+      <div class="tl-week">Phase 07<b>Wk 17–18 · Jan–Feb</b></div>
+      <p class="tl-desc">Margiela Artisanal show. McGrath posts backstage content referencing Porcelain Noir explicitly for the first time. Second wave of press.</p>
+    </div>
+    <div class="tl-row">
+      <div class="tl-week">Phase 08<b>Wk 19+ · Feb–Mar</b></div>
+      <p class="tl-desc">300-unit Archive Edition via blind lottery. All products plus a numbered art print, signed by McGrath. €280. Never restocked.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 06 KPI -->
+<section class="container sec-block" id="sec-06" data-reveal>
+  <div class="sec-head">
+    <span class="nu">06</span>
+    <h2 class="h">KPI indicators &amp; assessment</h2>
+    <span class="kick">What success looks like</span>
+  </div>
+  <div class="stats" style="margin-top: var(--gap);">
+    <div class="stat"><div class="stat-n">2M</div><div class="stat-lbl">Organic impressions · TikTok</div></div>
+    <div class="stat"><div class="stat-n">500K</div><div class="stat-lbl">Pre-interest registrations</div></div>
+    <div class="stat"><div class="stat-n">&lt;6h</div><div class="stat-lbl">Sell-out target</div></div>
+  </div>
+  <div class="stats" style="margin-top: var(--gap);">
+    <div class="stat"><div class="stat-n">3,000</div><div class="stat-lbl">Units · no restock</div></div>
+    <div class="stat"><div class="stat-n">80%</div><div class="stat-lbl">Hero film completion</div></div>
+    <div class="stat"><div class="stat-n">€280</div><div class="stat-lbl">Archive Edition · 300 units</div></div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="container" id="sec-close" data-reveal>
+  <div class="closing">
+    <h2 class="c-lines">
+      <span>Paint yourself.</span>
+      <span>Seal yourself.</span>
+      <span>Become the collection.</span>
+    </h2>
+    <p class="c-tribute">A tribute collection by Maison Margiela Beauty, honoring the creative world of John Galliano and Pat McGrath.</p>
+    <div class="c-facts">
+      <span>3,000 units</span>
+      <span>Paris Haute Couture Week · January 2026</span>
+      <span>Two drawers</span>
+      <span>One Victorian runway house</span>
+    </div>
+    <div class="c-facts" style="margin-top: 10px;">
+      <span>Maison Margiela Beauty</span>
+      <span>Pat McGrath</span>
+      <span>John Galliano</span>
+      <span>January 2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHIVES -->
+<section class="container gutter" id="archives" data-reveal>
+  <div class="ugc-head" style="display:grid; grid-template-columns: 1fr auto; align-items: end; gap: 24px; margin-bottom: 22px;">
+    <div>
+      <span class="tag-slash">Archives</span>
+      <h2 class="h-section" style="margin-top:14px">The Archives<br>— Click to see other contents</h2>
+    </div>
+    <a class="btn btn-ghost" href="index.html#works">All works <span class="arr">→</span></a>
+  </div>
+  <div class="arch-grid">
+    <a class="arch-card" href="javin-jisoo.html">
+      <div class="arch-img"><div class="ph red-deep"><span class="label-corner">01 · JVDS</span><span class="label">Eyes Closed</span></div></div>
+      <div class="arch-foot"><span class="arch-title">Javin De Seoul × Jisoo</span><span class="arch-view">View →</span></div>
+    </a>
+    <a class="arch-card" href="bad-bitch-club.html">
+      <div class="arch-img"><div class="ph dark"><span class="label-corner">02 · BBC</span><span class="label">Bad Bitch Club</span></div></div>
+      <div class="arch-foot"><span class="arch-title">Bad Bitch Club Perfume</span><span class="arch-view">View →</span></div>
+    </a>
+    <a class="arch-card" href="mac-winter.html">
+      <div class="arch-img"><div class="ph cream"><span class="label-corner">03 · MAC</span><span class="label">Winter Collection</span></div></div>
+      <div class="arch-foot"><span class="arch-title">MAC · Winter Collection</span><span class="arch-view">View →</span></div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-foot" id="contact">
+  <div class="container">
+    <div class="foot-card">
+      <div>
+        <span class="tag-slash solid" style="margin-bottom: 18px;">Contact</span>
+        <h2 class="get-in-touch">Get In Touch.</h2>
+      </div>
+
+    </div>
+    <div class="foot-row">
+      <div class="foot-links">
+        <a href="mailto:best1nahathai@gmail.com">Email</a>
+        <a href="https://www.instagram.com/bbestnkk1/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.tiktok.com/@bbestnkk" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://www.behance.net/nk43" target="_blank" rel="noopener">Behance</a>
+        <a href="https://www.linkedin.com/in/nahathai-k/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>

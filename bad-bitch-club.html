@@ -1,0 +1,722 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bad Bitch Club Perfume · Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+  .cs-hero{
+    padding: clamp(28px, 4vw, 56px) var(--pad-x) clamp(40px, 5vw, 64px);
+    max-width: var(--max-w);
+    margin: 0 auto;
+  }
+  .cs-hero .meta{ display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; }
+  .cs-hero h1{
+    font-family: var(--f-display); font-weight: 800;
+    font-size: clamp(54px, 9.5vw, 168px);
+    letter-spacing: -0.045em; line-height: 0.88; margin: 0;
+    color: var(--ink); text-wrap: balance;
+  }
+  .cs-hero h1 .accent{ color: var(--accent); }
+  .cs-hero .deck{
+    margin-top: 24px;
+    font-size: clamp(15px, 1.4vw, 18px); line-height: 1.6;
+    color: var(--ink-2); max-width: 60ch;
+  }
+
+  /* 4 character cover row */
+  .char-row{
+    margin-top: 32px;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--gap);
+  }
+  @media (max-width: 880px){ .char-row{ grid-template-columns: repeat(2, 1fr); } }
+  .char{
+    position: relative; aspect-ratio: 3/5;
+    border-radius: var(--r); overflow: hidden;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-1);
+    background:
+      radial-gradient(60% 70% at 50% 40%, rgba(160,170,200,0.10), transparent 60%),
+      linear-gradient(180deg, #14141a, #08080c);
+    color: #fff;
+  }
+  .char.cream{
+    background:
+      radial-gradient(60% 70% at 50% 40%, rgba(240,225,210,0.30), transparent 65%),
+      linear-gradient(160deg, #e8d4c2 0%, #b89980 100%);
+    color: #15161a;
+  }
+  .char.olive{
+    background:
+      radial-gradient(60% 70% at 50% 40%, rgba(180,200,160,0.18), transparent 65%),
+      linear-gradient(160deg, #b8c0a0 0%, #6a7c4a 100%);
+    color: #fff;
+  }
+  .char.red{
+    background:
+      radial-gradient(60% 70% at 50% 40%, rgba(255,80,80,0.30), transparent 65%),
+      linear-gradient(160deg, #c8232c 0%, #6b0c12 100%);
+    color: #fff;
+  }
+  .char .silhouette{
+    position: absolute; left: 22%; right: 22%; top: 12%; bottom: 16%;
+    background: radial-gradient(50% 80% at 50% 25%, rgba(240,235,230,0.30), transparent 70%);
+  }
+  .char .object{
+    position: absolute; left: 38%; right: 38%; bottom: 18%; top: 50%;
+    background: linear-gradient(180deg, #d5d7dc 0%, #6c6e74 50%, #1a1c20 60%, #2a2c30 100%);
+    border-radius: 4px;
+    box-shadow: 0 14px 30px rgba(0,0,0,0.4);
+  }
+  .char .num{
+    position: absolute; left: 12px; top: 12px;
+    font-family: var(--f-mono); font-size: 9px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    padding: 4px 8px; border-radius: 999px;
+    background: rgba(255,255,255,0.92);
+    color: #15161a;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  .char.red .num,
+  .char.olive .num{
+    background: rgba(0,0,0,0.5); color: #fff;
+    border-color: rgba(255,255,255,0.18);
+  }
+  .char .name{
+    position: absolute; left: 14px; right: 14px; bottom: 14px;
+    font-family: var(--f-display); font-weight: 800;
+    font-size: 16px; letter-spacing: -0.01em; line-height: 1.15;
+  }
+  .char .name .sub{
+    display: block; font-family: var(--f-mono);
+    font-size: 9px; letter-spacing: 0.16em;
+    font-weight: 500; margin-top: 4px;
+    opacity: 0.75;
+  }
+  .char .stamp{
+    position: absolute; top: 38%; right: 14px;
+    font-family: var(--f-edit); font-style: italic;
+    font-size: 24px;
+    color: oklch(0.68 0.22 22);
+    filter: drop-shadow(0 0 10px oklch(0.68 0.22 22 / .35));
+  }
+
+  /* Section header card */
+  .sec-head{
+    display: grid; grid-template-columns: auto 1fr auto;
+    gap: 18px; align-items: center;
+    padding: 18px 24px;
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--r); box-shadow: var(--shadow-1);
+  }
+  .sec-head .nu{
+    font-family: var(--f-mono); font-size: 12px;
+    letter-spacing: 0.14em;
+    padding: 6px 12px; background: var(--dark); color: #fff;
+    border-radius: 999px;
+  }
+  .sec-head .h{
+    font-family: var(--f-display); font-weight: 700;
+    font-size: clamp(22px, 2.2vw, 30px);
+    letter-spacing: -0.018em;
+    margin: 0; color: var(--ink);
+  }
+  .sec-head .kick{
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .sec-block{ margin-top: clamp(36px, 5vw, 56px); }
+
+  .text-card{
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--r); padding: clamp(22px, 3vw, 36px);
+    box-shadow: var(--shadow-1); margin-top: var(--gap);
+  }
+  .text-card p{
+    margin: 0; font-size: 15px; line-height: 1.65;
+    color: var(--ink-2); max-width: 64ch;
+  }
+  .text-card p + p{ margin-top: 1em; }
+  .text-card strong{ color: var(--ink); font-weight: 600; }
+  .hl-red{ color: oklch(0.62 0.22 25); font-weight: 600; }
+
+  /* Storyboard pad */
+  .sb-pad{
+    margin-top: var(--gap);
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--r); box-shadow: var(--shadow-1);
+    padding: 26px;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    position: relative;
+  }
+  @media (max-width: 880px){ .sb-pad{ grid-template-columns: 1fr 1fr; } }
+  .sb-pad .stamp{
+    position: absolute; top: 14px; right: 14px;
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted);
+    padding: 4px 10px; background: var(--canvas);
+    border: 1px solid var(--line); border-radius: 999px;
+  }
+  .sb-pad .frame{
+    background: var(--canvas);
+    border: 1px solid var(--line);
+    border-radius: var(--r-sm);
+    aspect-ratio: 4/3;
+    padding: 12px;
+    font-family: var(--f-mono);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    text-transform: uppercase;
+    position: relative;
+  }
+  .sb-pad .frame .h{ color: var(--ink); font-weight: 600; }
+
+  /* 3-card arc */
+  .arc-grid{
+    margin-top: var(--gap);
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--gap);
+  }
+  @media (max-width: 880px){ .arc-grid{ grid-template-columns: 1fr; } }
+  .arc-card{
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--r); box-shadow: var(--shadow-1);
+    overflow: hidden; display: flex; flex-direction: column;
+  }
+  .arc-card .arc-img{
+    aspect-ratio: 4/3;
+    margin: 14px 14px 0;
+    border-radius: var(--r-sm);
+    position: relative;
+    background:
+      radial-gradient(60% 70% at 50% 40%, rgba(220,30,30,0.20), transparent 65%),
+      linear-gradient(135deg, #f4eaea 0%, #d8b8b8 100%);
+    overflow: hidden;
+  }
+  .arc-card.arc-2 .arc-img{
+    background:
+      radial-gradient(60% 70% at 50% 40%, rgba(150,160,180,0.20), transparent 65%),
+      linear-gradient(135deg, #eaecf2, #b8bcc8 100%);
+  }
+  .arc-card.arc-3 .arc-img{
+    background:
+      radial-gradient(60% 70% at 50% 40%, rgba(220,40,40,0.20), transparent 65%),
+      linear-gradient(135deg, #f8e0e0, #c4a0a0 100%);
+  }
+  .arc-card .clock{
+    position: absolute; left: 50%; top: 50%;
+    width: 48%; aspect-ratio: 1/1;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 25%, #ffffff 0%, #c5c8cd 35%, #4a4d52 75%, #16171b 100%);
+    box-shadow: 0 18px 36px rgba(0,0,0,0.30);
+    display: grid; place-items: center;
+    color: oklch(0.66 0.22 25);
+    font-family: var(--f-display); font-weight: 900;
+    font-size: 11px; letter-spacing: 0.16em;
+    text-align: center; line-height: 1.1;
+  }
+  .arc-card .arc-body{
+    padding: 18px 20px 24px;
+  }
+  .arc-card .tag{
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 8px;
+  }
+  .arc-card .tag b{ color: oklch(0.62 0.22 25); }
+  .arc-card .title{
+    font-family: var(--f-display); font-weight: 700;
+    font-size: 16px; letter-spacing: -0.005em;
+    color: var(--ink); margin: 0 0 10px; line-height: 1.2;
+  }
+  .arc-card .p{
+    font-family: var(--f-body); font-size: 13px;
+    line-height: 1.55; color: var(--muted); margin: 0;
+  }
+
+  /* 4 quad portraits */
+  .quad{
+    margin-top: var(--gap);
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--gap);
+  }
+  @media (max-width: 880px){ .quad{ grid-template-columns: repeat(2, 1fr); } }
+  .pp{
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--r); overflow: hidden;
+    box-shadow: var(--shadow-1);
+    display: flex; flex-direction: column;
+  }
+  .pp .img{
+    aspect-ratio: 3/4;
+    margin: 14px 14px 0;
+    border-radius: var(--r-sm);
+    position: relative; overflow: hidden;
+    background:
+      radial-gradient(60% 70% at 50% 30%, rgba(80,80,90,0.20), transparent 70%),
+      linear-gradient(180deg, #14141a, #08080c);
+  }
+  .pp .img .bottle{
+    position: absolute; left: 38%; right: 38%; bottom: 14%; top: 36%;
+    background: linear-gradient(180deg, #d5d7dc 0%, #6c6e74 50%, #1a1c20 56%, #2a2c30 100%);
+    border-radius: 4px;
+    box-shadow: 0 18px 36px rgba(0,0,0,0.4);
+  }
+  .pp .img .figure{
+    position: absolute; left: 14%; right: 14%; top: 10%; bottom: 30%;
+    background: radial-gradient(40% 65% at 50% 30%, rgba(240,235,225,0.28), transparent 70%);
+  }
+  .pp .img .red{
+    position: absolute; top: 16%; right: 14px;
+    font-family: var(--f-edit); font-style: italic;
+    font-size: clamp(20px, 2vw, 30px); color: oklch(0.68 0.22 22);
+    filter: drop-shadow(0 0 10px oklch(0.68 0.22 22 / .35));
+    line-height: 1; text-align: right;
+  }
+  .pp .img .num{
+    position: absolute; left: 12px; top: 12px;
+    font-family: var(--f-mono); font-size: 9px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: #fff;
+    padding: 4px 8px;
+    background: rgba(0,0,0,0.55);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 999px;
+  }
+  .pp .info{
+    padding: 14px 16px 18px;
+  }
+  .pp .info .name{
+    font-family: var(--f-display); font-weight: 700;
+    font-size: 14px; color: var(--ink); margin-bottom: 4px;
+  }
+  .pp .info .sub{
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* scent 2x2 */
+  .scent-grid{
+    margin-top: var(--gap);
+    display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap);
+  }
+  @media (max-width: 760px){ .scent-grid{ grid-template-columns: 1fr; } }
+  .scent{
+    padding: 28px;
+    border-radius: var(--r);
+    box-shadow: var(--shadow-1);
+    background: var(--card); border: 1px solid var(--line);
+  }
+  .scent.red{
+    background: linear-gradient(180deg, #c8252e 0%, #800c14 100%);
+    border-color: rgba(255,255,255,0.10);
+    color: #fff;
+  }
+  .scent.dark{
+    background: var(--dark); border-color: var(--dark);
+    color: #fff;
+  }
+  .scent .tag{
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 10px;
+  }
+  .scent.red .tag, .scent.dark .tag{ color: rgba(255,255,255,0.7); }
+  .scent .h{
+    font-family: var(--f-display); font-weight: 800;
+    font-size: clamp(20px, 2vw, 26px); letter-spacing: -0.015em;
+    margin: 0 0 12px;
+    color: var(--ink);
+  }
+  .scent.red .h, .scent.dark .h{ color: #fff; }
+  .scent .p{
+    font-family: var(--f-body); font-size: 13px;
+    line-height: 1.55; color: var(--ink-2); margin: 0;
+  }
+  .scent.red .p, .scent.dark .p{ color: rgba(255,255,255,0.85); }
+
+  /* Build row */
+  .build-row{
+    margin-top: var(--gap);
+    display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap);
+  }
+  @media (max-width: 880px){ .build-row{ grid-template-columns: 1fr; } }
+  .build-photo{
+    border-radius: var(--r); border: 1px solid var(--line);
+    box-shadow: var(--shadow-1); overflow: hidden;
+    aspect-ratio: 4/3;
+    background:
+      radial-gradient(60% 70% at 50% 50%, rgba(255,230,200,0.35), transparent 65%),
+      linear-gradient(160deg, #e8d4b8 0%, #b89870 100%);
+    position: relative;
+  }
+  .build-photo .tag{
+    position: absolute; left: 14px; top: 14px;
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink);
+    padding: 5px 10px; border-radius: 999px;
+    background: rgba(255,255,255,0.92); border: 1px solid rgba(0,0,0,0.06);
+  }
+  .build-photo .heart{
+    position: absolute; left: 50%; top: 32%; transform: translateX(-50%);
+    width: 30%; aspect-ratio: 1/1;
+    background: radial-gradient(circle at 30% 30%, #ffffff 0%, #d5d7dc 30%, #6a6c70 80%);
+    clip-path: path('M 50 88 L 8 46 Q -2 26, 22 14 Q 36 8, 50 26 Q 64 8, 78 14 Q 102 26, 92 46 Z');
+    filter: drop-shadow(0 14px 24px rgba(0,0,0,0.30));
+  }
+  .build-photo .obj{
+    position: absolute; bottom: 14%; left: 20%; right: 20%; height: 30%;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,0.08), transparent 100%),
+      repeating-linear-gradient(90deg, rgba(190,165,140,0.4) 0 8px, rgba(150,125,100,0.4) 8px 16px);
+    border-radius: 4px;
+  }
+  .build-list{
+    background: var(--dark); color: #fff;
+    border-radius: var(--r); padding: 28px 32px;
+  }
+  .build-list .h{
+    font-family: var(--f-display); font-weight: 700;
+    font-size: 16px; text-transform: uppercase;
+    letter-spacing: 0.02em; color: #fff;
+    margin: 0 0 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .build-list ul{ list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column; gap: 12px; }
+  .build-list li{
+    font-family: var(--f-body); font-size: 13px;
+    line-height: 1.55; color: rgba(255,255,255,0.85);
+    padding-left: 22px; position: relative;
+  }
+  .build-list li::before{
+    content: ""; position: absolute; left: 0; top: 6px;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* TOC */
+  .cs-toc{
+    position: fixed; left: 14px; top: 50%;
+    transform: translateY(-50%); z-index: 50;
+    display: flex; flex-direction: column; gap: 2px;
+    font-family: var(--f-mono); font-size: 9px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted);
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: 14px 12px;
+  }
+  .cs-toc a{ display:flex; align-items:center; gap: 8px; padding: 4px; color: var(--muted); }
+  .cs-toc a:hover{ color: var(--ink); }
+  .cs-toc .dash{ width: 14px; height: 1px; background: currentColor; opacity: .6; }
+  @media (max-width: 1320px){ .cs-toc{ display:none; } }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-brand">PORTFOLIOKOR<sup>©</sup></div>
+  <nav class="topbar-nav">
+    <a href="index.html" class="is-current">← Back to homepage</a>
+  </nav>
+  <div class="topbar-meta">
+    <span class="dot" aria-hidden="true"></span>
+    <span>CDMX</span>
+    <span class="clock" data-cdmx-clock>00:00:00 AM</span>
+  </div>
+</header>
+
+<aside class="cs-toc">
+  <a href="#sec-04"><span class="dash"></span> 04 · Storyboard</a>
+  <a href="#sec-05"><span class="dash"></span> 05 · Three parts</a>
+  <a href="#sec-01"><span class="dash"></span> 01 · The brief</a>
+  <a href="#sec-02"><span class="dash"></span> 02 · The look</a>
+  <a href="#sec-03"><span class="dash"></span> 03 · Outfit</a>
+  <a href="#sec-06"><span class="dash"></span> 06 · From scratch</a>
+  <a href="#sec-07"><span class="dash"></span> 07 · Two formats</a>
+</aside>
+
+<!-- HERO -->
+<section class="cs-hero">
+  <div class="meta">
+    <span class="tag-slash solid">Case study · Bad Bitch Club</span>
+    <span class="tag-slash">UGC · 03 of 04</span>
+  </div>
+  <h1>Bad Bitch<br>Club<span class="accent">.</span></h1>
+  <p class="deck">A Thai perfume brand with four distinct scents, each named after a different female archetype — Bitch Bitch, Girl Don't Cry, Born To Love, and #YOLO. There was no brief; I wrote one and produced the campaign as two products with one personality each.</p>
+
+  <div class="char-row">
+    <div class="char cream">
+      <span class="num">CHAR · 01</span>
+      <div class="silhouette"></div>
+      <div class="object"></div>
+      <div class="stamp">I'm a girl</div>
+      <div class="name">Girl Don't Cry<span class="sub">Top: jasmine · Heart: pear</span></div>
+    </div>
+    <div class="char">
+      <span class="num">CHAR · 02</span>
+      <div class="silhouette" style="left:20%;right:20%"></div>
+      <div class="object"></div>
+      <div class="stamp">Born to Love</div>
+      <div class="name">Born To Love<span class="sub">Top: rose · Heart: powder</span></div>
+    </div>
+    <div class="char olive">
+      <span class="num">CHAR · 03</span>
+      <div class="silhouette" style="left:24%;right:24%"></div>
+      <div class="object"></div>
+      <div class="stamp">#YOLO</div>
+      <div class="name">#YOLO<span class="sub">Top: gin · Heart: smoke</span></div>
+    </div>
+    <div class="char red">
+      <span class="num">CHAR · 04</span>
+      <div class="silhouette" style="left:18%;right:18%"></div>
+      <div class="object"></div>
+      <div class="stamp">Boom Lavoom</div>
+      <div class="name">Boom Lavoom<span class="sub">Top: vanilla · Heart: oud</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 04 -->
+<section class="container sec-block" id="sec-04" data-reveal>
+  <div class="sec-head">
+    <span class="nu">04</span>
+    <h2 class="h">The making of storyboard</h2>
+    <span class="kick">Pre-production</span>
+  </div>
+  <div class="text-card">
+    <p>The video opens with all characters introducing themselves one by one, each with a distinct look and energy. It then transitions into the clock sequence, where the perfume bottles dissolve into a close face and take position around it, with the moving heart symbolising its day longevity without needing any text on screen. From there, the video shifts into a product showcase featuring voiceover, close-up details, and real-use footage. The ending returns to a more direct and grounded tone with product information, the perfume being slipped into a bag, and the character walking out of frame.</p>
+  </div>
+  <div class="sb-pad">
+    <span class="stamp">Sheet 01 · Storyboard</span>
+    <div class="frame"><div class="h">Frame 01</div>OPEN · Faces dissolve in</div>
+    <div class="frame"><div class="h">Frame 02</div>SHOWCASE · Macro pour</div>
+    <div class="frame"><div class="h">Frame 03</div>CLOCK · Bottles orbit</div>
+    <div class="frame"><div class="h">Frame 04</div>EXIT · Bag, walk-off</div>
+  </div>
+</section>
+
+<!-- SECTION 05 -->
+<section class="container sec-block" id="sec-05" data-reveal>
+  <div class="sec-head">
+    <span class="nu">05</span>
+    <h2 class="h">Three parts, one story arc</h2>
+    <span class="kick">Structure</span>
+  </div>
+  <div class="arc-grid">
+    <div class="arc-card arc-1">
+      <div class="arc-img"><div class="clock">BAD<br>FILM</div></div>
+      <div class="arc-body">
+        <div class="tag">Part 01 · <b>Open</b></div>
+        <h4 class="title">Open with each character introducing herself</h4>
+        <p class="p">Don't open with the bottle. Open with the woman. Each character is shown for under 2s with their archetype caption — "Girl Don't Cry," "Born To Love." This gave the post a flick-and-stop frame and a different visual style for each scent.</p>
+      </div>
+    </div>
+    <div class="arc-card arc-2">
+      <div class="arc-img"></div>
+      <div class="arc-body">
+        <div class="tag">Part 02 · <b>Concept</b></div>
+        <h4 class="title">Visual metaphor for scent longevity</h4>
+        <p class="p">The four perfume bottles arrange around a face like a clock. The moving heart hand inside represents the day-long character of each scent. The visual exists without any need for a caption explaining day longevity.</p>
+      </div>
+    </div>
+    <div class="arc-card arc-3">
+      <div class="arc-img"></div>
+      <div class="arc-body">
+        <div class="tag">Part 03 · <b>Pact shot</b></div>
+        <h4 class="title">Depth and editorial pact shot</h4>
+        <p class="p">An up-close macro pour into the bottle, placed at the centre of the frame, surrounded by close-up textures and ad shots. The hint of full ritual: ground crystals, scent fade, a final pull-out to the character walking out of the frame.</p>
+      </div>
+    </div>
+  </div>
+  <div class="text-card">
+    <p>The content was divided into three distinct sections, each with its own visual direction and purpose. Before filming, I mapped out how each part would flow into the next and decided the transitions were not connecting as smoothly as they should. That became something I reworked during pre-production before the shoot began.</p>
+  </div>
+</section>
+
+<!-- SECTION 01 -->
+<section class="container sec-block" id="sec-01" data-reveal>
+  <div class="sec-head">
+    <span class="nu">01</span>
+    <h2 class="h">No brief was given, I wrote one myself</h2>
+    <span class="kick">The brief I wrote</span>
+  </div>
+  <div class="text-card">
+    <p><strong>Bad Bitch Club</strong> is a Thai perfume brand with four distinct scents, each named after a different female archetype: <span class="hl-red">Bitch Bitch</span>, <span class="hl-red">Girl Don't Cry</span>, <span class="hl-red">Born To Love</span>, and <span class="hl-red">#YOLO</span>. The brand creators would have posted a simple product shot with a caption and left it there.</p>
+    <p>I saw the structure for a campaign instead. Four scents meant four characters, four aesthetics, and the opportunity to turn the collection into a full content series. So I wrote the brief myself: build a distinct look for each character, cast all four personalities visually, and produce the project in two different formats.</p>
+  </div>
+  <div class="quad">
+    <div class="pp">
+      <div class="img"><span class="num">CAST · 01</span><div class="figure"></div><div class="bottle"></div><div class="red">I'm<br><span style="font-size:.55em">a girl</span></div></div>
+      <div class="info"><div class="name">Girl Don't Cry</div><div class="sub">Soft / pearl</div></div>
+    </div>
+    <div class="pp">
+      <div class="img"><span class="num">CAST · 02</span><div class="figure"></div><div class="bottle"></div><div class="red">I'm<br><span style="font-size:.55em">Bitch</span></div></div>
+      <div class="info"><div class="name">Bitch Bitch</div><div class="sub">Sharp / lacquer</div></div>
+    </div>
+    <div class="pp">
+      <div class="img"><span class="num">CAST · 03</span><div class="figure"></div><div class="bottle"></div><div class="red">I'm<br><span style="font-size:.55em">Born to</span></div></div>
+      <div class="info"><div class="name">Born To Love</div><div class="sub">Warm / linen</div></div>
+    </div>
+    <div class="pp">
+      <div class="img"><span class="num">CAST · 04</span><div class="figure"></div><div class="bottle"></div><div class="red">I'm<br><span style="font-size:.55em">#YOLO</span></div></div>
+      <div class="info"><div class="name">#YOLO</div><div class="sub">Bold / smoke</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 02 -->
+<section class="container sec-block" id="sec-02" data-reveal>
+  <div class="sec-head">
+    <span class="nu">02</span>
+    <h2 class="h">Study the look before building it</h2>
+    <span class="kick">Look study</span>
+  </div>
+  <div class="text-card">
+    <p>The brand names each scent after a different archetype, so I treated every one as a fully developed character rather than just a mood or aesthetic. Each look was built with its own energy, styling, makeup direction, and no specific content request from the brand. Most creators would have posted a simple product shot with a caption and left it there.</p>
+  </div>
+</section>
+
+<!-- SECTION 03 -->
+<section class="container sec-block" id="sec-03" data-reveal>
+  <div class="sec-head">
+    <span class="nu">03</span>
+    <h2 class="h">Outfit match the scent's personality</h2>
+    <span class="kick">Outfit match</span>
+  </div>
+  <div class="text-card">
+    <p>Outfit selection was never just about what looked good on camera. Each look had to feel believable for the character wearing it. The contrast between all four characters needed to be instantly clear within a single frame, so even without labels, viewers could immediately sense that each one had a different personality and energy.</p>
+  </div>
+  <div class="scent-grid">
+    <div class="scent red">
+      <div class="tag">Scent · BITCH BITCH</div>
+      <h4 class="h">Bitch Bitch</h4>
+      <p class="p">A stylish leather coat, layered black on black on black. Confidence is the perfume's primary note — heavy oud, pepper, dry vanilla. Stand inside the doorway, do not enter.</p>
+    </div>
+    <div class="scent dark">
+      <div class="tag">Scent · Girl Don't Cry</div>
+      <h4 class="h">Girl Don't Cry</h4>
+      <p class="p">Sheer silk slip dress in cream. Soft confidence — pear, jasmine, white musk. The girl who never raises her voice and still gets what she wants.</p>
+    </div>
+    <div class="scent dark">
+      <div class="tag">Scent · #YOLO</div>
+      <h4 class="h">#YOLO</h4>
+      <p class="p">Cargo, hoop earrings, statement sneakers. Smoke, gin, mandarin and a sharp metallic tail. Always says yes, regrets nothing in the morning.</p>
+    </div>
+    <div class="scent red">
+      <div class="tag">Scent · Born To Love</div>
+      <h4 class="h">Born To Love</h4>
+      <p class="p">A pink heart, blush lace gloves and soft sweater. Vanilla, milky peach, neroli — for someone who falls in love with the city before its people.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 06 -->
+<section class="container sec-block" id="sec-06" data-reveal>
+  <div class="sec-head">
+    <span class="nu">06</span>
+    <h2 class="h">Building everything from scratch</h2>
+    <span class="kick">Production</span>
+  </div>
+  <div class="build-row">
+    <div class="build-photo">
+      <span class="tag">Set build · BTS · 14:02</span>
+      <div class="heart"></div>
+      <div class="obj"></div>
+    </div>
+    <div class="build-list">
+      <div class="h">Production checklist</div>
+      <ul>
+        <li>Source four character wardrobes. One scent = one silhouette, no overlap allowed.</li>
+        <li>Build clock orbit rig. Four bottles, one moving heart, hand-controlled rotation.</li>
+        <li>Cast and choreograph the four character entrances inside a single 12-second arc.</li>
+        <li>Macro lens + pump bottle for the pour shot. Surface gloss + cold ambient light only.</li>
+        <li>Cut twice — full video for IG Reel, still carousel for the discovery format.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="text-card">
+    <p>The concept was clear from the beginning, but bringing it to life meant building everything from scratch. After finalising the storyboard and locking in the set, props, and stack points based on the brand's visual identity, every prop and set element was carefully sourced to match the original vision. The process always started with the storyboard first, with the set designed to support the concept rather than shape it afterwards.</p>
+  </div>
+</section>
+
+<!-- SECTION 07 -->
+<section class="container sec-block" id="sec-07" data-reveal>
+  <div class="sec-head">
+    <span class="nu">07</span>
+    <h2 class="h">One concept executed in two formats</h2>
+    <span class="kick">Outcome</span>
+  </div>
+  <div class="text-card">
+    <p>The concept was produced in two formats: a video and a still carousel. The video introduced all four characters in sequence and reached 49K views, while the carousel gave each character her own dedicated frame and reached 13K. The still format performed better because the concept benefits from slower viewing — and more visual detail. Giving each character space to stand on her own made the overall idea feel more immersive and memorable.</p>
+  </div>
+  <div class="stats" style="margin-top: var(--gap);">
+    <div class="stat"><div class="stat-n">30+</div><div class="stat-lbl">Awards</div></div>
+    <div class="stat"><div class="stat-n">32+</div><div class="stat-lbl">Investments</div></div>
+    <div class="stat"><div class="stat-n">10K</div><div class="stat-lbl">Users</div></div>
+  </div>
+</section>
+
+<!-- ARCHIVES -->
+<section class="container gutter" id="archives" data-reveal>
+  <div style="display:grid; grid-template-columns: 1fr auto; align-items: end; gap: 24px; margin-bottom: 22px;">
+    <div>
+      <span class="tag-slash">Archives</span>
+      <h2 class="h-section" style="margin-top:14px">The Archives<br>— Click to see other contents</h2>
+    </div>
+    <a class="btn btn-ghost" href="index.html#works">All works <span class="arr">→</span></a>
+  </div>
+  <div class="arch-grid">
+    <a class="arch-card" href="mac-winter.html">
+      <div class="arch-img"><div class="ph cream"><span class="label-corner">01 · MAC</span><span class="label">Winter Collection</span></div></div>
+      <div class="arch-foot"><span class="arch-title">MAC · Winter Collection</span><span class="arch-view">View →</span></div>
+    </a>
+    <a class="arch-card" href="javin-jisoo.html">
+      <div class="arch-img"><div class="ph red-deep"><span class="label-corner">02 · JVDS</span><span class="label">Eyes Closed</span></div></div>
+      <div class="arch-foot"><span class="arch-title">Javin De Seoul × Jisoo</span><span class="arch-view">View →</span></div>
+    </a>
+    <a class="arch-card" href="two-part-strategy.html">
+      <div class="arch-img"><div class="ph warm"><span class="label-corner">03 · 2-PART</span><span class="label">Two Part Strategy</span></div></div>
+      <div class="arch-foot"><span class="arch-title">Glitzlens & JVDS</span><span class="arch-view">View →</span></div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-foot" id="contact">
+  <div class="container">
+    <div class="foot-card">
+      <div>
+        <span class="tag-slash solid" style="margin-bottom: 18px;">Contact</span>
+        <h2 class="get-in-touch">Get In Touch.</h2>
+      </div>
+
+    </div>
+    <div class="foot-row">
+      <div class="foot-links">
+        <a href="mailto:best1nahathai@gmail.com">Email</a>
+        <a href="https://www.instagram.com/bbestnkk1/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.tiktok.com/@bbestnkk" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://www.behance.net/nk43" target="_blank" rel="noopener">Behance</a>
+        <a href="https://www.linkedin.com/in/nahathai-k/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>

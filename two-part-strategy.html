@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Two-Part Strategy · Glitzlens × JVDS · Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+  .cs-hero{
+    padding: clamp(28px, 4vw, 56px) var(--pad-x) clamp(40px, 5vw, 64px);
+    max-width: var(--max-w); margin: 0 auto;
+  }
+  .cs-hero .meta{ display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; }
+  .cs-hero h1{
+    font-family: var(--f-display); font-weight: 800;
+    font-size: clamp(54px, 8.5vw, 132px);
+    letter-spacing: -0.035em; line-height: 0.92;
+    margin: 0; color: var(--ink); text-wrap: balance;
+  }
+  .cs-hero h1 .accent{ color: var(--accent); }
+  .cs-hero .deck{
+    margin-top: 24px;
+    font-size: clamp(15px, 1.4vw, 18px); line-height: 1.6;
+    color: var(--ink-2); max-width: 62ch;
+  }
+
+  /* Two parts row */
+  .two-row{
+    margin-top: 32px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap);
+  }
+  @media (max-width: 760px){ .two-row{ grid-template-columns: 1fr; } }
+  .twocard{
+    padding: 28px 32px;
+    border-radius: var(--r);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-1);
+    position: relative; overflow: hidden;
+  }
+  .twocard.purple{
+    background: linear-gradient(180deg, #261b3d 0%, #160e25 100%);
+    color: #fff;
+    border-color: rgba(255,255,255,0.10);
+  }
+  .twocard.pink{
+    background: linear-gradient(180deg, #f5dde1 0%, #edc7d0 100%);
+    color: #2a0a18;
+  }
+  .twocard .tag{
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(255,255,255,0.7); margin-bottom: 14px;
+  }
+  .twocard.pink .tag{ color: #7a3540; }
+  .twocard h3{
+    font-family: var(--f-display); font-weight: 700;
+    font-size: 18px; letter-spacing: -0.005em;
+    color: #fff; margin: 0 0 14px;
+  }
+  .twocard.pink h3{ color: #1a0810; }
+  .twocard p{
+    font-family: var(--f-body); font-size: 13px;
+    line-height: 1.55; color: rgba(255,255,255,0.85);
+    margin: 0; max-width: 44ch;
+  }
+  .twocard.pink p{ color: #3a1822; }
+  .twocard .stat{
+    margin-top: 22px;
+    display: flex; align-items: baseline; gap: 14px;
+  }
+  .twocard .stat .num{
+    font-family: var(--f-display); font-weight: 800;
+    font-size: clamp(34px, 4vw, 52px); letter-spacing: -0.02em;
+    color: oklch(0.85 0.18 280);
+  }
+  .twocard.pink .stat .num{
+    font-family: var(--f-edit); font-style: italic; font-weight: 400;
+    color: #6a1830;
+    font-size: clamp(40px, 5vw, 64px);
+  }
+  .twocard .stat .lbl{
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+  }
+  .twocard.pink .stat .lbl{ color: #7a3540; }
+  .twocard .foot{
+    margin-top: 18px;
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 14px;
+    display: flex; justify-content: space-between;
+  }
+  .twocard.pink .foot{ color: #7a3540; border-top-color: rgba(0,0,0,0.12); }
+
+  /* Duality banner */
+  .duality{
+    margin-top: var(--gap);
+    aspect-ratio: 21/9;
+    border-radius: var(--r);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-1);
+    overflow: hidden;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .duality .half{ position: relative; overflow: hidden; }
+  .duality .h-soft{
+    background:
+      radial-gradient(70% 90% at 50% 50%, rgba(255,210,210,0.30), transparent 65%),
+      linear-gradient(180deg, #2a1518 0%, #14080a 100%);
+  }
+  .duality .h-soft::after{
+    content:""; position: absolute; left: 14%; right: 14%; top: 14%; bottom: 14%;
+    background: radial-gradient(50% 70% at 50% 30%, rgba(245,225,210,0.45), transparent 70%);
+  }
+  .duality .h-defined{
+    background:
+      radial-gradient(60% 90% at 50% 60%, rgba(120,130,150,0.25), transparent 65%),
+      linear-gradient(180deg, #0a0a0e 0%, #14141a 100%);
+  }
+  .duality .h-defined::after{
+    content:""; position: absolute; left: 30%; right: 30%; top: 30%; bottom: 14%;
+    background: radial-gradient(50% 80% at 50% 30%, rgba(245,225,225,0.30), transparent 70%);
+  }
+  .duality .h-defined .bottles{
+    position: absolute; right: 6%; bottom: 12%;
+    display: flex; gap: 8px; align-items: flex-end;
+  }
+  .duality .h-defined .bottles i{
+    display: block; width: 22px; height: 60px;
+    background: linear-gradient(180deg, #d5d7dc 0%, #6c6e74 50%, #1a1c20 60%, #2a2c30 100%);
+    border-radius: 3px;
+    box-shadow: 0 12px 22px rgba(0,0,0,0.5);
+  }
+  .duality .h-defined .bottles i:nth-child(2){ height: 72px; }
+  .duality .h-defined .bottles i:nth-child(3){ height: 54px; }
+  .duality .hearts{
+    position: absolute; left: 8%; top: 30%;
+    display: flex; gap: 6px;
+  }
+  .duality .hearts i{
+    width: 14px; aspect-ratio: 1/1;
+    background: oklch(0.7 0.18 18);
+    clip-path: path('M 7 13 L 1 7 Q -.5 4, 3 2.5 Q 5.5 1.5, 7 4 Q 8.5 1.5, 11 2.5 Q 14.5 4, 13 7 Z');
+    transform: scale(1.1);
+  }
+  .duality .label-top{
+    position: absolute; top: 6%;
+    font-family: var(--f-display); font-weight: 800;
+    font-size: clamp(28px, 4.4vw, 64px);
+    letter-spacing: -0.025em;
+    color: #fff;
+  }
+  .duality .label-top.left{ left: 6%; }
+  .duality .label-top.right{ right: 6%; }
+  .duality .label-mid{
+    position: absolute; bottom: 8%;
+    font-family: var(--f-display); font-weight: 800;
+    font-size: clamp(22px, 3.2vw, 42px);
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  .duality .label-mid.l{ left: 6%; bottom: 8%; }
+  .duality .label-mid.r{ right: 6%; bottom: 22%; }
+  .duality .corner-stamp{
+    position: absolute; top: 14px; right: 14px;
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: #fff;
+    padding: 5px 10px;
+    background: rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 999px;
+    z-index: 3;
+  }
+
+  /* section card */
+  .sec-head{
+    display: grid; grid-template-columns: auto 1fr auto;
+    gap: 18px; align-items: center;
+    padding: 18px 24px;
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--r); box-shadow: var(--shadow-1);
+  }
+  .sec-head .nu{
+    font-family: var(--f-mono); font-size: 12px;
+    letter-spacing: 0.14em; padding: 6px 12px;
+    background: var(--dark); color: #fff; border-radius: 999px;
+  }
+  .sec-head .h{
+    font-family: var(--f-display); font-weight: 700;
+    font-size: clamp(22px, 2.2vw, 30px);
+    letter-spacing: -0.018em; margin: 0; color: var(--ink);
+  }
+  .sec-head .kick{
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .sec-block{ margin-top: clamp(36px, 5vw, 56px); }
+  .text-card{
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--r); padding: clamp(22px, 3vw, 36px);
+    box-shadow: var(--shadow-1); margin-top: var(--gap);
+  }
+  .text-card p{
+    margin: 0; font-size: 15px; line-height: 1.65;
+    color: var(--ink-2); max-width: 64ch;
+  }
+  .text-card p + p{ margin-top: 1em; }
+  .text-card strong{ color: var(--ink); font-weight: 600; }
+
+  /* Pattern explanation cards */
+  .pat-row{
+    margin-top: var(--gap);
+    display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap);
+  }
+  @media (max-width: 760px){ .pat-row{ grid-template-columns: 1fr; } }
+  .patc{
+    padding: 28px 32px;
+    border-radius: var(--r); border: 1px solid var(--line);
+    box-shadow: var(--shadow-1);
+    background: var(--card);
+  }
+  .patc.pink-h{
+    background: linear-gradient(180deg, #c43340 0%, #8a1820 100%);
+    color: #fff;
+    border-color: rgba(255,255,255,0.10);
+  }
+  .patc .tag{
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 10px;
+  }
+  .patc.pink-h .tag{ color: rgba(255,255,255,0.7); }
+  .patc .h{
+    font-family: var(--f-display); font-weight: 700;
+    font-size: 18px; letter-spacing: -0.005em;
+    color: var(--ink); margin: 0 0 12px;
+  }
+  .patc.pink-h .h{ color: #fff; }
+  .patc .p{
+    font-family: var(--f-body); font-size: 13px;
+    line-height: 1.55; color: var(--muted); margin: 0;
+  }
+  .patc.pink-h .p{ color: rgba(255,255,255,0.85); }
+
+  /* Result cards */
+  .res-row{
+    margin-top: var(--gap);
+    display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap);
+  }
+  @media (max-width: 760px){ .res-row{ grid-template-columns: 1fr; } }
+  .res{
+    padding: 28px 32px;
+    border-radius: var(--r); border: 1px solid var(--line);
+    box-shadow: var(--shadow-1);
+  }
+  .res.purple{ background: linear-gradient(180deg, #261b3d 0%, #160e25 100%); color: #fff; border-color: rgba(255,255,255,0.10); }
+  .res.pink{ background: linear-gradient(180deg, #f5dde1 0%, #edc7d0 100%); color: #2a0a18; }
+  .res .lbl{
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(255,255,255,0.7); margin-bottom: 8px;
+  }
+  .res.pink .lbl{ color: #7a3540; }
+  .res .h{
+    font-family: var(--f-display); font-weight: 700;
+    font-size: 16px; letter-spacing: -0.005em;
+    color: #fff; margin: 0 0 10px;
+  }
+  .res.pink .h{ color: #1a0810; }
+  .res .p{
+    font-family: var(--f-body); font-size: 13px;
+    line-height: 1.55; color: rgba(255,255,255,0.85); margin: 0 0 14px;
+    max-width: 44ch;
+  }
+  .res.pink .p{ color: #3a1822; }
+  .res .big{
+    font-family: var(--f-display); font-weight: 800;
+    font-size: clamp(28px, 3.4vw, 42px);
+    letter-spacing: -0.02em;
+    color: oklch(0.85 0.18 280);
+    margin-top: 12px;
+  }
+  .res.pink .big{
+    font-family: var(--f-edit); font-weight: 400; font-style: italic;
+    color: #6a1830;
+    font-size: clamp(34px, 4.4vw, 52px);
+  }
+  .res .meta{
+    margin-top: 14px;
+    font-family: var(--f-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 12px;
+    display: flex; justify-content: space-between;
+  }
+  .res.pink .meta{ color: #7a3540; border-top-color: rgba(0,0,0,0.12); }
+
+  /* TOC */
+  .cs-toc{
+    position: fixed; left: 14px; top: 50%;
+    transform: translateY(-50%); z-index: 50;
+    display: flex; flex-direction: column; gap: 2px;
+    font-family: var(--f-mono); font-size: 9px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--muted);
+    background: rgba(255,255,255,0.85); backdrop-filter: blur(10px);
+    border: 1px solid var(--line); border-radius: var(--r);
+    padding: 14px 12px;
+  }
+  .cs-toc a{ display:flex; align-items: center; gap: 8px; padding: 4px; color: var(--muted); }
+  .cs-toc a:hover{ color: var(--ink); }
+  .cs-toc .dash{ width: 14px; height: 1px; background: currentColor; opacity: .6; }
+  @media (max-width: 1320px){ .cs-toc{ display: none; } }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-brand">PORTFOLIOKOR<sup>©</sup></div>
+  <nav class="topbar-nav">
+    <a href="index.html" class="is-current">← Back to homepage</a>
+  </nav>
+  <div class="topbar-meta">
+    <span class="dot" aria-hidden="true"></span>
+    <span>CDMX</span>
+    <span class="clock" data-cdmx-clock>00:00:00 AM</span>
+  </div>
+</header>
+
+<aside class="cs-toc">
+  <a href="#sec-01"><span class="dash"></span> 01 · Pattern</a>
+  <a href="#sec-ex1"><span class="dash"></span> Ex · Glitzlens</a>
+  <a href="#sec-ex2"><span class="dash"></span> Ex · MAC × Ella</a>
+  <a href="#sec-results"><span class="dash"></span> Results</a>
+</aside>
+
+<!-- HERO -->
+<section class="cs-hero">
+  <div class="meta">
+    <span class="tag-slash solid">Case study · Glitzlens × JVDS</span>
+    <span class="tag-slash">Strategy · 04 of 04</span>
+  </div>
+  <h1>The Two-Part Strategy<br>— Glitzlens<span class="accent"> &amp; </span>JVDS</h1>
+  <p class="deck">Video for reach, stills for discovery. I applied the same two-part content approach across two different brand collaborations — and the pattern worked in both cases.</p>
+
+  <div class="two-row">
+    <div class="twocard purple">
+      <div class="tag">Part 01 — UGC video</div>
+      <h3>Macro lens shots, iridescent bubble overlays in editing, spherical candle props, eye close-ups showing the lens. Editorial feel — not a haul.</h3>
+      <div class="stat">
+        <span class="num">2K</span>
+        <span class="lbl">Views · Reel</span>
+      </div>
+      <div class="foot">
+        <span>WATCH ↗</span>
+        <span>00:24 · IG REEL</span>
+      </div>
+    </div>
+    <div class="twocard pink">
+      <div class="tag">Part 02 — Minnie makeup carousel</div>
+      <h3>3-step makeup guide recreating Minnie's "Her" MV look. Products listed per step. Pink scrapbook aesthetic. Designed to be saved and followed.</h3>
+      <div class="stat">
+        <span class="num">972 reach</span>
+      </div>
+      <div class="foot">
+        <span>SEE CAROUSEL →</span>
+        <span>3 SLIDES · IG</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="duality">
+    <span class="corner-stamp">Editorial · Split frame · 16:9</span>
+    <div class="half h-soft">
+      <div class="hearts" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="label-top left">Duality</div>
+      <div class="label-mid l">Soft Muse</div>
+    </div>
+    <div class="half h-defined">
+      <div class="label-top right">Defined<br>Look</div>
+      <div class="bottles" aria-hidden="true"><i></i><i></i><i></i></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 01 -->
+<section class="container sec-block" id="sec-01" data-reveal>
+  <div class="sec-head">
+    <span class="nu">01</span>
+    <h2 class="h">One video, one still, double the reach</h2>
+    <span class="kick">The pattern</span>
+  </div>
+  <div class="text-card">
+    <p>Across two very different brand collaborations — a Thai contact lens brand and a MAC PR package — I found myself using the same two-part posting structure. It was not planned as a system at first. It came from noticing that a single video or a single carousel was rarely enough to fully extend the reach of a product collaboration.</p>
+    <p>The structure became clear over time. The first post was a video focused on product use and visual impact, designed to catch attention quickly and perform well through reach. The second was a still carousel inspired by a K-pop idol reference, giving audiences something more detailed to save, revisit, and share as a makeup reference. Together, the two formats helped extend the lifespan of the collaboration beyond a single upload.</p>
+  </div>
+
+  <div class="pat-row">
+    <div class="patc">
+      <div class="tag">Part 01 — Video</div>
+      <h4 class="h">Product in use, filmed for reach</h4>
+      <p class="p">The video format focused on showing the product in use through close-up shots, movement, and editorial-style editing. Its role was reach, using the Reel format to push the content toward non-followers who may not already know the brand.</p>
+    </div>
+    <div class="patc pink-h">
+      <div class="tag">Part 02 — Still carousel</div>
+      <h4 class="h">Idol reference, designed to be saved</h4>
+      <p class="p">The carousel paired the product with a K-pop idol whose aesthetic matched the overall look and mood of the content. It worked both as a makeup reference and a cultural hook — making the post more searchable, save-able, and likely to reach audiences already connected to the idol's fanbase.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EXAMPLE 01 -->
+<section class="container sec-block" id="sec-ex1" data-reveal>
+  <div class="sec-head">
+    <span class="nu">EX 01</span>
+    <h2 class="h">Contact lenses are invisible and the look has to do the work</h2>
+    <span class="kick">Glitzlens + Minnie (G·I-DLE)</span>
+  </div>
+  <div class="text-card">
+    <p><strong>Glitzlens</strong> creates silicone hydrogel contact lenses, but lenses are naturally difficult to capture on camera without an extreme close-up. That meant the content had to rely more on styling, mood, and character than the product itself.</p>
+    <p><strong>Minnie</strong> became the reference point because her image closely matches Glitzlens' audience: playful, feminine, and visually bold. Bubble overlays and spherical candle props were also used throughout the video to reflect the soft iridescent quality of the lenses on screen.</p>
+  </div>
+</section>
+
+<!-- EXAMPLE 02 -->
+<section class="container sec-block" id="sec-ex2" data-reveal>
+  <div class="sec-head">
+    <span class="nu">EX 02</span>
+    <h2 class="h">PR package received. Campaign thinking applied.</h2>
+    <span class="kick">MAC Powder Kiss × Ella (NewJeans)</span>
+  </div>
+  <div class="text-card">
+    <p>MAC Cosmetics Thailand sent a Powder Kiss PR package with five lipstick shades, so I built the concept around a Valentine's date night look using pink heart ears, lace styling, and soft feminine visuals. The video focused on swatches, application shots, and showcasing all five shades within the same romantic world.</p>
+    <p>The second post took a more strategic direction. Ella Gross is the lead ambassador for MAC Powder Kiss in Thailand, so the carousel combined my own polaroid-style photos with Ella's campaign imagery to connect the content to an audience already engaging with the campaign online.</p>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="container sec-block" id="sec-results" data-reveal>
+  <div class="sec-head">
+    <span class="nu">02</span>
+    <h2 class="h">Two formats, two roles, one outcome</h2>
+    <span class="kick">Numbers</span>
+  </div>
+  <div class="res-row">
+    <div class="res purple">
+      <div class="lbl">Part 01 — Valentine's Reel</div>
+      <div class="h">Powder Kiss / 5 shades</div>
+      <p class="p">Pink heart ears, lace styling, all 5 Powder Kiss shades showcased. Full Valentine's date narrative. R.I.I.T audio for K-pop energy. Solo production.</p>
+      <div class="big">46 likes · 5 comments</div>
+      <div class="meta">
+        <span>WATCH ↗</span>
+        <span>00:18 · REEL</span>
+      </div>
+    </div>
+    <div class="res pink">
+      <div class="lbl">Part 02 — Ella carousel</div>
+      <div class="h">Cover features Ella · Official ambassador</div>
+      <p class="p">3-slide editorial carousel. Cover features Ella (official ambassador) alongside my own polaroid shots. Shade swatches framed in lace hearts. Positioned alongside the brand's own campaign talent.</p>
+      <div class="big">9 likes</div>
+      <div class="meta">
+        <span>SEE CAROUSEL →</span>
+        <span>3 SLIDES · IG</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHIVES -->
+<section class="container gutter" id="archives" data-reveal>
+  <div style="display:grid; grid-template-columns: 1fr auto; align-items: end; gap: 24px; margin-bottom: 22px;">
+    <div>
+      <span class="tag-slash">Archives</span>
+      <h2 class="h-section" style="margin-top:14px">The Archives<br>— Click to see other contents</h2>
+    </div>
+    <a class="btn btn-ghost" href="index.html#works">All works <span class="arr">→</span></a>
+  </div>
+  <div class="arch-grid">
+    <a class="arch-card" href="mac-winter.html">
+      <div class="arch-img"><div class="ph cream"><span class="label-corner">01 · MAC</span><span class="label">Winter Collection</span></div></div>
+      <div class="arch-foot"><span class="arch-title">MAC · Winter Collection</span><span class="arch-view">View →</span></div>
+    </a>
+    <a class="arch-card" href="javin-jisoo.html">
+      <div class="arch-img"><div class="ph red-deep"><span class="label-corner">02 · JVDS</span><span class="label">Eyes Closed</span></div></div>
+      <div class="arch-foot"><span class="arch-title">Javin De Seoul × Jisoo</span><span class="arch-view">View →</span></div>
+    </a>
+    <a class="arch-card" href="bad-bitch-club.html">
+      <div class="arch-img"><div class="ph dark"><span class="label-corner">03 · BBC</span><span class="label">Bad Bitch Club</span></div></div>
+      <div class="arch-foot"><span class="arch-title">Bad Bitch Club Perfume</span><span class="arch-view">View →</span></div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-foot" id="contact">
+  <div class="container">
+    <div class="foot-card">
+      <div>
+        <span class="tag-slash solid" style="margin-bottom: 18px;">Contact</span>
+        <h2 class="get-in-touch">Get In Touch.</h2>
+      </div>
+
+    </div>
+    <div class="foot-row">
+      <div class="foot-links">
+        <a href="mailto:best1nahathai@gmail.com">Email</a>
+        <a href="https://www.instagram.com/bbestnkk1/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.tiktok.com/@bbestnkk" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://www.behance.net/nk43" target="_blank" rel="noopener">Behance</a>
+        <a href="https://www.linkedin.com/in/nahathai-k/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="site.js"></script>
+</body>
+</html>
